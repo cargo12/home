@@ -1,0 +1,3 @@
+#!/bin/sh
+
+DJS=`date +%_d`; cal -m | sed '1d' | sed '1d' | sed '/./!d' | sed 's/$/                     /' | fold -w 21 | sed -n '/^.\{21\}/p' | sed 's/^/${alignc}${voffset 5} /' | sed /" $DJS "/s/" $DJS "/" "'${color1}'"$DJS"'${color0}'" "/ 

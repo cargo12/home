@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="http://openbox.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openbox.org/                 file:///usr/share/openbox/menu.xsd">
+	<menu id="root-menu" label="[ === box === ] ">
+		<separator label="[ === box === ]"/>
+		<menu icon="/home/wimac/.icons/filemanager.png" id="filemgr-menu" label="filemanager         [file]">
+			<item icon="/home/wimac/.icons/emelfm2.png" label="emelfm2">
+				<action name="Execute">
+					<execute>
+					      emelfm2	
+					</execute>
+				</action>
+			</item>
+			<item icon="/home/wimac/.icons/root.png" label="emelfm2 as root">
+				<action name="Execute">
+					<execute>
+						sudo emelfm2
+					</execute>
+				</action>
+			</item>
+			<item icon="/home/wimac/.icons/thunar.png" label="thunar">
+				<action name="Execute">
+					<execute>
+						thunar
+					</execute>
+				</action>
+			</item>
+		</menu>
+		<item icon="/home/wimac/.icons/chrome.png" label="chrome            [www]">
+			<action name="Execute">
+				<execute>
+					google-chrome --disk-cache-dir=/tmp --disk-cache-size=13105420 --audio-buffer-size=2048 
+				</execute>
+			</action>
+		</item>
+		<item icon="/home/wimac/.icons/vim.png" label="gvim              [editor]">
+			<action name="Execute">
+				<execute>
+					gvim
+				</execute>
+			</action>
+		</item>
+		<item icon="/home/wimac/.icons/viewnior.png" label="viewnior           [viewer]">
+			<action name="Execute">
+				<execute>
+					viewnior
+				</execute>
+			</action>
+		</item>
+		<item icon="/usr/share/pixmaps/deluge.png" label="deluge           [torrent]">
+			<action name="Execute">
+				<execute>
+				        deluge
+				</execute>
+			</action>
+		</item>
+		<item icon="/usr/share/pixmaps/transmission.png" label="transmission     [torrent]">
+			<action name="Execute">
+				<execute>
+					transmission
+				</execute>
+			</action>
+		</item>
+		<item icon="/home/wimac/.icons/gnumeric.png" label="librecalc     [spreadsheet]">
+			<action name="Execute">
+				<execute>
+				        loffice --calc	
+				</execute>
+			</action>
+		</item>
+		<item icon="/home/wimac/.icons/abiword.png" label="abiword         [doc editor]">
+			<action name="Execute">
+				<execute>
+					abiword
+				</execute>
+			</action>
+		</item>
+		<item icon="/home/wimac/.icons/terminator.png" label="terminal            [term]">
+			<action name="Execute">
+				<execute>
+					terminator
+				</execute>
+			</action>
+		</item>
+		<item icon="/home/wimac/.icons/evernote.jpg" label="nixnote           [evernote]">
+			<action name="Execute">
+				<execute>
+					nixnote
+				</execute>
+			</action>
+		</item>
+		<item icon="/home/wimac/.icons/mplayer.png" label="gnome-mplayer   [mediamgr]">
+			<action name="Execute">
+				<execute>
+					gnome-mplayer
+				</execute>
+			</action>
+		</item>
+		<item icon="/home/wimac/.icons/virtualbox.png" label="virtualbox">
+			<action name="Execute">
+				<execute>
+					sudo virtualbox
+				</execute>
+			</action>
+		</item>
+		<item icon="/home/wimac/.icons/python.png" label="idle           [ide]">
+			<action name="Execute">
+				<execute>
+					idle
+				</execute>
+			</action>
+		</item>
+                <item icon="/home/wimac/.icons/fortinet.jpg" label="vpn           [ide]">
+			<action name="Execute">
+				<execute>
+					~/bin/forticlientsslvpn/forticlientsslvpn
+				</execute>
+			</action>
+		</item>
+		<separator/>
+		<menu icon="/home/wimac/.icons/crunchbang.png" id="system-menu" label="administration">
+			<menu icon="/home/wimac/.icons/blackbox.png" id="system-menu-673352" label="openbox config">
+				<item label="obmenu ">
+					<action name="Execute">
+						<execute>
+							obmenu ~/.config/openbox/my-menu.xml
+						</execute>
+					</action>
+				</item>
+				<item label="obconf">
+					<action name="Execute">
+						<execute>
+							obconf
+						</execute>
+					</action>
+				</item>
+				<menu execute="/home/crunchbang/.config/openbox/scripts/gtkmenu-0.9.py -m" id="pipe-382534" label="theme-menu"/>
+				<item label="edit rc.xml">
+					<action name="Execute">
+						<execute>
+							gvim ~/.config/openbox/rc.xml
+						</execute>
+					</action>
+				</item>
+				<item label="edit menu.xml">
+					<action name="Execute">
+						<execute>
+							gvim ~/.config/openbox/my-menu.xml
+						</execute>
+					</action>
+				</item>
+			</menu>
+			<menu icon="/home/wimac/.icons/conky.png" id="system-menu-63635" label="conky config">
+				<item label="edit conky configs">
+					<action name="Execute">
+						<execute>
+							gvim ~/.config/conky/conkyrc-info conkyrc-calendar
+						</execute>
+					</action>
+				</item>
+				<item label="reload conky">
+					<action name="Execute">
+						<execute>
+							conky_startup
+						</execute>
+					</action>
+				</item>
+			</menu>
+			<menu icon="/home/wimac/.icons/printer.png" id="system-menu-66590" label="printer config">
+				<item label="Printer config">
+					<action name="Execute">
+						<execute>
+							sudo system-config-printer
+						</execute>
+					</action>
+				</item>
+				<item label="Printer Jobs">
+					<action name="Execute">
+						<execute>
+							python /usr/share/system-config-printer/applet.py
+						</execute>
+					</action>
+				</item>
+			</menu>
+			<menu id="system-menu-374813" label="tmux config">
+				<item label="edit tmux startup">
+					<action name="Execute">
+						<execute>
+							gvim ~/bin/tmux_project
+						</execute>
+					</action>
+				</item>
+				<item label="edit tmux config">
+					<action name="Execute">
+						<execute>
+							gvim .tmux.conf
+						</execute>
+					</action>
+				</item>
+			</menu>
+			<item icon="/home/wimac/.icons/startup.png" label="edit startup">
+				<action name="Execute">
+					<execute>
+						sudo gvim ~/.config/openbox/autostart.sh
+					</execute>
+				</action>
+			</item>
+			<item icon="/home/wimac/.icons/lxde.png" label="appearance">
+				<action name="Execute">
+					<execute>
+						lxappearance
+					</execute>
+				</action>
+			</item>
+			<menu execute="~/.config/openbox/scripts/wjmWallmenu.py" id="wallmenu-menu" label="wallmenu"/>
+			<item label="screensaver settings">
+				<action name="Execute">
+					<execute>
+						xscreensaver-demo
+					</execute>
+				</action>
+			</item>
+			<item label="synaptic">
+				<action name="Execute">
+					<execute>
+						sudo synaptic
+					</execute>
+				</action>
+			</item>
+			<separator/>
+			<item label="reconfigure">
+				<action name="Reconfigure"/>
+			</item>
+			<item label="restart">
+				<action name="Restart"/>
+			</item>
+		</menu>
+		<separator/>
+		<menu icon="/home/wimac/.icons/debian.png" id="Debian"/>
+		<menu execute="~/.config/openbox/scripts/dirlist.py /media/" icon="/home/wimac/.icons/usb.png" id="mediamenu-menu" label="media"/>
+		<menu execute="~/.config/openbox/scripts/dirlist.py ~/" icon="/home/wimac/.icons/home.png" id="deskmenu-menu" label="home"/>
+		<menu execute="~/.config/openbox/scripts/dirlist.py ~/Dropbox" icon="/home/wimac/.icons/dropbox.png" id="dropboxmenu-menu" label="dropbox"/>
+		<separator/>
+		<item icon="/home/wimac/.icons/xkill.png" label="xkill">
+			<action name="Execute">
+				<execute>
+					xkill
+				</execute>
+			</action>
+		</item>
+		<separator/>
+                <menu execute="~/.config/openbox/scripts/switch_user.sh"/>
+
+		<item icon="/home/wimac/.icons/exit.png" label=".      g o o d b y e      ">
+			<action name="Execute">
+				<execute>
+					/usr/bin/cb-exit
+				</execute>
+			</action>
+		</item>
+	</menu>
+</openbox_menu>

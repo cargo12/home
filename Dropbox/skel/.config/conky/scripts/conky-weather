@@ -1,0 +1,18 @@
+#!/bin/sh
+# $Id: weather  07-26-2007 02:17PM wimac ver: 09.045.1025
+# by William J. MacLeod (wimac1@gmail.com)  
+# Last modified: 02-14-2009  10:25AM wimac
+wxurl="http://www.accuweather.com"
+wxurl="$wxurl/adcbin/public/local_index_print.asp?zipcode="
+zcode="48126"
+size=3
+curl -s --connect-timeout 30 "${wxurl}$zcode" | \
+  sed -n '/Start - Forecast Cell/,/End - Forecast Cell/p' | \
+  sed 's/<[^>]*>//g;s/^ [ ]*//g' | \
+  uniq -u | \
+  sed '2,3!d'|\
+  tr -d '\r' 
+exit 0
+
+
+# http://xoap.weather.com/weather/local/48126?cc=*&dayf=5&link=xoap&prod=xoap&par=1085093692&key=b9576afcdb69f9aa

@@ -1,0 +1,43 @@
+#Last modified: 04-28-2011  09:55AM wimac
+
+background yes
+use_xft yes
+
+#xftfont calibri:size=34:bold
+#xftfont dungeon:pixelsize=48:bold
+#xftfont Swis721 Cn BT:style=bold:size=33
+xftfont snap:size=8
+xftalpha 0.7
+total_run_times 0
+own_window no
+double_buffer no
+draw_shades no
+draw_outline no
+draw_borders no
+default_color grey65 
+default_shade_color grey90
+default_outline_color grey90
+
+#alignment top_left
+#alignment top_right
+
+#alignment bottom_left
+alignment top_right
+
+#gap_x 62
+gap_y 50 
+update_interval 30
+
+no_buffers no
+uppercase no
+#Colors
+#color0 e2e2e5
+#color1 b1d631
+color0 eee8d5 
+color1 719E6B
+#${color2}${alignr}${font terminus:size=12}${time :%M}
+#${goto 1180}${color1}${time %A}
+#${voffset 0}${goto 1180}${color2}${font snap:size=8}${time %e. %B}
+TEXT
+${color0}${font terminus:size=72}${alignr}${offset -50}${time %l:%M%P}
+

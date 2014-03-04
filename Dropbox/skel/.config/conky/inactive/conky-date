@@ -1,0 +1,44 @@
+#Last modified: 01-09-2009  02:16PM wimac
+
+background yes
+use_xft yes
+
+
+xftfont terminus:size=34
+
+update_interval 600
+xftalpha 0.8
+total_run_times 0
+#own_window yes
+own_window_transparent yes
+#own_window_type override
+#own_window_type desktop
+double_buffer no
+draw_shades no
+draw_outline no
+draw_borders no
+default_color grey65
+default_shade_color grey90
+default_outline_color grey90
+
+#alignment top_left
+#alignment top_right
+alignment bottom_left
+#alignment bottom_right
+
+gap_x 20
+gap_y -60
+#gap_y 2
+#Colors
+color0 e2e2e5
+color1 b1d631
+no_buffers no
+uppercase no
+#   
+#TEXT
+#${time %a %#d %b}           {alignc 3} ${font terminus:size=10} $mpd_smart 
+      
+TEXT
+${color0}${time %a} ${time %b} ${color1}${time %#d} 
+
+

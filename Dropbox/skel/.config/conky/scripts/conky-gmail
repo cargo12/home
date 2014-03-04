@@ -1,0 +1,15 @@
+#!/bin/bash
+# $Id: conky-gmail  07-27-2007 01:07AM wimac ver: 09.045.1042
+# Last modified: 02-14-2009  10:42AM wimac
+
+
+username="wimac1"
+password="r3dd0gge"
+domain="billmacleod.com"
+#wget -O - https://$username:$password@mail.google.com/a/$domain/feed/atom --no-check-certificate|\
+#curl -s -k https://$username:$password@mail.google.com/mail/feed/atom |\
+curl -s -k --connect-timeout 30 -u $username:$password https://mail.google.com/mail/feed/atom |\
+#wget -O - https://$username:$password@mail.google.com/mail/feed/atom |\
+    sed 's/</\n</g;s/>/>\n/g' |\
+    sed -n '/<fullcount>/{n;p;}'
+exit 0

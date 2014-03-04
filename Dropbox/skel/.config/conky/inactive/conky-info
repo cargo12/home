@@ -1,0 +1,40 @@
+# $Id: .conky-weather  06-26-2007 01:28PM wimac ver: 08.346.1235
+# Last modified: 12-11-2008  12:35PM root
+
+background yes
+use_xft yes
+
+#xftfont calibri:size=34:bold
+#xftfont dungeon:pixelsize=20:bold
+#xftfont Swis721 Cn BT:style=bold:size=18
+#xftfont URW Gothic L:size=16
+xftfont Terminus:size=15:bold
+
+xftalpha 0.8
+total_run_times 0
+own_window no
+double_buffer no
+draw_shades no
+draw_outline no
+draw_borders no
+default_color grey65
+default_shade_color grey90
+
+default_outline_color grey90
+update_interval 900
+#alignment top_left
+alignment top_right
+#alignment bottom_left
+#alignment bottom_right
+
+gap_x 30 
+#gap_y -18
+gap_y 2
+
+no_buffers no
+uppercase no
+
+TEXT
+${color slate grey}${execi 1800 ./scripts/conky-weather}$color  
+${execi 3600 ./scripts/conkyForecast.py --location=USMI0220 --datatype=LT} / ${execi 3600 ./scripts/conkyForecast.py --location=SNXX0006 --datatype=HT}
+${color blue}$mpd_title

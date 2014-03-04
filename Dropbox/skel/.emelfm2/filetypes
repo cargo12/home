@@ -1,0 +1,25 @@
+Image Files;jpeg,jpg,png,xpm,gif,tiff,bmp,ico,tif,psd,gpl;gpicview@geeqie %f ,viewnior@viewnior %f,gimp,set as wallpaper@~/bin/wjmWallpaper.py %f,Send to Tablet (Pictures)@~/bin/tab_push /sdcard/Pictures/ %f,Send to Tablet (NSFW)@~/bin/tab_push /sdcard/Pictures/nsfw %f
+Source Code Files;c,cpp,h,pl,java;Edit With Vi@x vi,Edit With Emacs@x emacs
+Object Files;o,so,a;View Symbols@x nm %f | less
+HTML Documents;htm,html;google-chrome,x lynx
+Plain Tarballs;tar;Unpack@tar xvf %f,Unpack in other panel@cd %D; tar xvf %d/%f,View Contents@tar tvf %f | less
+Gzip Tarballs;tar.gz,tgz,gz;Unpack@gunzip -c %f | tar xvf -,Unpack in other panel@cd %D; gunzip -c %d/%f | sudo tar xvf -,View Contents@gunzip -c %f | tar tvf - | less
+Bzip2 Tarballs;tar.bz2;Unpack@bzip2 -d -c %f | tar xvf -,Unpack in other panel@cd %D; bzip2 -d -c %d/%f | tar xvf -,View Contents@bzip2 -d -c %f | tar tvf - | less,Unzip@7z x %f
+Archives;zip,rar,7z,apk;Extract here...@7z x %f,Extract in other panel@cd %D; 7z x %d/%f,View Contents@7z l %f,md5sum@md5sum %f,Push to Device@~/bin/tab_push /sdcard/Download/ %f
+RPM Packages;rpm;View Info@x rpm -qlip %f | less,Install@su rpm -Uvh %f | less
+Adobe Acrobat Documents;pdf;acroread,epdfview@epdfview %f,xpdf,Send to Tablet (pdf)@~/bin/tab_push /sdcard/ezPDFReader/bookdata/library/ %f
+PostScript Documents;ps;gv
+Text Documents;txt;gvim,gqview
+music file;mp3,ogg,wma,m4a,wav,flac,m3u;VLC@vlc %f,mplayer@gnome-mplayer %f,easytag@easytag %f,wjmMp3Rename@~/bin/wjmMp3Rename.py,wma2mp3@~/bin/wma2mp3.sh,wav2mp3@~/bin/wav2mp3.sh,m4a2mp3@~/bin/m4a2mp3,Send to Device (Music)@~/bin/tab_push /storage/sdcard0/Music %f
+tab_push /storage/sdcard0/Podcasts/Music %f;mpg,avi,wmv,mpeg,rm,asf,flv,mov,mp4,part,divx,m2ts,mkv,crdownload,rmvb,m4v,srt;vlc@vlc %f,mplayer@mplayer -aspect 16:9 %f,avidemux@avidemux %f,handbrake@handbrake-gtk %f,Send to Tablet (Movies)@~/bin/tab_push /storage/sdcard0/Movies/ %f,Push to Tablet (TV)@~/bin/tab_push /sdcard/TV/ %f
+ne...; done; done; done; done; done; done;exe;Run with WINE@wine %f,Extract here...@7z x %f
+spreadsheet;xls,csv,gnumeric,xlsm,yaml,xlsx,ods;gnumeric@gnumeric %f,Libreoffice@libreoffice --calc %f
+Word Document;doc,rtf,docx,odt;abiword@abiword %f,LibreOffice@loffice %f
+Torrent FIle;torrent;transmission@transmission %f,deluge %f
+java;jar;java -Xmx1024M -Xms1024M -jar %f
+Guitar Tab;gp4;tuxguitar@tuxguitar %f
+deb package;deb;install with dpkg@sudo dpkg -i %f
+Comic Book;cbr;cbrpager
+Python File;py,pyc;python %f
+Cab file;cab;cabextract %f %D,List@unshield l %f
+wine program;exe;wine@wine %f

@@ -1,0 +1,38 @@
+0 F2 SYSTEM_RENAME
+0 F3 SYSTEM_VIEW
+0 F4 gvim %f
+0 F6 mv -u %f %D
+0 F7 SYSTEM_MKDIR
+0 F8 shred -ufz %f
+1 Delete shred -ufz %f
+1 F4 gksudo gvim %f
+0 Return SYSTEM_OPEN
+0 Right SYSTEM_OPEN
+0 BackSpace INTERFACE:UpDir
+0 Left INTERFACE:UpDir
+0 space INTERFACE:Switch Panels
+0 Tab INTERFACE:Switch Panels
+0 Delete SYSTEM_DELETE
+0 Insert SYSTEM_TAG
+0 Home INTERFACE:Go Home
+4 e SYSTEM_SYNC_DIRS
+4 c SYSTEM_COPY
+5 c SYSTEM_COPY_AS
+4 m SYSTEM_MOVE
+5 m SYSTEM_MOVE_AS
+4 s SYSTEM_SYMLINK
+5 s SYSTEM_SYMLINK_AS
+4 r SYSTEM_RENAME
+4 d SYSTEM_MKDIR
+4 l SYSTEM_REFRESH
+4 f SYSTEM_FIND
+4 t SYSTEM_TAG
+4 q SYSTEM_QUIT
+4 h INTERFACE:Toggle Hidden Files
+4 w INTERFACE:Open/Close Output Window
+4 z INTERFACE:Goto Command Line
+4 comma INTERFACE:Toggle Left Panel size
+4 period INTERFACE:Toggle Right Panel size
+4 p INTERFACE:Menu
+4 bracketleft INTERFACE:Plugins Menu
+4 bracketright INTERFACE:User Menu

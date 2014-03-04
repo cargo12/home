@@ -1,0 +1,268 @@
+# $Id: .aliasrc  011-26-2007 09:30AM wimac ver: 11.224.1617
+# Last modified: 08-12-2011  04:17PM wimac
+# alias file
+
+#alias sshtunnel="ssh -ND 5900 -v wimac@wimac.homelinux.net"
+alias !='sudo $*'
+#blackberry teather 
+alias bbconnect='sudo pppd call barry-sprint'
+alias ap='cat >>~/.reminders'
+alias tc='sudo truecrypt -t'
+alias tcd='truecrypt -t -d'
+alias tcm='truecrypt -t -k "" --protect-hidden=no --mount' $*
+alias rtorrent='rtorrent -o http_capath=/etc/ssl/certs'
+alias t-='python ~/bin/t-.py --task-dir ~/tasks --list tasks'
+alias gmask='wine /home/wimac/.wine/drive_c/Program\ Files/Gmask/GMask.exe'
+# reload aliases    
+alias realias='source ~/.aliasrc'  
+# edit aliases  
+alias vialias='$EDITOR ~/.aliasrc && realias'
+GOOGLE_LICENSE_KEY=1Wql8npQFHJ3BQowe4KgymjYJAzAe+dQ
+GOOGLE_GMAP_LISENSE_KEY=ABQIAAAAs9IYBwsVMKdv-6C4cG5TFhRRh003GybN_rdiwW8QrAsqQw0pXhS2pkQLlVZZFYIwwGjKm10nnwkHag
+#DEVICE='0,0,0'
+#export LOGNAME=~/today/LOG
+alias a='agenda'
+alias today='cd $HOME/today'
+alias back='cd "$current"'
+#alias x='clear && /usr/X11R6/bin/xinit -- -nolisten tcp -dpi 120 $@'
+alias ls='ls -hFtl --color' 
+#| grep $(date +%Y-%m-%d)'
+#alias rm='shred -ufz'
+alias rm='srm -r'
+alias mv='nocorrect mv -v'
+alias e='$EDITOR'
+alias edit='$EDITOR'
+alias k='killall'
+alias df='~/bin/newdf'
+alias cp='nocorrect cp -v'
+alias mkdir='nocorrect mkdir' alias dir='ls -lh'
+alias virtualbox='sudo VirtualBox'
+alias mkdir='nocorrect mkdir'
+alias syslog='less +G /var/log/syslog'
+alias ramhog="ps -A -ao rss,comm | sort -rn | sed -n '1,5{s/^/\t/;s/ /\t/p}'"
+alias unsetenv='unset'
+alias yell='echo done | write $LOGNAME'
+alias z='suspend'
+alias restart='op restart'
+alias path='which -a'
+alias index='swish-e -c .swishconf'
+#alias xterm='xterm -fg green -bg black -rv +sb'
+#alias rxvt='rxvt -fg green -bg black +sb'
+alias a='agenda'
+#history
+#very often I want to see a bunch of history entries instead of simply searching back:
+alias h='fc -l 1 | less'
+alias history='fc -l 1'
+test -f $HOME/.history && fc -R $HOME/.history
+#find dotfiles
+#alias dot=ls -ldF .[a-zA-Z0-9]*
+# number conversions 
+alias d2h="perl -e 'printf qq|%X\n|, int( shift )'"
+alias h2d="perl -e 'printf qq|%d\n|, hex( shift )'"
+#great top replacement
+alias top='htop'
+#alias prelink='/usr/sbin/prelink -afmR'
+#alias myip="echo $(wget -O - -q http://www.whatismyip.com | grep -i Your IP | awk '{print $4}')"
+#alias gvim='gvim --remote-silent' $*
+#cdburning stuff
+alias makeiso='sudo mkisofs -o $2 -r -hide-rr-moved -J -hide-joliet-trans-tbl' $*
+alias dvdshrink='wine "/home/wimac/.wine/drive_c/Program Files/DVD Shrink/DVDShrink3.2.exe"'
+#alias burniso='cdrecord -eject -v -driveropts=burnproof -data dev=0,0,0 speed=32'
+alias burnbin='sudo cdrdao write --device $DEVICE --buffers 64 --driver generic-mmc --eject'
+alias makemulti='sudo nice -n -18 cdrecord -eject -v -driveropts=burnproof dev=0,0,0 -multi'
+alias burncd='sudo nice -n -18 cdrecord -vvvv -pad speed=32 dev=0,0,0 -audio'
+alias ripdvd='dvdbackup -M -i $1 -o /tmp/'
+#alias burnmp3='mp3burn -o "-vvvv -pad speed=32 dev=0,0,0" *.mp3'
+alias mixer='rexima'
+alias smount='sudo mount $*'
+alias '..'='cd ..'
+#alias killshit='killall wine && killall wineserver'
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
+alias snice='sudo nice -n -5'
+alias untar="tar -xvzf"
+
+# apt-get related aliases
+alias ags='aptitude search' $1
+alias agi='sudo aptitude install' $1
+alias agu='sudo aptitude update'
+#alias agi='sudo aptitude install' $1 
+alias ag='sudo aptitude' $1-  
+alias agv='sudo apt-cache policy' $1
+alias agts='sudo apt-get' $1/testing
+alias ages='sudo apt-get' $1/experimental
+alias agus='sudo apt-get' $1/unstable
+alias agt='sudo apt-get -t testing' $1
+alias age='sudo apt-get -t experimental' $1
+#alias agu='sudo apt-get -t unstable' $1
+
+#plymouth
+alias plylist='sudo /usr/sbin/plymouth-set-default-theme --list'          #lists available Plymouth themes
+alias plychange='sudo /usr/sbin/plymouth-set-default-theme'          #use as 'plychange THEME'
+alias plyupdate='sudo update-initramfs -u'          #update initramfs to implement changes
+
+#alias updatedb="updatedb --prunepaths='/dev /mnt /proc /tmp /usr/src /var/tmp && /usr/sbin/eupdatedb'"
+
+#  pacman
+alias pacup='sudo pacman -Syu'
+alias pacin='sudo pacman -S'
+alias pacout='sudo pacman -Rns'
+alias pacclean='sudo pacman -Scc'
+alias pacs='pacman -Ss'
+
+#alias pacsearch="pacman -Sl | cut -d' ' -f2 | grep "
+#  yaourt
+alias yaup='yaourt -Syu --aur'
+alias yain='yaourt -S'
+alias yas='yaourt -Ss'
+alias yaclean='yaourt -Sc'
+alias reboot='sudo reboot'
+alias user="whoami"
+#alias s='screen -xR'
+alias s='tmux attach'
+#alias shutdown='sudo shutdown -h now'
+#Calculator
+calc () { echo $* |bc -l }
+
+alias lock='/home/$USER/bin/padlock -l'
+
+alias unlock='/home/$USER/bin/padlock -u'
+# nh - run command detached from terminal and without output
+# Usage: nh <command>
+nh() {
+    nohup "$@" &>/dev/null &
+}
+encrypt ()
+{
+gpg -ac --no-options "$1"
+}
+decrypt ()
+{
+gpg --no-options "$1"
+}
+
+# I don't like the zsh builtin time command.
+#[[ -x =time ]] && alias time='command time'
+
+
+alias -s html=firefox
+alias -s org=firefox
+alias -s php=firefox
+alias -s com=firefox
+alias -s net=firefox
+#alias -s py=vim
+alias -s png=feh
+alias -s jpg=feh
+alias -s svg=inkscape
+alias -s gif=feh
+alias -s PKGBUILD=vim
+alias -s sxw=abiword
+alias -s doc=abiword
+alias -s gz=tar -zxvf
+alias -s bz2=tar -jxvf
+
+#sipie Sirius' alias'
+#
+alias howard='pyxis "howard 100"'
+alias howard101='pyxis "howard 101"'
+alias stars='pyxis "sirius xm stars"'
+alias stars2='pyxis "sirius xm stars too"'
+alias playboy='pyxis "playboy radio"'
+alias faction='pyxis "faction"'
+alias coffeehouse='pyxis "The Coffee House"'
+alias octane='pyxis "Octane"'
+alias nhl='pyxis "Nhl Home Ice"'
+alias nfl='pyxis "Sirius Nfl Radio"'
+
+# surfraw alias'
+#
+#alias google='sr google' $1-
+#alias amazon='sr amazon' $1-
+#alias cddb='sr cddb' $1-
+#alias ebay='sr ebay' $1-
+#alias imdb='sr imdb' $1-
+#alias leodict='sr leodict' $1-
+#alias websters='sr webster' $1-
+#alias wikipedia='sr wikipedia' $1-
+#alias yahoo='sr yahoo' $1-
+#alias wetandwild='sr wetandwild' $1-
+alias cls=clear
+
+#Extract files
+extract () {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)   tar xjvf $1    ;;
+            *.tar.gz)    tar xzvf $1    ;;
+            *.bz2)       bzip2 -d $1    ;;
+            *.rar)       7z x $1    ;;
+            *.gz)        gunzip $1    ;;
+            *.tar)       tar xf $1    ;;
+            *.tbz2)      tar xjf $1    ;;
+            *.tgz)       tar xzf $1    ;;
+            *.zip)       7z x $1     ;;
+            *.Z)         uncompress $1    ;;
+            *.7z)        7z x $1    ;;
+            *.ace)       unace x $1    ;;
+            *)           echo "'$1' cannot be extracted via extract()"   ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+#bu - Back Up a file. Usage "bu filename.txt"
+bu () { cp $1 ${1}-`date +%Y%m%d%H%M`.backup ; }
+alias recient='find -maxdepth 1 -type f -mtime -1 -printf "%T@-%Tk:%TM - %f\n" | sort -rn | cut -d- -f2-'
+hash -d desktop="/home/wimac/Desktop"
+hash -d shared="/home/shared"
+hash -d docs="/home/wimac/documents"
+#alias' for filetype extensions
+alias -s txt='vim'
+# gfx
+alias -s xcf="gimp-remote"
+alias -s png="feh"
+alias -s gif="feh"
+alias -s jpg="feh"
+alias -s JPG="feh"
+# media files
+alias -s pdf="epdfview"
+# code
+alias -s php="/usr/share/vim/macros/less.sh" # less with vim's syntax-hilighting
+alias -s c="/usr/share/vim/macros/less.sh"
+alias -s html="/usr/share/vim/macros/less.sh"
+
+alias gb=git branch
+alias gba=git branch -a
+alias gc=git commit -v
+#alias gd=git diff | mate
+alias gl=git pull
+alias gp=git push
+alias gst=git status
+cp_p() { if [ `echo "$2" | grep ".*\/$"` ]; then pv "$1" > "$2""$1"; else pv "$1" > "$2"/"$1"; fi; }
+cdl() { cd $1; ls;}
+
+
+#---- and this is what my .bashrc does with tmux:
+# create the pane with irssi's nicklist
+#irssi_nickpane() {
+#    tmux renamew irssi                                  # name the tmux window used
+#    tmux setw main-pane-width $(( $(tput cols) - 19)) >/dev/null # set the main pane to width-19
+#    tmux splitw -v "cat ~/.irssi/nicklistfifo"          # create the window/begin sucking the fifo
+#    tmux selectl main-vertical >/dev/null               # assign the layout
+#    tmux selectw -t irssi                               # go there
+#    tmux selectp -t 0                                   # and to pane 0
+#}
+
+# irssi wrapper
+#irssi() {
+#    $(which irssi)                                      # launch irssi  `
+#}
+
+# repair running irssi's nicklist pane
+#irssi_repair() {
+#    tmux selectw -t irssi
+#    tmux selectp -t 0
+#    tmux killp -a
+#    irssi_nickpane
+#}

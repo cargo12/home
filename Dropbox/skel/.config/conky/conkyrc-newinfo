@@ -1,0 +1,53 @@
+# $Id: .conky-weather  06-26-2007 01:28PM wimac ver: 11.217.1838
+# Modification-Date: Mon 31 May 2010 12:36:51 -0400
+
+background yes
+use_xft yes
+
+#xftfont calibri:size=34:bold
+#xftfont dungeon:pixelsize=20:bold
+#xftfont Swis721 Cn BT:style=bold:size=18
+#xftfont URW Gothic L:size=16
+xftfont Terminus:size=15:bold
+
+xftalpha 0.8
+total_run_times 0
+own_window no
+double_buffer no
+draw_shades no
+draw_outline no
+draw_borders no
+default_color grey65
+default_shade_color grey90
+
+default_outline_color grey90
+update_interval 30
+alignment top_left
+#alignment top_right
+#alignment bottom_left
+#alignment bottom_right
+
+
+gap_x 30 
+#gap_y -18
+#gap_y 100
+gap_y 10
+#Colors
+color0 eee8d5
+color1 719E6B
+color3 586e75
+
+
+#${time %a %d %b %Y}
+no_buffers no
+uppercase no
+#${color1}${font terminus:size=72}${alignr}${offset -108}${time %#I}
+#${color2}${voffset -45}${goto 1175 }${font terminus:size=12}${time :%M}
+#${voffset 0}${goto 1180}${color2}${font snap:size=8}${time %e. %B}
+#${goto 1180}${color1}${time %A}
+
+TEXT
+${font "FreeSans":size=72}${color3}${time %e}
+${voffset -155}${offset 120}${font "FreeSans":size=24}${color0}${time %B}
+${voffset -10}${offset 120}${font "FreeSans":size=16}${color0}${time %A}
+${font FreeSans:size=16}${voffset 8}${offset 25}${color0}${execi 600 ~/bin/temp.py}$color

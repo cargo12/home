@@ -1,0 +1,10 @@
+# $Id: .screenrc-galt  10-24-2008 07:21PM wimac(wimac1@gmail.com) ver: 08.298.1926
+# Last modified: 10-24-2008  07:26PM wimac
+# 
+#screen -t 'SETI'      0 ${HOME}/bin/runseti
+
+screen                 1 
+screen                 2
+screen                 3 
+
+select 1

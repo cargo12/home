@@ -1,0 +1,61 @@
+# Last modified: 10-25-2008  02:37PM wimac
+# $Id: .screenrc  10-24-2008 07:25PM wimac(wimac1@gmail.com) ver: 08.299.1437
+altscreen on
+term screen-256color
+terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+startup_message off
+setenv LC_CTYPE en_US.UTF-8
+termcapinfo rxvt-unicode ti@:te@     #enable SHIFT-PGUP / SHIFT-PGDOWN scroll
+sorendition "+b kG"
+defutf8 on
+activity "%c activity -> %n%f %t"
+bell "%c bell -> %n%f %t^G"
+vbell_msg " *beep* "
+bindkey -m > eval "stuff ' '" writebuf "exec sh -c 'xsel -n < /tmp/screen-exchange'"
+# Log new screen windows in utmp.
+deflogin on
+autodetach on
+shell zsh
+vbell off
+zombie cr
+verbose on
+defscrollback 5000
+# If a window goes unresponsive, don't block the whole session waiting for it.
+nonblock on
+
+bindkey -m > eval "stuff ' '" writebuf "exec sh -c 'xsel -n < /tmp/screen-exchange'"
+bind s select zsh
+
+# Window numbering starts at 1, not 0.
+bind c screen 1
+bind 0 select 10
+
+# Login toggle is too close to screen redraw.  How about explicitly setting
+# login state, anyway?
+bind 'L'
+bind 'I' login on
+bind 'O' login off
+# It's sometimes useful to have a quote key.
+bind ^Q mapdefault
+bind q mapdefault
+# And since that leaxes xon unbound, let's remove xoff, too.
+bind ^S
+# Using tab to move around regions gets annoying.  These help.
+bind ^j focus down
+bind ^k focus up
+bind ^t focus top
+bind ^b focus bottom
+bindkey -k kb stuff "\177"
+multiuser on
+aclchg :window: +x select
+hardstatus off
+caption always '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %D,%m/%d%{W} %C]'
+
+
+# screen section
+
+screen                 1 
+screen                 2
+screen                 3 
+
+select 1

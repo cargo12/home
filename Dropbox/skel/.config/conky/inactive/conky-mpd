@@ -1,0 +1,43 @@
+# $Id: conky-mpd  09-16-2008 08:25PM wimac ver: 08.260.2054
+# Last modified: 09-16-2008  08:54PM wimac
+
+background yes
+use_xft yes
+
+mpd_host 127.0.0.1 
+mpd_port 6600
+#xftfont calibri:size=34:bold
+#xftfont dungeon:pixelsize=20:bold
+#xftfont Swis721 Cn BT:style=bold:size=18
+#xftfont URW Gothic L:size=16
+xftfont Terminus:size=15:bold
+
+xftalpha 0.8
+total_run_times 0
+own_window no
+double_buffer no
+draw_shades no
+draw_outline no
+draw_borders no
+default_color grey65
+default_shade_color grey90
+
+default_outline_color grey90
+update_interval 100
+#alignment top_left
+alignment bottom_left
+#alignment bottom_left
+#alignment bottom_right
+
+gap_x 30
+#gap_y -18
+gap_y 2
+
+no_buffers no
+uppercase no
+
+TEXT
+${color #88aadd}MPD: ${alignc}$mpd_artist - $mpd_title
+${color #88aadd}$mpd_bar ${color #88aadd}
+${alignc}$mpd_status
+

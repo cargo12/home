@@ -1,0 +1,39 @@
+#Last modified: 01-09-2009  01:27PM wimac
+
+background yes
+use_xft yes
+
+#xftfont calibri:size=34:bold
+#xftfont dungeon:pixelsize=34:bold
+#xftfont Swis721 Cn BT:style=bold:size=18
+#xftfont URW Gothic L:size=16
+xftfont terminus:size=12
+                             
+
+xftalpha 0.8
+total_run_times 0
+own_window no
+double_buffer no
+draw_shades no
+draw_outline no
+draw_borders no
+default_color grey65
+default_shade_color grey90
+default_outline_color grey90
+
+#alignment top_left
+#alignment top_right
+#alignment bottom_left
+alignment bottom_right
+
+gap_x 20
+gap_y 1
+no_buffers no
+uppercase no
+#Colors
+color0 e2e2e5
+color1 b1d631
+
+TEXT
+${color1}:${time %M} 
+

@@ -1,0 +1,16 @@
+xterm
+xterm
+xterm &
+FALSE
+df
+free disk space
+df -h
+FALSE
+du
+Disk Usage
+sudo du -h --max-depth=2 | sort -r
+FALSE
+free
+Free Memory
+free
+FALSE

@@ -1,0 +1,3 @@
+#! /bin/sh
+cd /home/wimac/.config/conky/scripts
+$PYTHONPATH /usr/bin/python /home/wimac/.config/conky/scripts/conkyForecast.py "$@"

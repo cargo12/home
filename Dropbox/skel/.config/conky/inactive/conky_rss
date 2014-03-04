@@ -1,0 +1,95 @@
+# Use Xft?
+use_xft yes
+xftfont DejaVu Sans:size=9
+
+# Update interval in seconds
+update_interval 300
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Create own window instead of using desktop (required in nautilus)
+own_window  yes
+own_window_transparent yes
+own_window_type desktop
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager 
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Minimum size of text area
+minimum_size 280 5
+
+maximum_width 170
+
+# Draw shades?
+draw_shades no
+
+# Draw outlines?
+draw_outline no
+
+# Draw borders around text
+draw_borders no
+
+# Stippled borders?
+stippled_borders 0
+
+# border margins
+border_margin 5
+
+# border width
+border_width 1
+
+# Default colors and also border colors
+default_color ffffff
+#default_shade_color white
+#default_outline_color black
+own_window_colour 1B1A18
+
+# Text alignment, other possible values are commented
+#alignment top_left
+alignment top_left
+#alignment bottom_left
+#alignment bottom_right
+
+# Gap between borders of screen and text
+# same thing as passing -x at command line
+gap_x 10
+gap_y 350
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# set to yes if you want all text to be in uppercase
+uppercase no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+
+# number of net samples to average
+# set to 1 to disable averaging
+net_avg_samples 2
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale yes
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+use_spacer right
+
+#Email:
+#${pop3_unseen  **SERVER NAME**  **USERNAME**  **PASSWORD**} new messages
+
+TEXT
+${hr 1}
+${font DejaVu Sans:style=Bold:size=8}xkcd.com
+${voffset 3}${font DejaVu Sans:size=7}${rss http://xkcd.com/rss.xml 30 item_titles}
+
+${hr 1}
+${font DejaVu Sans:style=Bold:size=8}SME Online
+${voffset 3}${font DejaVu Sans:size=7}${rss http://rss.sme.sk/rss/rss.asp?sek=smeonline 30 item_titles 10}
+
+${hr 1}
+${font DejaVu Sans:style=Bold:size=8}Lifehacker
+${voffset 3}${font DejaVu Sans:size=7}${rss http://feeds.gawker.com/lifehacker/excerpts.xml 30 item_titles 10}

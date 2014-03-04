@@ -1,0 +1,12 @@
+Open here with Root=sudo emelfm2 -1 %d -2 %D
+Sent to Device=~/bin/tab_push /sdcard/Download %f
+Send to Device (Audiobooks)=~/bin/tab_push /sdcard/AudioBooks %f
+sudo rm=sudo rm -R %f
+encrypt dir=tar czf /tmp/dat.tgz %d && openssl enc -aes-256-cbc -salt -in /tmp/dat.tgz -out ~/Dropbox/dat.enc -pass file:/tmp/pwf  
+New Python project=gvim %d/%{"Filename"}.py
+Terminal Here=terminator
+zip dir=7z a %d.zip
+md5sum=md5sum %f
+replace spaces with _=find -maxdepth 1 -type f -exec rename 'y/\ /\_/' {}  \;
+Free space on Tablet=sudo adb shell df /storage/sdcard0
+Add to archive=7z a new.zip %f 

@@ -1,0 +1,1 @@
+${voffset 10}${font ConkyWeather:style=Bold:size=32}${color0}[--datatype=WF]${font}${font terminus:size=15}${color1}  [--datatype=CC --hideunits --centeredwidth=3] - [--datatype=HT --centeredwidth=3] / [--datatype=LT --centeredwidth=3]
