@@ -1,0 +1,68 @@
+templates:
+  global:
+    download: ~/watch
+    
+    
+  tv:
+    series:
+      - Arrow
+      - Almost Human
+      - American Horror Story
+      - Anthony Bourdain Parts Unknown
+      - America's Next Top Model
+      - Being Human
+      - Bitten
+      - Black Sails
+      - Bates Motel
+      - Boardwalk Empire
+      - Chicago Fire
+      - Covert Affairs
+      - Continuum
+      - Dracula
+      - Face Off
+      - Game of Thrones
+      - Hannibal
+      - Helix
+      - Homeland
+      - House of Cards 
+      - Intelligence
+      - Justified
+      - Killer Women
+      - Marvels's Agents of S.H.I.E.L.D
+      - Mountain Men
+      - Mythbusters
+      - Opposite Worlds 
+      - Orange Is the New Black
+      - Orphan Black
+      - Person of Interest
+      - Ray Donovan
+      - Rookie Blue
+      - Revenge
+      - Sherlock
+      - So You Think You Can Dance
+      - Sleepy Hollow
+      - The Americans
+      - The Tomorrow People
+      - The Tunnel
+      - The Musketeers
+      - The Blacklist
+      - True Blood
+      - True Detective
+      - Top Chef
+      - Unforgettable
+      - Under the Dome
+      - Vikings
+
+    
+ 
+
+tasks:
+  showrss:
+    rss: http://showrss.info/rss.php?user_id=33750&hd=0&proper=null
+    template: tv
+  eztv_rss:
+    rss: https://ezrss.it/feed/
+    template: tv
+  bt-chat:
+    rss: http://rss.bt-chat.com/?group=3
+    template: tv
