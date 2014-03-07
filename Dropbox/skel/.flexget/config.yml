@@ -67,3 +67,9 @@ tasks:
   bt-chat:
     rss: http://rss.bt-chat.com/?group=3
     template: tv
+  eztv_pb:
+    rss: http://rss.thepiratebay.se/user/d17c6a45441ce0bc0c057f19057f95e1
+    template: tv
+  kat:
+    rss: https://kickass.to/tv/?rss=1
+    template: tv
