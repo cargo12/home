@@ -1,0 +1,22 @@
+#!
+/bin/bash
+
+#generate ctags
+
+#ctags -R src gen
+
+#create project
+~/dev/android-sdk-linux_x86/tools/android create project \
+--target 1 \
+--name MyAndroidApp \
+--path ./MyAndroidAppProject \
+--activity MyAndroidAppActivity \
+--package com.billmacleod.wimac
+
+
+#update project
+#android update project --name MyApp --target 2 --path ./MyAppProject
+
+
+#build an run
+#ant install && ~/dev/android-sdk-linux_x86/platform_tools/adb shell 'am start -n com.billmacleod.wimac/.MyActivityName'

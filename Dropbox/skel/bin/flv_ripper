@@ -1,0 +1,4 @@
+#!/bin/bash
+#$Id: flv_ripper 10-19-2008  03:55PM wimac <wimac1@gmail.com> ver: 08.293.1555
+
+wget -O test http://www.youtube.com/watch?v=B6fnR--IDKc

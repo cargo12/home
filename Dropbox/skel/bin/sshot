@@ -1,0 +1,5 @@
+#!/bin/bash
+# $Id: sshot  07-30-2008 11:32AM v.08.212.1132 wimac Exp $
+#Last modified: 01-22-2009  10:25PM wimac
+
+scrot -d 5 '%m.%d.%Y_$wx$h_desktop.png' -e 'mv $f ~/backgrounds/screenshots/'

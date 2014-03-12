@@ -1,0 +1,44 @@
+#!/bin/bash
+
+case $1 in
+    "off")
+        # backlight
+        echo 8 > /sys/class/backlight/eeepc/brightness
+
+        # harddrive settings
+        echo 0 > /proc/sys/vm/laptop_mode
+        echo 10 > /proc/sys/vm/dirty_ratio
+        echo 5 > /proc/sys/vm/dirty_background_ratio
+        echo 500 > /proc/sys/vm/dirty_writeback_centisecs
+
+        # soundcard settings
+        echo 0 > /sys/module/snd_hda_intel/parameters/power_save
+
+        # network settings
+        #ethtool -s wlan0 autoneg on speed 1000 > /dev/null
+        #ethtool -s wlan0 wol d > /dev/null
+
+        # hal settings
+        #hal-disable-polling --device /dev/cdrom --enable-polling > /dev/null
+        ;;
+    "on")
+        # backlight
+        echo 0 > /sys/class/backlight/eeepc/brightness
+
+        # harddrive settings
+        echo 5 > /proc/sys/vm/laptop_mode
+        echo 40 > /proc/sys/vm/dirty_ratio
+        echo 10 > /proc/sys/vm/dirty_background_ratio
+        echo 1500 > /proc/sys/vm/dirty_writeback_centisecs
+
+        # soundcard settings
+        echo 10 > /sys/module/snd_hda_intel/parameters/power_save
+
+        # network settings
+        #ethtool -s wlan0 autoneg off speed 100 > /dev/null
+        #ethtool -s wlan0 wol d > /dev/null
+
+        # hal settings
+        #hal-disable-polling --device /dev/cdrom > /dev/null
+        ;;
+esac

@@ -1,0 +1,42 @@
+#!/bin/bash
+IFACE=eth0
+
+OS=$(uname -sr)
+ARCH=$(uname -m)
+CURTIME=$(date +'%H:%M:%S (%d/%m/%Y)')
+UPTIME=$(uptime | awk '{print $3,$4,$5}')
+LOCALIP=$(ifconfig $IFACE | awk '/inet addr:/ {print $2}')
+HOSTNAME=$(uname -n)
+LOAD=$(uptime | awk '{print $10,$11,$12}')
+MEM=$(free -m | awk '/cache:/ {print $s,"mb used,",$4,"mb free"}')
+PROCS=$(ps -A | wc -l)
+CPUMODEL=$(grep -m1 'model name' /proc/cpuinfo)
+CPUS=$(grep -c processor: /proc/cpuinfo)
+TOTALRAM=$(free -m | awk '/Mem:/ {print $2,"mb"}')
+
+cat << _EOM
+********************
+SYSTEM STATUS:
+
+OS: $OS
+Platform: $ARCH
+Time: $CURTIME
+Uptime: $UPTIME
+IP: $LOCALIP
+Hostname: $HOSTNAME
+
+********************
+SYSTEM USAGE:
+
+Load: $LOAD
+Memory: $MEM
+Tasks: $PROCS
+
+********************
+HARDWARE:
+
+CPU: $CPUMODEL
+Cores/Processors: $CPUS
+RAM: $TOTALRAM
+'********************
+_EOM

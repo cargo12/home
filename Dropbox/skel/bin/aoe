@@ -1,0 +1,11 @@
+#!/bin/bash
+#$Id: aoe  02-28-2009 07:01PM wimac ver: 09.063.1905
+# Ages of Empire Launcher
+#cd /home/wimac/.wine/drive_c/Program\ Files/AgeOfEmpires2/
+#env WINEPREFIX="/home/wimac/.wine" wine "C:\\Program Files\\AgeOfEmpires2\\empires2.EXE"
+X :1 -ac
+#cd ".wine/drive_c/Program Files/AgeOfEmpires2/"
+
+#DISPLAY=:1 
+DISPLAY=:1 wine-pthread /home/wimac/.wine/drive_c/Program\ Files/AgeOfEmpires2/empires2.EXE
+#wine "home/wimac/.wine/drive_c/Program Files/AgeOfEmpires3/empires2.EXE"

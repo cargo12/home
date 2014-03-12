@@ -1,0 +1,5 @@
+for f in * ; do [ -f $f ] && openssl enc -aes-256-cbc -salt -in $f -out $f.enc -pass file:/tmp/password-file ; done
+
+
+
+openssl enc -d -aes-256-cbc -salt -in filename.enc -out filename -pass file:/path/to/password-file

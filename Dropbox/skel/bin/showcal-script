@@ -1,0 +1,45 @@
+#!/bin/sh
+#
+# $Id: showcal,v 1.4 2005/05/13 17:14:32 vogelke Exp $
+# $Source: /home/vogelke/cron/RCS/showcal,v $
+#
+# run remind for a given file.
+# usage: showcal [file]
+# no argument == use today's agenda, if any.
+
+PATH=/bin:/usr/bin:/usr/local/bin:$HOME/bin
+export PATH
+
+# keep blank lines only before Remind lines.
+blanks () {
+   awk '/Remind/ {print ""}
+     { if (length($0) > 0) print}'
+}
+
+case "$#" in
+    0)  action='agenda' ;;
+    *)  action="$1" ;;
+esac
+
+# show one day's reminders for agenda or minute file.
+# show more for anything else.
+
+tdir="$HOME/today"
+cdir="$HOME/.calendar"
+days='*1'
+
+case "$action" in
+    agenda) list=$tdir/agenda ;;
+
+    minute) t=`date '+%H%M.rem'`; list="$cdir/$t $tdir/$t" ;;
+
+         *) list=$cdir/$action; days='*3' ;;
+esac
+
+for file in $list; do
+    if test -f $file; then
+        remind -h $file "$days" | blanks | xnote
+    fi
+done
+
+exit 0

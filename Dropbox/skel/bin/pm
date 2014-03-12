@@ -1,0 +1,47 @@
+#!/bin/bash
+# 
+# ~/bin/pm - shorthand frontend to package management tasks
+# 
+#  pacman
+#alias pacup='sudo pacman -Syu'
+#alias pacin='sudo pacman -S'
+#alias pacout='sudo pacman -Rns'
+#alias pacclean='sudo pacman -Scc'
+#alias pacs='pacman -Ss'
+#yaourt -Syu --aur
+
+
+
+
+case $1 in
+    c | clean )         sudo pacman -Scc --noconfirm
+                        ;;
+    i | ins | install ) shift
+                        yaourt -S "$@"
+                        ;;
+    n | info )          shift
+                        for arg in "$@"; do
+                            pacman -Qi $arg 2> /dev/null || pacman -Si $arg
+                        done
+                        ;;
+    l | ls | list )     shift
+                        pacman -Ql "$@"
+                        ;;
+    o | own )           shift
+                        for arg in "$@"; do
+                            pacman -Qo `which $arg 2> /dev/null || echo $arg`
+                        done
+                        ;;
+    q | query )         shift
+                        yaourt -Qs "$@"
+                        ;;
+    r | rm | remove )   shift
+                        sudo pacman -Rns "$@"
+                        ;;
+    s | search )        shift
+                        yaourt -Ss "$@"
+                        ;;
+    u | upg | upgrade ) sudo pacman -Syu
+                        ;;
+    * )                 yaourt "$@"
+esac

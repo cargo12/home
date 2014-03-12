@@ -1,0 +1,7 @@
+#!/bin/bash
+#shutdown
+
+~/bin/padlock.sh
+gdm-control --shutdown
+openbox --exit
+

@@ -1,0 +1,7 @@
+#!/bin/bash
+for i in *.mp3; do mpg123 --rate 44100 --stereo --buffer 3072 --resync -w `basename $i .mp3`.wav $i; done
+wodim -v -pad speed=1 dev=/dev/sg1 -dao -swab *.wav
+
+#mp3burn -o '-overburn -vvvv -eject -pad speed=44 dev=1,0,0' *.mp3
+#wodim dev=1,0,0 -audio -pad -dao *.mp3
+

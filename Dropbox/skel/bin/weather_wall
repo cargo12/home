@@ -1,0 +1,18 @@
+#!/bin/bash
+#weather wallpaper script
+
+
+
+
+#weather=$(curl -s http://rss.accuweather.com/rss/liveweather_rss.asp\?metric\=0\&locCode\=48126 \
+#    | sed -n '/Currently:/ s/.*: \(.*\): \([0-9]*\)\([CF]\).*/\2°\3, \L\1/p')
+
+weather=$(curl -s http://rss.accuweather.com/rss/liveweather_rss.asp\?metric\=0\&locCode\=48126 \
+    | sed -n '/Currently:/ s/.*: \(.*\): \([0-9]*\)\([CF]\).*/\2°\3, \1/p')
+
+weather_raw=$(curl -s http://rss.accuweather.com/rss/liveweather_rss.asp\?metric\=0\&locCode\=48126 \
+    | sed -n '/Currently:/p'
+    )
+
+echo $weather_raw
+

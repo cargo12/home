@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# if a USB mouse is present, disable the touchpad
+# if there is no mouse then enable touchpad and disable tapping
+if [ "$(grep -e Logitech /proc/bus/input/devices)" ]; then
+            xinput --set-prop "PS/2 Generic Mouse" "Device Enabled" 0
+else
+		xinput --set-prop "PS/2 Generic Mouse" "Device Enabled" 1
+                /usr/bin/synclient MaxTapTime=0
+fi
+
+sleep 5
+
+exec $0

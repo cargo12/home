@@ -1,0 +1,54 @@
+#!/bin/bash
+# $Id: passwd_locker  06-26-2008 10:52AM v.08.178.1052 wimac Exp $
+# Last modified: 06-26-2008  10:54AM wimac
+#
+PASSWD_LIST=$HOME/notebook/documents/passwords.gpg
+PASSWD_LIST_UNENCRYPTED=$HOME/notebook/documents/passwords
+KEY_RECIPIENT_NAME="William J. MacLeod"
+EDITOR=vim
+
+if [ ! -f $PASSWD_LIST ]; then
+	echo "Password file $PASSWD_LIST doesn't exist!"
+	exit 1
+fi
+
+# create our tempfile for our temporary password storage
+TEMPFILE=`tempfile 2>/dev/null` || TEMPFILE=/tmp/`basename $0`.tmp
+
+# we have to make sure that we delete our tempfile whatever way we exit
+trap "rm -f $TEMPFILE" 0 1 2 5 15
+
+# prompt the user for the password
+dialog --backtitle "Password Locker" --title "Master Password" --clear --insecure --passwordbox "Enter the Password Locker master password." 10 51 2> $TEMPFILE
+
+RETVAL=$?
+
+case $RETVAL in
+	1)
+		echo "Authentication Required!";
+		exit 1;;
+	255)
+		echo "Authentication Required!";
+		exit 1;;
+esac
+		
+# decrypt the password list
+cat $TEMPFILE | gpg -d -r "$KEY_RECIPIENT_NAME" -o $PASSWD_LIST_UNENCRYPTED --passphrase-fd 0 $PASSWD_LIST &> /dev/null
+RETVAL=$?
+
+# if decryption succeeded, open the password list in vim
+# and then re-encrypt it after vim closes
+case $RETVAL in
+	0)
+		rm $PASSWD_LIST;
+		$EDITOR $PASSWD_LIST_UNENCRYPTED 2> /dev/null;
+		if gpg -e -r "$KEY_RECIPIENT_NAME" -o $PASSWD_LIST $PASSWD_LIST_UNENCRYPTED &> /dev/null; then
+			rm $PASSWD_LIST_UNENCRYPTED;
+		else
+			echo "gpg failed to encrypt your password file! Please fix the problem manually!";
+			exit 1;
+		fi;;
+	1|4)
+		echo "Invalid Password!";
+		exit 1;;
+esac

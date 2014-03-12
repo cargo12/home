@@ -1,0 +1,4 @@
+#!/bin/bash
+if [ -z $DISPLAY ]; then
+       echo "ESC]0; $* ^G"
+fi

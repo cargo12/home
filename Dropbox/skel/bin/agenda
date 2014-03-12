@@ -1,0 +1,9 @@
+#!/bin/bash
+# $Id: agenda  06-26-2008 02:09PM v.08.178.1409 wimac Exp $
+# Last modified: 06-26-2008  02:09PM wimac
+# Written by William J. MacLeod <wimac1@gmail.com>
+
+afile=$HOME/.gcal_agenda
+
+
+head -n 6 $afile

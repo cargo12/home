@@ -1,0 +1,32 @@
+#!/bin/bash
+# $Id:   06-25-2008 11:37AM v.08.177.1137 wimac Exp $
+# Last modified: 06-25-2008  12:28PM wimac
+
+dots() {  
+   MAX_DOTS=50
+   NUM_FILES=`find /etc | wc -w`
+   let 'FILES_PER_DOT = NUM_FILES / MAX_DOTS'
+   bold=`tput smso`
+   norm=`tput rmso`
+   tput sc
+   tput civis
+   echo -n "$bold(00%)$norm"
+   while read; do
+      let "cnt = (cnt + 1) % FILES_PER_DOT"
+      if [ "$cnt" -eq 0 ]
+      then
+	 let '++num_dots'
+	 let 'percent = (100 * num_dots) / MAX_DOTS'
+	 [ "$percent" -gt "100" ] && percent=100
+	 tput rc
+         printf "$bold(%02d%%)$norm" "$percent"
+	 tput smir
+	 echo -n "."
+	 tput rmir
+      fi
+   done
+   tput cnorm
+   echo
+}
+
+

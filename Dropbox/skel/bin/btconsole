@@ -1,0 +1,2 @@
+#!/bin/bash
+rxvt -fg green -bg black +sb -g 100x40+100+60 -sl 5000 -e /usr/bin/btdownloadcurses $1

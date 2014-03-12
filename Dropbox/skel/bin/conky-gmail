@@ -1,0 +1,12 @@
+#!/bin/bash
+# $Id: conky-gmail  07-27-2007 01:07AM wimac ver: 07.208.0118
+# Last modified: 07-27-2007  01:18AM wimac
+
+
+username="wimac1"
+password="r3dd0gge"
+
+wget -O - https://$username:$password@mail.google.com/mail/feed/atom --no-check-certificate |\
+    sed 's/</\n</g;s/>/>\n/g' |\
+    sed -n '/<fullcount>/{n;p;}'
+exit 0

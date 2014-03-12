@@ -1,0 +1,64 @@
+#!/bin/bash
+
+
+## This script uses ffmpeg to convert video files for playback on Blackberry smartphones.
+## By Todd Stein
+
+
+# INITIALIZATION
+#rootDir="${HOME}/Videos/blackberry-video-converter"
+rootDir="/media/wimac-drive02"
+inputDir="${rootDir}/input"
+outputDir="${rootDir}/output"
+workingSymbols=( "." "-" "+" "*" "*" "+" "-" )
+
+mkdir -p ${inputDir}
+mkdir -p ${outputDir}
+
+
+
+# CONVERT FILES (simultaneously)
+cd ${inputDir}
+for i in *; do
+
+	if [[ -f ${i} ]]; then
+
+		printf "\nStarting converstion of ${i}"
+		{
+			rm -f "${outputDir}/${i%.*}.mp4" # remove existing output
+			ffmpeg -i "${inputDir}/${i}" -vcodec mpeg4 -s qvga -r 16 -acodec libfaac -ar 22050 -ac 2 -ab 48k "${outputDir}/${i%.*}.mp4" &> /dev/null # convert the video
+		} &
+		children="${children}${!} " # collect PIDs of children
+
+	else
+
+		printf "\nNo files to convert!\n\n"
+		exit 1
+
+	fi
+done
+
+
+
+# WAIT FOR CONVERSION TO FINISH
+printf "\n\nConverting, please wait...  "
+allDone="0"
+until [[ ${allDone} -eq 1 ]]; do
+
+	# if the first PID in the children PID list no longer exists, remove it from the list
+	if ! ps -p $(echo ${children} | cut -f1 -d" ") &> /dev/null; then
+		children=$(echo ${children#$(echo ${children} | cut -f1 -d" ")})
+	fi
+
+	# bounce the working ball
+	for (( i=0; ${i}<${#workingSymbols[*]}; i++ )); do
+		printf "\b \b${workingSymbols[${i}]}"
+		sleep .1
+	done
+
+	# if the child PID list is empty, we're done
+	if [[ -z ${children} ]]; then
+		allDone="1"
+		printf "\bDone!\n\n"
+	fi
+done

@@ -1,0 +1,125 @@
+#!/usr/bin/python
+'''
+Name: checkgmail.py
+Created by: HTRegz (ht@computerdefense.org)
+Date Created: April 27th, 2006
+Functional Spec: Provide command line access to gmail.  Details and examples @ www.computerdefense.org)
+'''
+
+import libgmail, sys, getopt, getpass
+
+def parseArgs():
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "aruhL:F:RSCQ:N:U:P:")
+    except getopt.GetoptError:
+        showHelp()
+    global password
+    global type
+    global label
+    global showMsg
+    global address
+    global showSubject
+    global showCount
+    global query
+    global displayCount
+    global username
+    password = None
+    type = "UNREAD"
+    label = "inbox"
+    showMsg = False
+    address = None
+    showSubject = False
+    showCount = False
+    query = None
+    username = None
+    displayCount = None
+    for o, a in opts:
+        if ( o == "-a" ):
+            type = "ALL"
+        elif ( o == "-u" ):
+            type = "UNREAD"
+        elif ( o == "-r" ):
+            type = "READ"
+        if ( o == "-L" ):
+            label = a
+        if ( o == "-F"):
+            address = a
+        if ( o == "-R" ):
+            showMsg = True
+        if ( o == "-S" ):
+            showSubject = True
+        if ( o == "-C" ):
+            showCount = True
+        if ( o == "-Q" ):
+            query = a
+        if ( o == "-U" ):
+            username = a
+        if ( o == "-P" ):
+            password = a
+        if ( o == "-N" ):
+            displayCount = a
+        if (o == "-h" ):
+            showHelp()
+    
+def showHelp():
+    print "Usage: "+ sys.argv[0] + " &lt;option&gt; &lt;parameters&gt;"
+    print "\n"
+    print "Options:"
+    print "-a               All messages"
+    print "-r               Only read messages"
+    print "-u               Only unread messages"
+    print "-h               Display this help message"
+    print "Parameters:"
+    print "-L &lt;label&gt;       Search only in a specific label (default: inbox)"
+    print "                 Use ALL to search all folders"
+    print "-F &lt;address&gt;     Only messages from a specific address"
+    print "-R               Read the messages (display message content)"
+    print "-S               Return the subject lines"
+    print "-C               Display a message count"
+    print "-Q &lt;query&gt;       Run the specified query (search)"
+    print "-N               Number of messages to return (default: ALL)"
+    print "-U &lt;username&gt;    GMail username"
+    print "-P &lt;password&gt;    GMail Password (default: prompt)"
+    sys.exit()
+
+
+if __name__ == "__main__":
+    parseArgs()
+    if ( username == None ):
+        username = raw_input("Username: ")
+    if ( password == None ):
+        password = getpass.getpass("Password: ")
+    ga = libgmail.GmailAccount(username, password)
+    try: 
+        
+        ga.login()
+    except libgmail.GmailLoginFailure:
+        print "Login Failure: Unknown username/password."
+        sys.exit()
+    if ( type == "ALL" ):
+        search = ""
+    elif ( type == "READ" ):
+        search = "is: read "
+    else:
+        search = "is: unread "
+    if ( address != None ):
+        search += "from: " + address + " "
+    if ( label != None ):
+        search += "in: "+ label + " "
+    if ( query != None ):
+        search  += query + " "
+    tmp = ga.getMessagesByQuery(search, "allPages")
+    counter = 0
+    for thread in tmp:
+        for msg in thread:
+            counter += 1
+            if ( showSubject == True ):
+                print msg.subject
+            if ( showMsg == True ):
+                print msg.source
+            if ( counter == displayCount ):
+                break
+        if ( counter == displayCount ):
+            break
+    if ( showCount == True ):
+        print counter

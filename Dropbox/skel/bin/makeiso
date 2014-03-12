@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+output=$1
+shift
+
+mkisofs -o $output -r -hide-rr-moved -J -hide-joliet-trans-tbl $*
+
+

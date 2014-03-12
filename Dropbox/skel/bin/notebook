@@ -1,0 +1,11 @@
+#!/bin/bash
+# notebook search
+# by William J. MacLeod
+# Last modified: Mon Jul 09, 2007  11:47AM
+swish-e -f /home/wimac/notebook/index.notebook -w $1-
+#locate $HOME/notebook | grep '\.txt$' | xargs grep $1-
+#fgrep -Rl $1 ~/notebook
+
+#beagle-query --mime text/plain $1- | \
+#            sed  -e 's/^file://' -e 's/\/\///'
+exit 0

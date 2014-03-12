@@ -1,0 +1,21 @@
+#!/bin/bash
+# $Id: conky_startup  06-26-2008 01:23PM v.08.178.1323 wimac Exp $
+# conky startup script.
+# by William J. MacLeod <wimac1@gmail.com>
+# Last modified: 12-18-2010  10:58AM wimac
+cfg_dir="$HOME/.config/conky/"
+#errlog=$HOME/logs/conky-startup.$$
+prog=${0##*/}
+#cleanup old conky processes
+killall conky
+#trap "rm -f $ERRMSGS" EXIT
+
+conkyloader() {
+    cd $cfg_dir
+    for file in `find -iname 'conkyrc*'|sed -e 's/^..//'`; do 
+     conky -c $file
+    done
+}
+
+conkyloader
+

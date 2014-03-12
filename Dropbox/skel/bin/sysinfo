@@ -1,0 +1,9 @@
+#!/bin/bash
+TEMP=$(cat /proc/acpi/thermal_zone/TZ00/temperature | awk '{print $2"C"}')
+FREQ=$(cpufreq-info | grep "current CPU frequency" | awk '{print $5"MHz"}')
+DATE=$(echo -n $(date +%B,\ %d\ -\ %I:%M\ %p))
+SDA1=$(df -h | grep /dev/sda1 |awk '{print $4"/"$2}')
+SDA2=$(df -h | grep /dev/sda2 |awk '{print $4"/"$2}')
+MPD=$(mpc | sed -n '1p')
+INFO=$(echo -n "Arch :: Home $SDA2 :: CPUFreq: $FREQ :: Temperature $TEMP :: $MPD :: $DATE")
+echo $INFO

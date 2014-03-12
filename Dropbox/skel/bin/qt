@@ -1,0 +1,2 @@
+#!/bin/bash
+WINEPREFIX=/home/wimac/qt4linux wine /home/wimac/qt4linux/dosdevices/c:/Program\ Files/QuickTime/QuickTimePlayer.exe  &> /dev/null

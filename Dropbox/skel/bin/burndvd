@@ -1,0 +1,36 @@
+#!/bin/bash
+# burndvd
+
+
+# split to movie.m2v (video) movie.ac3 (audio)
+
+transcode -i movie.avi -y ffmpeg --export_prof dvd-ntsc --export_asr 3 -o movie -D0 -s2 -m movie.ac3 -J modfps=clonetype=3 --export_fps 29.97
+
+
+# Put the video & audio file back together
+
+mplex -f 8 -o dvd_movie.mpg movie.m2v movie.ac3
+
+
+#open your favorite text editor and paste the following:
+
+#Code:
+# <dvdauthor dest="DVD">
+#  <vmgm />
+#   <titleset>
+#     <titles>
+#      <pgc>
+#         <vob file="dvd_movie.mpg" chapters="0,15:00,30:00,45:00,1:00:00"/>
+#       </pgc>
+#      </titles>
+#   </titleset>
+# </dvdauthor>
+
+# save the file as: dvdauthor.xml 
+
+#Create a DVD directory where your movie files are and do this
+
+dvdauthor -x dvdauthor.xml
+
+
+growisofs -Z /dev/dvd -dvd-video DVD/

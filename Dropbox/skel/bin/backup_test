@@ -1,0 +1,41 @@
+#!/bin/bash
+
+SYNC_CMD="echo rsync -n -e 'ssh' -arvux"
+SYNC_HOST="galt"
+
+$SYNC_CMD $SYNC_HOST:/home/wimac/bin/ /home/wimac/bin
+$SYNC_CMD $SYNC_HOST:/home/wimac/notebook/ /home/wimac/notebook
+$SYNC_CMD $SYNC_HOST:/home/wimac/.vim/ /home/wimac/.vim
+$SYNC_CMD $SYNC_HOST:/home/wimac/.config/openbox/ /home/wimac/.config/openbox
+
+DOT_FILES="
+.Xresources, Resources 
+.bashrc bashrc
+.xinitrc xinitrc
+.config/openbox/rc.xml    /openbox/rc.xml
+.config/openbox/menu.xml  /openbox/menu.xml
+.zhsrc zfunc
+.zfunc zfunc
+.aliasrc aliasrc
+.conky-date
+.conky-hour
+.conky-mon
+.conky-min
+.conky-weather
+.screenrc
+.screen-galt
+.vimrc
+"
+
+#for i in $DOT_FILES; do 
+#    echo cp $SOURCE_DIR/$i $DEST_DIR/
+#    echo  $DOT_FILES[2] 
+#done
+#  array=($DOT_FILES)
+#len=${#array[*]}
+#echo "The array has $len members. They are:"
+#i=0
+#while [ $i -lt $len ]; do
+#	echo "${array[$i]}"
+#	let i++
+#done

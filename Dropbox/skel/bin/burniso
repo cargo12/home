@@ -1,0 +1,4 @@
+#!/bin/bash
+DEVICE='0,0,0'
+#cdrecord -eject -pad padsize=63s -dao -v -driveropts=burnproof -data dev=$DEVICE speed=10 -eject $*
+wodim -eject -pad padsize=63s -dao -v -driveropts=burnproof -data dev=1,0,0 speed=10 -eject $*

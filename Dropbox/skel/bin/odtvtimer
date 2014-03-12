@@ -1,0 +1,26 @@
+#!/bin/bash
+
+FILENAME="output"
+TIMEOUTMINS=60
+
+# Set filename
+if [ "$1" ]
+then
+    FILENAME="$1"
+fi
+
+# Set timeout time in minutes
+if [ "$2" ]
+then
+    TIMEOUTMINS="$2"
+fi
+
+# Kill all child processes (odtvrecord and curl)
+trap 'exit 0' HUP
+trap 'kill -s HUP 0' exit SIGINT SIGKILL
+
+# Start recording
+odtvrecord $FILENAME &
+sleep $(($TIMEOUTMINS*60))
+fprint "\n"
+exit

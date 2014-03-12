@@ -1,0 +1,4 @@
+#!/bin/bash
+#dyndns update script
+wget -O /dev/null http://wimac:reddog@members.dyndns.org/nic/update?hostname=wimac.homelinux.net
+

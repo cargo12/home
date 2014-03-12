@@ -1,0 +1,104 @@
+#!/bin/bash
+# $Id: wjm_backup  06-25-2008 09:30AM v.08.177.0930 wimac Exp $
+# backup homefiles to server and local drive
+# Last modified: 10-22-2008  11:44AM wimac
+# by William J. MacLeod (wimac1@gmail.com)
+
+
+REPO_HOST="westernf@westernflairphotography.com"
+REPO_DIR="/home/westernf/wimac/backup "
+# The backups should probably be stored in /var somplace:
+REPOSITORY=/var/tmp
+TIMESTAMP=$(date '+%m%d%Y-%H%M')
+HOSTNAME=$(hostname)
+ERRMSGS=/home/wimac/logs/backup-etc.$$
+FILE="$REPOSITORY/$HOSTNAME-config-backup-$TIMESTAMP.tgz"
+PROG=${0##*/}
+DOT_FILES="
+/home/wimac/.aliasrc
+/home/wimac/.zshrc
+/home/wimac/.bashrunrc
+/home/wimac/.vimrc
+/home/wimac/.gvimrc
+/home/wimac/.mpdconf
+/home/wimac/.Xresources
+/home/wimac/.adesklets
+/home/wimac/.bashrc
+/home/wimac/.blackboxrc
+/home/wimac/.pypanelrc
+/home/wimac/.ratpoisonrc
+/home/wimac/.screenrc
+/home/wimac/.screenrc-galt
+/home/wimac/.signature
+/home/wimac/.zfunc
+/home/wimac/.zlogout
+/home/wimac/.zlogin
+/home/wimac/.zshrc
+/home/wimac/.muttrc
+/home/wimac/.xinitrc
+/home/wimac/.xenv
+/home/wimac/.mozilla/firefox/ik15goe6.default/bookmarks.html
+/home/wimac/.config
+/home/wimac/pkglist
+"
+DIRS="
+/etc
+/home/wimac/.config
+/home/wimac/.AbiSuite
+/home/wimac/.vim
+/home/wimac/.sipie
+/home/wimac/.zim
+/home/wimac/bin
+/home/wimac/Notes
+/home/wimac/Desktop/Documents
+/home/mary/Desktop/Documents
+"
+usage()
+{  echo "This script creates a backup of config files via tar in $REPOSITORY."
+   echo "Usage: $PROG [OPTIONS]"
+   echo '  Options:'
+   echo '    -v, --verbose   displays some feedback (dots) during backup'
+   echo '    -h, --help      displays this message'
+   echo '    -V, --version   display program version and author info'
+   echo
+}
+
+# create archive
+archive() {
+echo creating archive $FILE
+tar -czvp --force-local -f $FILE $DOT_FILES $DIRS 2> $ERRMSGS 
+}
+
+backup() {
+echo sending $FILE to $REPO_HOST:$REPO_DIR
+scp $FILE $REPO_HOST:$REPO_DIR
+}
+encrypt() {
+echo encrypting $FILE
+gpg -e --symmetric $FILE
+}
+# Command line argument processing:
+while [ $# -gt 0 ]
+do
+   case "$1" in
+      -h|--help)     usage; exit 0; ;;
+      -V|--version)  echo -n "$PROG version $VERSION "
+                     echo 'Written by William J. MacLeod <wimac1@gmail.com>'
+		     exit 0; ;;
+      *)             usage; exit 1; ;;
+   esac
+   shift
+done
+
+trap "rm -f $ERRMSGS" EXIT
+
+archive
+backup
+
+# Log any error messages produced:
+if [ -s "$ERRMSGS" ]
+then logger -p user.error -t $PROG "$(cat $ERRMSGS)"
+else logger -t $PROG "Completed backup of config files"
+fi
+
+exit 0

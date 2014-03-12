@@ -1,0 +1,12 @@
+#!/bin/bash
+of=$1
+shift 1
+
+O=$IFS
+IFS=$(echo -en "\n\b")
+
+for f in $@
+	do
+  		sudo adb push $f $of && echo "$i" Done...
+	done
+IFS=$O

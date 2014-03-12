@@ -1,0 +1,8 @@
+#!/bin/bash
+`grep '^Exec' "$1" | sed 's/^Exec=//' | sed 's/%.//'` &
+
+# grep  '^Exec' filename.desktop  - finds the line which starts with Exec
+# | sed 's/^Exec=//'              - removes the Exec from the start of the line
+# | sed 's/%.//'                  - removes any arguments - %u, %f etc
+# `...`                           - means run the result of the command run here
+# &                             

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+#sudo umount mtpfs
+sudo fusermount -u /media/nexus7
+echo --[unmounted Nexus 7]--

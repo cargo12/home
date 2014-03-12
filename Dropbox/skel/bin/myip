@@ -1,0 +1,9 @@
+#!/bin/bash
+# Written by William J. MacLeod(wimac1@gmail.com)
+# gets external IP address
+# Last modified: 06-13-2008  07:14PM wimac
+
+getip(){
+wget -q -O - checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//'
+}
+getip

@@ -1,0 +1,13 @@
+#!/bin/bash
+#podcast downloader from rss/xml feed and download last one
+
+wget -q -O- "http://feeds.twit.tv/twit_video_small" | \
+
+grep -o '<enclosure url="[^"]*' | \
+
+grep -o '[^"]*$' | \
+
+tail -1 | \
+
+xargs echo
+#xargs wget -c

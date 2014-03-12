@@ -1,0 +1,31 @@
+#!/bin/bash
+
+FILEPART=1
+FILENAME="output"
+
+# Construct filename to output to
+if [ "$1" ]
+then
+  FILENAME="$1"
+fi
+
+# Iterate the part number
+if [ "$2" ]
+then
+  FILEPART=$2
+fi
+
+# Use cURL to capture the stream
+curl http://bglive-a.bitgravity.com/twit/live/high --ignore-content-length -o $FILENAME.$FILEPART.flv
+
+# Re-connect if the connection is lost
+# If statement checks for return values of cURL which indicate that the stream
+# could not be connected to and no data besides the http headers were received.
+if [ $? -eq 1 -o $? -eq 2 -o $? -eq 5 -o $? -eq 6 -o $? -eq 52 ]
+then
+  sh $O $FILENAME $FILEPART
+else
+  sh $0 $FILENAME $(($FILEPART+1))
+fi
+
+exit  	

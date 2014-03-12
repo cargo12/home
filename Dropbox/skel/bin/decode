@@ -1,0 +1,5 @@
+#!/bin/bash
+perl -ne'chomp;$a.=pack"b*",$_;END{print"\n$a\n\n"}'<<RM   
+$1-
+RM
+

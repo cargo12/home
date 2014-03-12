@@ -1,6 +1,7 @@
 templates:
   global:
     download: ~/watch
+    quality: hdtv <720p
     
     
   tv:
@@ -11,6 +12,7 @@ templates:
       - Anthony Bourdain Parts Unknown
       - America's Next Top Model
       - Being Human
+      - Believe
       - Bitten
       - Black Sails
       - Bates Motel
@@ -38,6 +40,7 @@ templates:
       - Person of Interest
       - Ray Donovan
       - Rookie Blue
+      - Resurrection
       - Revenge
       - Sherlock
       - So You Think You Can Dance
@@ -67,8 +70,8 @@ tasks:
   bt-chat:
     rss: http://rss.bt-chat.com/?group=3
     template: tv
-  eztv_pb:
-    rss: http://rss.thepiratebay.se/user/d17c6a45441ce0bc0c057f19057f95e1
+  ettv_pb:
+    rss: http://rss.thepiratebay.se/user/0e3b2f46e5892dc5b2aac6dbe548bc27
     template: tv
   kat:
     rss: https://kickass.to/tv/?rss=1

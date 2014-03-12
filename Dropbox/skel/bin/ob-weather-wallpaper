@@ -1,0 +1,124 @@
+#!/bin/bash
+# $Id: ob-weather-wallpaper  09-02-2007 06:55PM wimac ver: 07.246.1024
+# Last modified: 09-03-2007  10:24AM wimac
+
+wxurl="http://www.accuweather.com"
+wxurl="$wxurl/adcbin/public/local_index_print.asp?zipcode="
+zcode="48126"
+size=1
+img_path=/usr/share/weather-wallpaper/images
+
+wx1="`lynx -source "${wxurl}$zcode" | \
+  sed -n '/Start - Forecast Cell/,/End - Forecast Cell/p' | \
+  sed 's/<[^>]*>//g;s/^ [ ]*//g' | \
+  uniq -u | \
+  sed '2,3!d'|\
+  tr -d '\r'` "
+
+echo $wx
+wx=clear
+
+image=""
+#hour="`date +%H`"
+hour=3
+
+#            # Before sunrise (4:00 - 4:59)
+#            if [ $hour -ge 4 ] && [ $hour -lt 5 ]; then
+#                     if [ "$wx" = "clear" ]; then 
+#                        image="moon"
+#                    else
+#                      image="mooncloud"
+#                  fi
+#                foreground="#1E5073"
+#                background="#1E5073"
+#            fi
+            
+            
+            if [ $hour -ge 22 ] && [ $hour -lt 5 ]; then
+                     if [ "$wx" = "clear" ]; then 
+                        image="moon"
+                    else
+                      image="mooncloud"
+                  fi
+                  
+               foreground="#000000"
+               background="#33436a"
+                  
+                fi
+
+                # Sunrise (5:00 - 5:59)
+              if [ $hour -ge 5 ] && [ $hour -lt 6 ]; then
+                  if [ "$wx" = "clear" ]; then 
+                        image="sun"
+                    else
+                      image="suncloud"
+                  fi
+                foreground="#666666"
+                background="#6E98AE"
+              fi
+             
+              # Before afternoon (6:00 - 13:59)
+              if [ $hour -ge 6 ] && [ $hour -lt 14 ]; then
+                  if [ "$wx" = "clear" ]; then 
+                        image="sun"
+                    else
+                      image="suncloud"
+                  fi
+                    foreground="#6E98AE"
+                    background="#97BFCB"
+              fi  
+                
+                 # Afternoon (14:00 - 19:59)
+                if [ $hour -ge 14 ] && [ $hour -lt 20 ]; then
+                    if [ "$wx" = "clear" ]; then 
+                        image="sun"
+                    else
+                      image="suncloud"
+                  fi
+                    foreground="#6382b9"
+                    background="#8fb6ff"
+                fi
+
+
+             # Twilight (20:00 - 21:59)
+            if [ $hour -ge 20 ] && [ $hour -lt 22 ]; then
+                if [ "$wx" = "clear" ]; then 
+                        image="moon"
+                    else
+                      image="mooncloud"
+                  fi
+                     
+                foreground="#333333"
+                background="#694174"
+            fi
+           
+            # Night (22:00 - 3:59)
+ #            if [ $hour -ge 22 ] && [ $hour -lt 4 ]; then
+ #               if [ "$wx" = "clear" ]; then 
+ #                       image="moon"
+ #                   else
+ #                     image="mooncloud"
+ #                 fi
+ #               foreground="#000000"
+ #               background="#33436a"
+ #           fi
+            
+            
+            
+            
+            
+            
+            
+            
+           
+
+
+
+
+input_img="$img_path/$image.svg"            
+echo $hour
+ 
+ echo $foreground
+ echo $background
+echo $input_img
+exit 0

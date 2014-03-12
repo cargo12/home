@@ -1,0 +1,63 @@
+#!/bin/sh
+#
+# $Id: agenda,v 1.8 2005/10/29 22:38:28 vogelke Exp $
+# $Source: /home/vogelke/bin/RCS/agenda,v $
+#
+# agenda: display personal agenda
+
+PATH=/usr/local/bin:/bin:/usr/bin
+export PATH
+umask 022
+
+dateprog=/bin/date    # requires GNU version of date
+notebook="$HOME/notebook"
+special=
+
+# Look for special files.
+
+movie_file="$HOME/.calendar/movies.rem"
+test -f "$movie_file" && special="$special $movie_file"
+
+other_dates="$HOME/.calendar/special.rem"
+test -f "$other_dates" && special="$special $other_dates"
+
+# Default: show reminders for today, tomorrow, and the day after.
+# Any arguments will specify a single date, like 'last friday'.
+
+case "$#" in
+    0) arg='today tomorrow 2-days' ;;
+    *) arg=`$dateprog -d "$*" '+%d-%b-%Y'` ;;
+esac
+
+# Daily agendas are in their own directories, usually without
+# any days specified within the agenda file itself; therefore,
+# we need to change "REM MSG" to show the date we're interested in.
+
+for day in $arg
+do
+    set X `$dateprog -d "$day" "+%d %b %Y %Y/%m%d"`
+    shift
+    dmy="$1 $2 $3"
+    afile="$notebook/$4/agenda"
+
+    (
+      test -f "$afile" && sed -e "s/REM MSG/REM $dmy MSG/" $afile
+      cat $special
+    ) | remind -h - $dmy
+done |
+awk '{
+    if ($1 == "Reminders" && $2 == "for") {
+        if ($0 != prev) {
+            if (k > 0) printf "\n%s\n", $0
+            else print $0
+            prev = $0
+            k++
+        }
+    } else {
+        if (length($0)) str[$0]++
+        if (str[$0] == 1) print " *", $0
+    }
+}
+'
+
+exit 0

@@ -1,0 +1,2 @@
+#!/bin/bash
+gksudo /etc/init.d/networking restart

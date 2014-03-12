@@ -1,0 +1,20 @@
+#!/bin/bash
+
+counter=0
+
+while true
+do
+    #update the weather every 15 minutes - every 2 seconds it too often
+    counter=$((counter%900))
+    flag=""
+    if [ "$counter" -eq 0 ]
+    then
+        weather=$(weatherget -s CAXX0531 -m -f .weatherget-minimalrc) 
+        flag=" *updated*"
+    fi
+
+    xsetroot -name "$(./mpd-stat) :: $(acpi | awk '{ print $3, $4 }' | sed s/","//g) :: $weather$flag :: $(date +"%R - %D")"
+
+    sleep 2
+    counter=$counter+2
+done

@@ -1,0 +1,13 @@
+#!/bin/bash
+of=/home/wimac/tmp/
+if=$1
+shift 1
+
+O=$IFS
+IFS=$(echo -en "\n\b")
+
+for f in $if
+	do
+  		sudo adb pull $f $of && echo "$i" Done...
+	done
+IFS=$O

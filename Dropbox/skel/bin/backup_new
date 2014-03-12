@@ -1,0 +1,26 @@
+#!/bin/bash
+# Edit parameters here.
+# Important: Don't forget the trailing slashes in SOURCES and TARGET
+SOURCES="/home/$USER/ /etc/" 
+TARGET="/media/wimac-drive02/backintime/"
+OPTIONS="--exclude-from=/home/wimac/Dropbox/Projects/exclude.list"
+
+### Don't edit below ###
+
+LASTBACKUP=`ls -d $TARGET* | sort -r | head -1`  
+TODAY=`date +%m%y`
+HOST=`hostname`
+#if [ "$LASTBACKUP" == "$TARGET$HOST-$TODAY" ]; then
+#    echo "Backup for today is done, if there were errors, delete $TARGET$HOST-$TODAY first"
+#    exit 1
+#fi
+
+for src in $SOURCES
+do
+    if [ "$LASTBACKUP" ]; then
+        LD="--link-dest=$LASTBACKUP$src"
+    fi
+
+    sudo mkdir -p $TARGET$HOST-$TODAY$src
+    sudo rsync -auv $OPTIONS $LD $src $TARGET$HOST-$TODAY$src
+done

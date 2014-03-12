@@ -1,0 +1,2 @@
+#!/bin/bash
+terminator -e 'abgx360 -af3' $1

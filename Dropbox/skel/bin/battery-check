@@ -1,0 +1,49 @@
+#!/bin/sh
+#
+# Skript zum Abfragen der Batterieladung
+# und zur Onscreen-Anzeige des Ergebnisses mit Zenity
+#
+# Thomas Schoenhuetl <pilleus.pulcher@arcor.de>
+# 02.02.08
+#
+# Lizenz: GPL, Version 2
+#
+# Abfragen, ob das System über Batterien verfügt
+if [ "`ls /proc/acpi/battery/`" = "" ]; then
+exit
+fi
+
+while true; do
+
+# AC_Adapter abfragen
+while [ "`cat /proc/acpi/ac_adapter/*/state | grep on-line`" != "" ]; do
+sleep 20
+done
+
+# Letzte Voll-Ladung abfragen
+LAST=`cat /proc/acpi/battery/*/info | grep last | rev | cut -d " " -f2 | rev`
+
+# Aktuelle Ladung abfragen
+AKT=`cat /proc/acpi/battery/*/state | grep remaining | rev | cut -d " " -f2 | rev`
+
+# Prozent berechnen und Meldung ausgeben
+AUSG=`echo "$AKT*100/$LAST" | bc -l | rev | cut -d . -f2 | rev` 
+
+# Kritischen Batteriestand unter 10 % anzeigen
+if [ "`echo $AUSG`" -lt 10 ]; then
+zenity --title Battery --warning --text "The state of the battery is critical: $AUSG%.\n\nPlease plug in the AC adapter!\n\nAt 8% the system will shut down!" &
+fi
+
+# Kritischen Batteriestand unter 10 % mit Sound melden
+if [ "`echo $AUSG`" -lt 10 ]; then
+amixer sset Front 95% unmute
+espeak -ven "The state of the battery is critical. Please plug in the AC adapter immediately. The state of the battery is critical. Please plug in the AC adapter immediately." -s145 &
+fi
+
+if [ "`echo $AUSG`" -lt 8 ]; then
+sudo /sbin/init 0
+fi
+
+sleep 45
+
+done

@@ -1,0 +1,15 @@
+#!/bin/bash
+# $Id: proc_test  08-17-2008 02:54PM v.08.230.1454 wimac <wimac1@gmail.com> Exp $
+# Last modified: 08-17-2008  07:28PM wimac
+
+
+ptest() {
+
+if [ "$(pidof $1)" ] 
+then
+  echo "$1 process was found"
+else
+  echo "$1 process not found"
+fi
+}
+pstest conky

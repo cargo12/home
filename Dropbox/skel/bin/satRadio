@@ -1,0 +1,75 @@
+#!/bin/bash
+#$Id: satRadio  03-25-2011 03:54PM crunchbang(wimac1@gmail.com) ver: 11.132.2026
+#Last modified: 05-12-2011  08:26PM crunchbang
+
+#syrius pyxis startup script
+
+    mute()
+    {
+        amixer set Master mute >/dev/null
+    }
+
+    unmute()
+    {
+        amixer set Master unmute >/dev/null
+    }
+    SatOff()
+    {
+        killall mplayer && killall pyxis
+    }
+    hs()
+    {
+        pyxis "howard 100"&
+    }
+    hs101()
+    {
+        pyxis "howard 101"&
+    }
+    faction()
+    {
+        pyxis "faction"&
+    }
+    pb()
+    {
+	    pyxis "playboy radio"&
+    }
+    stars2()
+    {
+        pyxis "sirius xm stars too"&
+    }
+    stars()
+    {
+        pyxis "sirius xm stars"&
+    }
+    nhl()
+    {
+        pyxis "nhl home ice"&
+    }
+
+    usage()
+    {
+        echo Error: Argument Required.
+    }
+
+while [ $# -gt 0 ]
+do
+   case "$1" in
+     -hs)              hs; exit 0; ;;
+   -h101)              hs101; exit 0; ;;
+   -fact)              faction; exit 0; ;;
+    -pb)               pb; exit 0; ;;
+      -s)              stars; exit 0; ;;
+     -s2)              stars2; exit 0; ;;
+    -nhl)              nhl; exit 0; ;;
+      -m)              mute; exit 0; ;;
+     -um)              unmute; exit 0; ;;
+    -off)              SatOff; exit 0; ;;
+    -V|--version)    echo -n "$PROG version $VERSION "
+                        echo 'Written by William J. MacLeod <wimac1@gmail.com>'
+		               exit 0; ;;
+        *)             usage; exit 1; ;;
+   esac
+   shift
+done
+
+exit 0

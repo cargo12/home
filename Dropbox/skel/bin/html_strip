@@ -1,0 +1,7 @@
+#!/bin/bash
+# $Id: html_strip  06-26-2008 10:49AM v.08.178.1049 wimac Exp $
+# Removes html tags from file.
+# Last modified: 06-26-2008  10:50AM wimac
+
+sed -e :a -e 's/<[^>]*>//g;/</N;//ba' | sed -e :a -e '/&quot; \|&nbsp;///g;/</N;//ba' $1 > $1.txt
+exit 0

@@ -1,0 +1,8 @@
+#!/bin/bash
+# $Id: blog_script  07-26-2007 09:08AM wimac ver: 07.207.0911
+# Last modified: 07-26-2007  09:11AM wimac
+# posts to blog
+
+BLOG_HOST=westernf@westernflairphotography.com
+
+scp ~/today/*.txt $BLOG_HOST:/home/westernf/public_html/wimac/project/root/

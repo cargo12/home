@@ -1,0 +1,26 @@
+#!/bin/zsh
+# creates the environment for the project a
+
+tmux start-server
+
+if ! $(tmux has-session -t main) 
+then
+
+    cd ~/
+    tmux new-session -d -s main -n terminal
+
+    tmux new-window -t main:1 -n 'term' 
+   
+    tmux new-window -t main:2 -n 'torrents'
+
+    tmux new-window -t main:3 -n 'tasks'
+
+
+    
+       tmux send-keys -t main:3.0 'python ~/bin/t-.py --task-dir ~/tasks --list tasks' C-m
+
+    tmux select-window -t main:1
+
+fi
+
+tmux -2 attach-session -t main

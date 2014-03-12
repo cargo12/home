@@ -1,0 +1,14 @@
+vpnserver=ChiSSL.BellHowell.net
+vpnport=443
+proxyserver=
+proxyport=
+p12path=
+proxyusr=
+vpnusr=macleow
+proxypasswd=
+vpnpasswd=Winter2014
+p12passwd=
+useproxy=0
+keepalive=0
+savepassword=1
+usep12=0

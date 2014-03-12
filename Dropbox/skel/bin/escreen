@@ -1,0 +1,6 @@
+#!/bin/bash
+#my eterm screen startup script
+
+
+
+Eterm -O -l -x --shade 50% -F terminal --scrollbar=0 -f green --cursor-color rgb:0/0/0 --buttonbar=off -L 2000 -g 100x40+0+238 -e screen -xR

@@ -1,0 +1,18 @@
+#!/bin/bash
+# Last modified: 01-19-2011  07:00PM ubuntu
+
+nwpaper="$1"
+wpaper=".background"
+cmd="feh --bg-fill"
+wpchange() {
+    if [ -e $HOME/$wpaper ]; then
+        rm $HOME/$wpaper 
+    fi
+    cp "$nwpaper" $HOME/$wpaper
+    cd $HOME
+    }
+if   [ "$1" != "" ]; then
+		wpchange
+fi
+$cmd $wpaper
+

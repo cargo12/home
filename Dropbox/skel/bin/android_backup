@@ -1,0 +1,9 @@
+#!/bin/bash
+#backup android
+
+#backup backups
+rsync -auv /media/disk/TitaniumBackup/ /media/wimac-drive02/backintime/android/TitaniumBackup/
+#rsync -auv /media/disk/ /media/wimac-drive02/backintime/android/
+
+
+echo "==================[ DONE ]==========================="

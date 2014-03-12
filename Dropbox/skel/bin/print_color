@@ -1,0 +1,32 @@
+#!/bin/bash
+
+function print_color {
+local text=$1
+local fg=$2
+local bg=$3
+
+#change to right form
+case "$fg" in
+red) fg="31m" ;;
+green) fg="32m" ;;
+yellow) fg="33m" ;;
+blue) fg="34m" ;;
+white) fg="37m" ;;
+black) fg="30m" ;;
+*) fg="37m" ;;
+esac
+
+case "$bg" in
+red) bg="41m" ;;
+green) bg="42m" ;;
+yellow) bg="43m" ;;
+blue) bg="44m" ;;
+white) bg="47m" ;;
+black) bg="40m" ;;
+*) bg="40m" ;;
+esac
+
+echo -en "\033[$fg\033[$bg$text\033[0m"
+}
+
+print_color

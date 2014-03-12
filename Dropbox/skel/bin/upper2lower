@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for f in `find . -type d`; do
+g=`expr "xxx$f" : 'xxx\(.*\)' | tr '[A-Z]' '[a-z]'`
+mv "$f" "$g"
+done
+for f in `find . ! -type d`; do
+g=`expr "xxx$f" : 'xxx\(.*\)' | tr '[A-Z]' '[a-z]'`
+mv "$f" "$g"
+done

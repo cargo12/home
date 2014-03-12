@@ -1,0 +1,89 @@
+#!/bin/bash
+
+# PURPOSE: removes or adds underscores to filenames along 
+#          the given pattern
+
+# AUTHOR:  Karl Voit, shellscript@Karl-Voit.at
+
+# VERSION: v0.1 20011221
+#          v0.2 20031215 Michael Prokops version added as comment
+
+# ORIGINAL FILENAME: underscore
+
+# USING: rename (perl-script) found at various locations:
+#      /usr/share/doc/perl/examples/rename
+#      http://incandescent.mp3revolution.net/rename
+#      http://www.they.com/doc/perl-base/examples/rename
+#      http://www.sparanodigital.com/doc/perl-doc/examples/rename
+
+PRINTHELP="false"
+
+# generate filename without directory:
+FILENAME=`echo "$0"|sed 's!.*/!!'`
+
+# Checking the command line parameters:
+if [ "$1" != "-a" -a "$1" != "-r" -a "$1" != "-h" ];
+then  # par1 is NOT valid
+
+  echo "############################################################"
+  echo " $FILENAME: ERROR: no valid parameter 1 was found!"
+  echo "############################################################"
+  PRINTHELP="true"
+
+else  # parameter 1 IS VALID
+
+  # when add|remove is given AND parameter 2 is null, print out help:
+  if [ "$1" != "-h" -a -z "$2" ];
+  then
+    echo "############################################################"
+    echo " $FILENAME: ERROR: you must specify the filenamepattern!"
+    echo "############################################################"
+    PRINTHELP="true"
+  fi
+
+fi
+
+
+# if we found an error so far or "-h" is given, print help:
+if [ $PRINTHELP = "true" -o "$1" = "-h" ];
+then
+        echo
+        echo " $FILENAME removes or adds underscores (\"_\") to the"
+        echo " filenames that were given as parameter 2 using the"
+        echo " external perl-script named \"rename\" which can be found"
+        echo " at various locations:"
+        echo "     /usr/share/doc/perl/examples/rename"
+        echo "     http://incandescent.mp3revolution.net/rename"
+        echo "     http://www.they.com/doc/perl-base/examples/rename"
+        echo "     http://www.sparanodigital.com/doc/perl-doc/examples/rename"
+        echo
+        echo " usage: $FILENAME [-r|a|h] 'filenamepattern'"
+        echo
+        echo "              -r (remove) ... removes underscores"
+        echo "              -a (add)    ... adds underscores"
+        echo "              -h (help)   ... prints this help"
+        echo
+        echo " note: the ticks (') around the filenamepattern are mandatory"
+        echo "       for a correct processing!"
+        echo
+else
+
+	echo "$FILENAME: renaming files ..."
+
+  # Michael Prokop:
+  # while mmv "* *" "#1_#2"; do true; done
+
+  # set the parameter for rename-script:
+  if [ "$1" = "-a" ];
+  then
+    /usr/bin/rename 's/ /_/g' $2
+  fi
+  if [ "$1" = "-r" ];
+  then
+    /usr/bin/rename 's/_/ /g' $2
+  fi
+
+	echo "$FILENAME: done."
+
+fi
+#end

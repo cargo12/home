@@ -1,0 +1,40 @@
+#!/bin/bash
+# $Id: sync_notebook 07-18-2007 12:53PM wimac ver: 07.271.1354
+# Last modified: 09-28-2007  01:54PM wimac
+
+rhost=westernf@westernflairphotography.com
+#sync notebook with server
+echo syncing with remote server
+rsync -e 'ssh -ax' -avrux --exclude="index.*" --exclude="*.swp" /home/wimac/notebook/ $rhost:/home/westernf/public_html/wimac/notebook 
+rsync -e 'ssh -ax' -avrux --exclude="index.*" --exclude="*.swp" /home/wimac/bin/ $rhost:/home/westernf/public_html/wimac/backup/bin
+rsync -e 'ssh -ax' -avrux --exclude="index.*" --exclude="*.swp" /home/wimac/.vim/ $rhost:/home/westernf/public_html/wimac/backup/vim
+rsync -e 'ssh -ax' -avux /home/wimac/.Xresources  $rhost:/home/westernf/public_html/wimac/backup/
+rsync -e 'ssh -ax' -avux /home/wimac/.bashrc  $rhost:/home/westernf/public_html/wimac/backup/
+rsync -e 'ssh -ax' -avux /home/wimac/.xinitrc  $rhost:/home/westernf/public_html/wimac/backup/
+rsync -e 'ssh -ax' -avux /home/wimac/.config/openbox/rc.xml  $rhost:/home/westernf/public_html/wimac/backup/
+rsync -e 'ssh -ax' -avux /home/wimac/.config/openbox/menu.xml  $rhost:/home/westernf/public_html/wimac/backup/
+rsync -e 'ssh -ax' -avux /home/wimac/.zshrc  $rhost:/home/westernf/public_html/wimac/backup/
+rsync -e 'ssh -ax' -avux /home/wimac/.zfunc  $rhost:/home/westernf/public_html/wimac/backup/
+rsync -e 'ssh -ax' -avux /home/wimac/.aliasrc  $rhost:/home/westernf/public_html/wimac/backup/
+rsync -e 'ssh -ax' -avux /home/wimac/.conky-date  $rhost:/home/westernf/public_html/wimac/backup/
+rsync -e 'ssh -ax' -avux /home/wimac/.conky-hour  $rhost:/home/westernf/public_html/wimac/backup/
+rsync -e 'ssh -ax' -avux /home/wimac/.conky-min  $rhost:/home/westernf/public_html/wimac/backup/
+rsync -e 'ssh -ax' -avux /home/wimac/.conky-weather  $rhost:/home/westernf/public_html/wimac/backup/
+rsync -e 'ssh -ax' -avux /home/wimac/.screenrc  $rhost:/home/westernf/public_html/wimac/backup/
+rsync -e 'ssh -ax' -avux /home/wimac/.screenrc-galt  $rhost:/home/westernf/public_html/wimac/backup/
+rsync -e 'ssh -ax' -avux /home/wimac/.vimrc  $rhost:/home/westernf/public_html/wimac/backup/
+#rsync -e 'ssh -ax' -progress -arvux $sync_host:/home/wimac/notebook/ /home/wimac/notebook      
+#rsync -e 'ssh -ax' -arvux /home/wimac/notebook/ $sync_host:/home/wimac/notebook   
+echo done syncing with server
+#sync notebook with thumbdrive.
+
+if [ -f /media/sda1 ]
+then
+  echo "syncing notebok with thumbdrive..."
+  rsync -arvux --exclude="index.*" --exclude="*.swp" /home/wimac/notebook/ /media/sda1/notebook
+  rsync -arvux /media/sda1/notebook/ /home/wimac/notebook
+fi
+
+
+echo "done..."
+

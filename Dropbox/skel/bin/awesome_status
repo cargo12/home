@@ -1,0 +1,39 @@
+#!/bin/bash
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin
+
+delim=" | ";
+
+print_status_info() {
+	freq=`awk '/cpu MHz/{print int($4)}' < /proc/cpuinfo`;
+
+	memtotal=`awk '/MemTotal/{print $2}' < /proc/meminfo`;
+	memcached=`sed 4q /proc/meminfo | awk '/Cached/{print $2}'`;
+	membuffers=`awk '/Buffers/{print $2}' < /proc/meminfo`;
+	memory=$(( $memtotal/1024 ));
+	memfree=`awk '/MemFree/{print $2}' < /proc/meminfo`;
+	memfreez=$(( ($memtotal-$memfree) ));
+	freemem=$(( ($memfreez-$membuffers-$memcached)/1024 ));
+
+	battotal=`awk '/last full capacity/{print $4}' < /proc/acpi/battery/BAT0/info`;
+	batfree=`awk '/remaining capacity/{print $3}' < /proc/acpi/battery/BAT0/state`;
+	battper=$(( 100*$batfree/$battotal ));
+	battery=`awk '/charging state/{print $3}' < /proc/acpi/battery/BAT0/state`;
+	ctime=`date '+%a, %d %b %H:%M'`;
+
+	/bin/echo "0 setstatustext CPU: ${freq}MHz${delim}$freemem MiB / $memory MiB${delim}Bat: ${battper}% $battery${delim}$ctime";
+	if [ "x$XINERAMA" = "xYES" ]; then
+	/bin/echo "1 setstatustext CPU: ${freq}MHz${delim}$freemem MiB / $memory MiB${delim}Bat: ${battper}% $battery${delim}$ctime";
+	fi
+}
+
+username="wimac@billmacleod.com"
+password="r3dd0gbd"
+
+wget -O - https://$username:$password@mail.google.com/mail/feed/atom --no-check-certificate |\
+    sed 's/</\n</g;s/>/>\n/g' |\
+    sed -n '/<fullcount>/{n;p;}'
+exit 0
+while true; do
+	print_status_info | /usr/local/bin/awesome-client
+	sleep 5;
+done

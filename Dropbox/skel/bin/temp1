@@ -1,0 +1,15 @@
+#!/bin/bash
+#$Id: temp  12-12-2010 07:00PM wimac(wimac1@gmail.com) ver: 11.090.2220
+#returns just the temp for Dearborn MI
+
+
+wxurl="http://mobile.weather.gov/port_mp_ns.php?CityName=Dearborn&site=DTX&State=MI&warnzone=MIZ076"
+#temp=$(curl -s --connect-timeout 30 ${wxurl} | sed -e :a -e 's/<[^<]*>/ /g;/</{N;s/\n/ /;ba;}' | sed -n '/&deg;/p' | sed 's/[^0-9]//g')
+temp=$(curl -s --connect-timeout 30 ${wxurl}|sed -e :a -e 's/<[^<]*>//g;/</{N;s/\n//;ba;}'|sed -n '/&deg;/p'|sed 's/&deg;//')
+echo $temp
+
+
+#temp=$(curl -s --connect-timeout 30 ${wxurl} | sed -n '7'p |sed 's/<[^<]*>/ /' |sed 's/&deg;F//') 
+#| sed -n '/&deg;/p'| sed 's/<br>//')
+#temp=$(cat ~/weather.html | sed -n '7'p | sed -n '/&deg;/p') 
+#echo $temp

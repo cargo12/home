@@ -1,0 +1,6 @@
+#!/bin/bash
+
+Xnest :1 & DISPLAY=:1 gnome-session
+#disp=${1:?Display?}
+#host=${2:?Host?}
+#Xnest :$disp -query $host -name $host -kb &

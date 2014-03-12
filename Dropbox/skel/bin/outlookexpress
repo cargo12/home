@@ -1,0 +1,3 @@
+#!/bin/bash
+. findwine
+$WINE "c:\\program files\\outlook express\\msimn.exe" ${PARAM:+"$PARAM"} &>/dev/null &

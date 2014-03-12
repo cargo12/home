@@ -1,0 +1,13 @@
+#!/bin/bash
+
+
+
+for f in `ls *.avi`; do
+    name=`echo "$f"|sed 's/ -.*//'`
+    #letter=`echo "$name"|cut -c1`
+    show=`echo "$name"|cut -d'.' -f1`
+    dir="/media/wimac-drive/tv/$show/$name"
+    echo $show
+    #mkdir -p "$dir"
+    #mv "$f" "$dir"
+done

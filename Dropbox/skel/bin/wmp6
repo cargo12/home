@@ -1,0 +1,2 @@
+#!/bin/bash
+WINEPREFIX=~/wmp4linux wine ~/wmp4linux/dosdevices/c:/mp/mplayer2.exe  &> /dev/null

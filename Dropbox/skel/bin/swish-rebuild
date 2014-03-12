@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+# $Id: swish-rebuild 07-21-2007 02:44PM wimac     $
+# Source: /home/vogelke/etc/periodic/daily/RCS/140-swish-rebuild,v
+# Last modified: 05-31-2008  10:07AM wimac
+# re-index SWISH files.
+
+PATH=/usr/local/bin:/bin:/sbin:/usr/sbin:/usr/bin:/home/wimac/bin
+export PATH
+umask 022
+tag=`basename $0`
+
+for topic in notebook
+
+do
+    logger -t $tag "starting $topic"
+    ( cd /home/wimac/$topic && swish-e -c $topic.conf )
+done
+# index /etc directory
+logger -t $tag "starting etc"
+cd /etc && sudo swish-e -S prog -c etc.conf 
+
+exit 0
+

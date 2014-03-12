@@ -1,0 +1,1225 @@
+#! /usr/bin/perl
+use strict;
+use warnings;
+
+# create help text (doing this up here so people see it when they open the file)
+my $help = <<'HELP';
+
+
+ ==================== Disclaimer ====================
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+ ==================== About ====================
+
+ Name: Powerpill
+ Author: Xeno the Blind
+ Version: 6.1
+ Date: 2008-07-31
+
+ This is a script to accelerate package downloads for the pacman
+ package manager. It uses aria2 to accomplish this. Specifically,
+ it first invokes pacman with the passed sync arguments and with
+ the additional "--print-uris" argument to get a list of the
+ packages to download. It then parses this list and, using the
+ mirror list, creates a metalink file that contails sections for
+ each file specified by pacman. The metalink contains the MD5
+ checksums for each file from the database and uses them to
+ verify file integrity. The metalink is formed in such a way that
+ large files will use multiple connections (segmented downloading)
+ to increase download speeds substantially. Small files will only
+ use single connections as the gain in speed from segmented
+ downloading is negligible while the slowdown from combining the
+ segments is noticeable when dealing with small files. Multiple
+ files are downloaded simultaneously which makes a very clear
+ difference when dealing with many small files (normally, pacman
+ downloads these files one at a time, so you have to wait for A
+ to finish before B starts). Once the download has finished, the
+ files are double-checked for integrity and control is passed
+ back to pacman to complete the operation (e.g. installation).
+
+
+ ==================== Installation ====================
+
+ You must have aria2 installed on your system (pacman -S aria2).
+ All other requirements of this script are included in the base
+ installation of Arch Linux (for which it was written).
+
+ Save this file somewhere on your system and make it executable.
+ If you want to be able to invoke it from any directory, place it
+ on somewhere on your path (this is not necessary).
+
+ You DO NOT need to change anything in pacman or on your system.
+ Pacman remains completely unchanged and can be run as usual
+ by simply invoking it directly.
+
+
+ ==================== Usage ====================
+
+ PACMAN OPTIONS
+ --------------
+
+ Invoke powerpill with the pacman synchronization options that you
+ wish to use, e.g.
+
+ ./powerpill -Syu
+ ./powerpill -Sw base
+ ./powerpill --sync nexuiz
+
+ Powerpill is used to download files, so if an operation requires
+ no download, powerpill will not do anything other than invoke
+ pacman (e.g. powerpill -Si).
+
+ Any non-sync pacman operation will also just invoke pacman and
+ exit.
+
+
+
+ POWERPILL OPTIONS
+ -----------------
+
+ If any powerpill-specific options are detected, pacman options
+ are ignored.
+
+	 --help		displays this message
+	 --gen-conf	generates the .powerpill.conf file in ~
+
+ If no powerpill.conf file is detected, powerpill just uses the
+ default options. It won't create the the configuration file
+ unless you tell it to.
+
+HELP
+
+
+
+
+
+
+
+
+
+# the default configuration file
+
+my $conf = <<'CONF';
+# Make sure that you have several mirrors uncommented in your mirrorlist.
+# I would recomment at least 10 but you could just as well uncomment
+# all of them.
+
+
+# Global concurrent connection limit. This sets the total number of
+# simultaneous connections, not downloads. If set to 0, it will let
+# aria2 decide.
+# Default: 10
+TOTAL_CONNECTIONS = 10
+
+# Minimum size in MB for using multiple connection to download a file.
+# Files smaller than this will NOT be split (not worth it on small files).
+# Default: 5 MB
+MINIMUM_SIZE = 5
+
+# Maximum number of connections per single file (only if  equal to or
+# larger than MINIMUM_SIZE). If set to 0, it will let power decide.
+# Default: 0
+CONNECTIONS_PER_FILE = 0
+
+# Maximum download speed in bytes/s (0 = unlimited)
+# Add 'K' for kB or 'M' for MB, e.g. ('1048576' = '1025K' = '1M')
+# Default: 0
+MAX_SPEED = 0
+
+# Minimum download speed (0 = no minimum)
+# Add 'K' for kB or 'M' for MB, e.g. ('1048576' = '1025K' = '1M')
+# Default: 0
+MIN_SPEED = 0
+
+# Maximum tries per download (0 = unlimited)
+# Default: 5
+MAX_TRIES = 5
+
+# Server timeout
+# Default: 15
+TIMEOUT = 15
+
+# Passive FTP ('yes'/'no')
+# This is overridden by settings in pacman.conf
+# Default: yes
+PASSIVE_FTP = yes
+
+# Log output ('yes'/'no')
+# Default: no
+ENABLE_LOG = no
+
+# Log file if logging is enabled 
+# Default: /var/log/powerpill.log
+LOG = /var/log/powerpill.log
+
+# Enable verbose aria2 output?
+# Default: no
+ARIA2_VERBOSE = no
+
+# Pre-allocate file space? ('none' or 'prealloc')
+# Slow and unnecessary for lots of small files.
+# Default:  none
+FILE_ALLOC = none
+
+# Overwrite existing files ('true' or 'false')
+# If true, this will overwrite existing cache files even if their
+# checksums match, which is rather pointless. See the following
+# option for a better alternative.
+# Default: false
+OVERWRITE = false
+
+# When parsing the requested files, powerpill checks the database
+# to get the MD5 checksums  and then checks if any of the files
+# are already  in the cache. If the checksum of the cached  file
+# matches the database, the file is not  downloaded again. If the
+# cached file's checksum does NOT match the database, you can set
+# powerpill to automatically delete it and redownload it, ask you
+# what to do for each file, or leave the file in the cache and
+# skip the download.
+# 
+# What to do with cached files with bad checksums ('delete', 'ask', 'leave')
+# Default: ask
+BAD_CHECKSUM_ACTION = ask
+
+# Use colored messages
+USE_COLOR = yes
+
+# Show size of individual packages before downloading ('yes' or 'no')
+# The total file download size will always be shown. If set to 'no',
+# this may be overridden by 'ShowSize' in pacman.conf.
+SHOW_FILE_SIZES = yes
+
+# Additional arguments to aria2c. Check the aria2 man page.
+# Default: ''
+ADDITIONAL_ARIA2C_ARGUMENTS = ''
+
+# aria2c path
+# default: /usr/bin/aria2c
+ARIA2C = /usr/bin/aria2c
+
+CONF
+
+# ============================================================= #
+# ==================== Begin Configuration ==================== #
+# ============================================================= #
+
+# Look at the text above for an explanation of what these do.
+# If you want to change these, consider invoking powerpill with
+# "--gen-config" and then changing them ~/.powerpill.conf instead.
+
+my $TOTAL_CONNECTIONS=0;
+my $MINIMUM_SIZE = 5;
+my $CONNECTIONS_PER_FILE = 0;
+my $MAX_SPEED='0';
+my $MIN_SPEED=0;
+my $MAX_TRIES=5;
+my $TIMEOUT=15;
+my $PASSIVE_FTP='yes';
+my $ENABLE_LOG='no';
+my $LOG='/var/log/powerpill.log';
+my $ARIA2_VERBOSE='no';
+my $FILE_ALLOC='none';
+my $OVERWRITE='false';
+my $BAD_CHECKSUM_ACTION='ask';
+my $USE_COLOR='yes';
+my $SHOW_FILE_SIZES='yes';
+my $ADDITIONAL_ARIA2C_ARGUMENTS='';
+my $ARIA2C='/usr/bin/aria2c';
+
+# =========================================================== #
+# ==================== End Configuration ==================== #
+# =========================================================== #
+
+
+
+
+# ============================================================= #
+# ========== DON'T CHANGE ANYTHING BEYOND THIS POINT ========== #
+# ============================================================= #
+
+
+
+# ========== Perl Modules ==========
+use Term::ANSIColor;
+
+
+# ========== Internal Settings ==========
+# set file extensions for later use
+my $pkg_ext = '.pkg.tar.gz';
+my $aria2_ext = '.aria2';
+
+# get hardware architecture
+my $architecture = `uname -m`;
+chomp $architecture;
+
+# regexes
+my $package_name_regex = qr/^(.+?)(?:-\Q$architecture\E)?\Q$pkg_ext\E$/;
+
+# set the default paths
+my $DEFAULT_CONF = '/etc/pacman.conf';
+
+# Leave off the preceding slash and add one to the end  to make
+# concatenating paths easier (i.e. not have to do unnecessary matches)
+my $DEFAULT_CACHE = 'var/cache/pacman/pkg/';
+my $DEFAULT_DATABASE = 'var/lib/pacman/';
+
+# powerpill config path
+my $conf_path = $ENV{HOME}.'/.powerpill.conf';
+
+# file handle to log
+my $log_fh;
+
+# hash to store path configurations (database, caches)
+my %paths = ();
+
+# a hash ref to associate mirrors with repositories as
+# specified in the pacman config file
+my $mirrors = {};
+
+# hash to associate metalink file tags with files
+my %metalink_sections = ();
+
+
+# ==========  Function Declarations ==========
+
+# function to print messages either with or without color
+sub printMessage($ $ $)
+{
+	my ($header, $message, $color) = @_;
+	if ($USE_COLOR eq "yes")
+	{
+		print STDOUT (color $color), $header, (color 'reset'), $message, "\n";
+	}
+	else
+	{
+		print STDOUT $header, $message, "\n";
+	}
+	if ($log_fh and not eof($log_fh))
+	{
+		my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst)=localtime(time);
+		my $timestamp = sprintf "%4d-%02d-%02d %02d:%02d:%02d",$year+1900,$mon+1,$mday,$hour,$min,$sec;
+		print $log_fh "$timestamp ", $header, $message, "\n";
+	}
+}
+
+# message functions
+sub message($){&printMessage('==> ', shift, 'bold blue');}
+sub error($){&printMessage('==> ERROR: ', shift, 'bold red');}
+sub warning($){&printMessage('==> WARNING: ', shift, 'bold magenta');}
+sub success($){&printMessage('==> SUCCESS: ', shift, 'bold green');}
+sub pacmsg($){&printMessage('PACMAN: ', shift, 'bold yellow');}
+sub aria2msg($){&printMessage('ARIA2: ',shift, 'bold cyan');}
+
+
+# This loads the MD5 checksums of all files in the pacman cache directories for
+# later comparison with the corresponding database values
+sub getCacheChecksums
+{
+	my @files = @{(shift)};
+	my @caches = @{(shift)};
+	my @paths = ();
+	my %cache_checksums;
+	foreach my $cache ( @caches )
+	{
+		map { push(@paths, $_) if -e} map {$cache.$_} @files;
+	}
+	if (@paths)
+	{
+		my $args = join ' ', @paths;
+		%cache_checksums = map { (m/^([0-9A-Fa-f]{32})\s+([^\s].+)$/) ? ($2=>lc($1)) : undef} split "\n", `md5sum $args`;
+	}
+	return \%cache_checksums;
+}
+
+# Convert bytes to kB, MB, GB, and TB (yeah, probably unnecessary, but why not?)
+sub formatBytes($)
+{
+	my $size = int(shift);
+	if ($size > 0x400**4)
+	{
+		return sprintf("%.2f TiB", $size / 0x400**4);
+	}
+	elsif ($size > 0x400**3)
+	{
+		return sprintf("%.2f GiB", $size / 0x400**3);
+	}
+	elsif ($size > 0x400**2)
+	{
+		return sprintf("%.2f MiB", $size / 0x400**2);
+	}
+	elsif ($size > 0x400)
+	{
+		return sprintf("%.2f kiB", $size / 0x400);
+	}
+	else
+	{
+		return "$size B";
+	}
+
+}
+
+# Confirmation dialogue
+sub confirm($)
+{
+	my $question = shift;
+	print "$question (y/n) ";
+	my $answer = lc(<STDIN>);
+	chomp $answer;
+	while ($answer ne 'y' and $answer ne 'n')
+	{
+		print "Please enter 'y' or 'n': ";
+		$answer = lc(<STDIN>);
+		chomp $answer;
+	}
+	return ($answer eq 'y') ? 1 : 0;
+}
+
+# Load powerpill configuration file
+sub loadConfig
+{
+	my $conf_path = shift;
+	if (-f $conf_path)
+	{
+		open (my $fh, '<', $conf_path) or die "Unable to read $conf_path: $!\n";
+		while (defined(my $line = <$fh>))
+		{
+			chomp $line;
+			if ($line =~ m/^\s*([A-Z_]+)\s*=\s*'?([a-zA-Z0-9\/\.~]*)'?$/)
+			{
+				eval("defined(\$$1) and \$$1='$2'");
+			}
+		}
+		close $fh;
+		&message("powerpill.conf loaded");
+	}
+}
+
+# Parse pacman configuration file
+sub parsePacConfig
+{
+	my $file = shift;
+	my $repo = shift;
+	# each depth of recursion will add itself to the list before going deeper
+	# so that it's possible to detect reciprocal Includes
+	my @parents = @_;
+	open (my $fh, '<', $file) or die "Unable to open $file: $!\n";
+	while ( defined(my $line = <$fh>) )
+	{
+		if ($line =~ m/^\s*RootDir\s*=\s*(.+)\s*$/)
+		{
+			my $dir = $1;
+			if ( substr($dir,-1) ne '/' )
+			{
+				$dir .= '/';
+			}
+			$paths{'RootDir'} = $dir;
+		}
+		elsif ($line =~ m/^\s*DBPath\s*=\s*(.+)\s*$/)
+		{
+			my $dir = $1;
+			if ( substr($dir,-1) ne '/' )
+			{
+				$dir .= '/';
+			}
+			$paths{'DBPath'} = $dir;
+		}
+		elsif ($line =~ m/^\s*CacheDir\s*=\s*(.+)\s*$/)
+		{
+			my $dir = $1;
+			if ( substr($dir,-1) ne '/' )
+			{
+				$dir .= '/';
+			}
+			push @{ $paths{'CacheDir'} }, $dir;
+		}
+		elsif ($line =~ m/^\s*NoPassiveFtp\s*$/)
+		{
+			$PASSIVE_FTP = 'no';
+		}
+		elsif ($line =~ m/^\s*ShowSize\s*$/)
+		{
+			$SHOW_FILE_SIZES = 'yes';
+		}
+		elsif ($line =~ m/^\s*\[\s*(.*?)\s*\]\s*$/)
+		{
+			$repo = $1;
+		}
+		elsif ($line =~ m/^\s*Server\s*=\s*(.+)\s*$/ and $repo)
+		{
+			my $server = $1;
+			# add the server to the list (preserving order, but ignoring duplicates)
+			push (@{ $mirrors->{$repo} }, $server) if not grep {$server eq $_} @{ $mirrors->{$repo} };
+		}
+		# only descent into configs that we haven't been in before
+		elsif ($line =~ m/^\s*Include\s*=\s*(.+)\s*$/)
+		{
+			# check that the Include file is not a parent of this recursion
+			if (!grep {$_ eq $1} @parents)
+			{
+				&parsePacConfig($1, $repo, @parents, $file);
+			}
+		}
+	}
+	close $fh;
+}
+# ========== Metalink Stuff ==========
+
+my $metalink_start = '<?xml version="1.0" encoding="utf-8"?><metalink version="3.0" xmlns="http://www.metalinker.org/"><files>';
+my $metalink_end = '</files></metalink>';
+
+sub createMetalinkSection
+{
+	my $file_name = shift;
+	my $size = shift;
+	my $md5 = shift;
+	my @URIs = @_;
+	my $number_of_servers = scalar @URIs;
+	my $section = '<file name="'.$file_name.'">';
+	$section .= '<size>'.$size.'</size>' if $size;
+	$section .= '<verification><hash type="md5">'.$md5.'</hash></verification>' if $md5;
+
+	# If we know the size and it's above the split threshold, allow segmented downloading.
+	# Global connections still take precedence and limit the overall number of connections.
+	if ($size and $size >= $MINIMUM_SIZE)
+	{
+		# If the user has specified a connections/file limit, respect it.
+		if ($CONNECTIONS_PER_FILE > 0)
+		{
+			$section .= "<resources maxconnections=\"$CONNECTIONS_PER_FILE\">";
+		}
+		# Else use the number of servers as a limit.
+		else
+		{
+			$section .= "<resources maxconnections=\"$number_of_servers\">";
+		}
+	}
+	# If we don't know the file size (we should) or if it's smaller than the minimum
+	# split size, limit the connections to 1.
+	else
+	{
+		$section .= '<resources maxconnections="1">';
+	}
+	foreach my $URI (@URIs)
+	{
+		my ($type) = ($URI =~ m/^(.*?)(?::\/\/|$)/);
+		$section .= '<url'.($type ? " type=\"$type\"" : '').'>'.$URI.'</url>';
+	}
+	$section .= '</resources>';
+	$section .= '</file>';
+	return $section;
+}
+
+
+
+
+
+
+
+
+
+
+# ========== Preparations ==========
+
+# check that aria2c is installed
+if (!-x $ARIA2C )
+{
+	&error("Unable to find or execute aria2c, exiting...");
+	exit;
+}
+
+
+# Load passed arguments into a string, adding quotation marks where needed.
+my $pacman_args = join ' ', map {m/\s/ ? "\"$_\"" : $_} @ARGV;
+
+# check for powerpill-specific options (--help or --gen-conf)
+if ($pacman_args =~ m/--help/)
+{
+	print "$help\n";
+	exit;
+}
+elsif ($pacman_args =~ m/--gen-conf/)
+{
+	if (-f $conf_path)
+	{
+		exit if not &confirm("Overwrite existing $conf_path?");
+	}
+	open (my $fh, '>', $conf_path) or die "Unable to open $conf_path: $!\n";
+	print $fh $conf;
+	close $fh;
+	print "Config has been written to $conf_path\n";
+	exit;
+}
+
+# Check that passed arguments are for synchronization and nothing else
+if ($pacman_args !~ m/(?:^|\s)-(?:[a-z]*S|-sync(?:\s|$))/ or $pacman_args =~ m/(?:^|\s)-(?:[a-z]*[A-RT-Z]|-(?:add|query|remove|upgrade|version|help)(?:\s|$))/)
+{
+	&warning("Arguments not recognized as a valid synchronization request: $pacman_args");
+	#&message("Powerpill is only for downloading files during synchronization.");
+	#&message("Please use \"-S\" or \"--sync\" and try again");
+	#&message("Exiting without performing any operations.");
+
+	&message('Exiting powerpill invoking pacman...');
+	exec "pacman $pacman_args";
+	exit;
+}
+
+# Check the arguments for pacman root, database and cache options
+my %ARGS;
+if ($pacman_args =~ m/(?:^|\s)-(?:[ac-zA-Z]*?b|-dbpath)\s*([^\s]+)/)
+{
+	my $dir = $1;
+	if ( substr($dir,-1) ne '/' )
+	{
+		$dir .= '/';
+	}
+	$ARGS{'DBPath'} = $dir;
+}
+if ($pacman_args =~ m/(?:^|\s)-(?:[a-qs-zA-Z]*?r|-root)\s*([^\s]+)/)
+{
+	my $dir = $1;
+	if ( substr($dir,-1) ne '/' )
+	{
+		$dir .= '/';
+	}
+	$ARGS{'RootDir'} = $dir;
+}
+while ($pacman_args =~ m/(?:^|\s)--cachedir\s*([^\s]+)/g)
+{
+	my $dir = $1;
+	if ( substr($dir,-1) ne '/' )
+	{
+		$dir .= '/';
+	}
+	push @{ $ARGS{'CacheDir'} }, $dir;
+}
+# Strip -p and --print-uris options if present because we add them again later
+$pacman_args =~ s/((?:^|\s))(?:(-[Sa-oq-z]*)p|--print-uris($|\s))/$1.($2?$2:$3)/ge;
+
+
+# Check for non-download options and skip to pacman if detected. 
+if ($pacman_args =~ m/((?:^|\s))(?:(-[Sa-hj-z]*)i|--info($|\s))/)
+{
+	&message('Info requested by option "-i" or "--info": no download to process');
+	&message('Exiting powerpill invoking pacman...');
+	exec "pacman $pacman_args";
+}
+elsif ($pacman_args =~ m/((?:^|\s))(?:(-[Sa-fh-z]*)g|--groups($|\s))/)
+{
+	&message('Group display requested by option "-g" or "--groups": no download to process');
+	&message('Exiting powerpill invoking pacman...');
+	exec "pacman $pacman_args";
+}
+elsif ($pacman_args =~ m/((?:^|\s))(?:(-[Sa-km-z]*)l|--list($|\s))/)
+{
+	&message('Package list requested by option "-l" or "--list": no download to process');
+	&message('Exiting powerpill invoking pacman...');
+	exec "pacman $pacman_args";
+}
+
+
+
+
+# Load powerpill configuration file
+&loadConfig($conf_path);
+
+# convert minimum size to MiB
+$MINIMUM_SIZE *= 0x400**2;
+
+
+
+# ========== Get the URIs from Pacman ==========
+
+# get default URIs by calling pacman with -p followed by the arguments supplied
+# split output by lines and grep for valid package URIs
+# The '--noconfirm' suppresses the 'install whole content' message from pacman
+# because it won't display the packages first. Powerpill takes over this function
+# instead, asking first if all the packages should all be installed, then if not,
+# prompting for each one.
+
+&message('Invoking pacman to get URIs...');
+&pacmsg('Starting...');
+
+# use this to remember if pacman complains about needing root so we can invoke it again
+# with sudo after the downloads complete
+my $pacman_needs_root = 0;
+my $pacout = `pacman -p --noconfirm $pacman_args 2>&1`;
+if ($pacout =~ m/error.+root/)
+{
+	$pacman_needs_root = 1;
+	&pacmsg($pacout);
+	&message('Invoking pacman again with "sudo"');
+	&pacmsg('Starting with sudo...');
+	$pacout = `sudo pacman -p --noconfirm $pacman_args 2>&1`;
+}
+my @pacout = split ("\n", $pacout);
+my @default_URIs = ();
+foreach my $line (@pacout)
+{
+	if ($line =~ m/error.*not found in sync db/)
+	{
+		&pacmsg($line);
+		&message('Exiting...');
+		exit;
+	}
+	if ($line =~  m/^(?:(?:http)|(?:ftp)).+\Q$pkg_ext\E$/)
+	{
+		push @default_URIs, $line
+	}
+	else
+	{
+		&pacmsg($line);
+	}
+}
+&pacmsg('Done');
+
+# Strip out the refresh tags so that when we call pacman later, it doesn't update the databases again.
+$pacman_args =~ s/((?:^|\s))(?:(-[Sa-xz]*)y|--refresh($|\s))/$1.($2?$2:$3)/ge;
+
+
+
+
+
+
+
+# open log for appending if specified
+if ($ENABLE_LOG eq 'yes')
+{
+	open($log_fh, '>>', $LOG) or die "Unable to open log $LOG: $!\n";
+}
+
+
+# ========== File Selection and Check ==========
+@default_URIs = sort @default_URIs;
+my @files =  map {($_ =~ m/([^\/]+)$/)} @default_URIs;
+my $file_number = scalar @files;
+
+# If this is a group, ask if all packages should be downloaded (after listing them).
+# If not, ask for each one.
+if ($file_number > 1)
+{
+	&message("The following packages were specified:");
+	&message($_) foreach map {(m/$package_name_regex/)} @files;
+	if (not &confirm("Would you like to download all of them?"))
+	{
+		my @selected_files = ();
+		my @selected_default_URIs = ();
+		foreach my $URI (@default_URIs)
+		{
+			my ($file) = ($URI =~ m/([^\/]+)$/);
+			my ($package) = ($file =~ m/$package_name_regex/);
+			if (&confirm("Download $package?"))
+			{
+				&message("Selected: $file");
+				push (@selected_files, $file);
+				push (@selected_default_URIs,$URI);
+			}
+		}
+		@files = @selected_files;
+		@default_URIs = @selected_default_URIs;
+		$file_number = scalar @files;
+	}
+}
+
+# If there is nothing do download, say so and exit. This is a separate 'if' section
+# instead of an 'else' after the last one just in case someone says no too all packages
+# in the group (people do silly things like that).
+if ($file_number == 0)
+{
+	&message("No files to download. Invoking pacman...");
+	close $log_fh if $log_fh;
+	&pacmsg('Invoked');
+	$pacman_needs_root ? exec "sudo pacman $pacman_args" : exec "pacman $pacman_args";
+	exit;
+}
+
+
+
+
+
+
+
+
+
+# ========== Parse Pacman Configuration Files ==========
+
+# Parse pacman.conf to get settings (non-standard database paths, servers, etc).
+# This follows the specifications in the pacman.conf man page at
+# http://www.archlinux.org/pacman/pacman.conf.5.html
+
+&message('Loading your pacman settings.');
+
+# Use this to prevent against infinite regression (reciprocal includes).
+&parsePacConfig($DEFAULT_CONF);
+
+# Command line arguments override the configuration file.
+# If database or cache paths are specified, they are treated
+# as absolute, else they are relative to the specified root.
+# (That's how the manpage says pacman rolls).
+
+if ( exists($ARGS{'RootDir'}) )
+{
+	$paths{'RootDir'} = $ARGS{'RootDir'};
+}
+elsif ( not exists($paths{'RootDir'}) )
+{
+	$paths{'RootDir'} = '/';
+}
+
+if ( exists($ARGS{'DBPath'}) )
+{
+	$paths{'DBPath'} = $ARGS{'DBPath'};
+}
+elsif ( not exists($paths{'DBPath'}) )
+{
+	$paths{'DBPath'} = $paths{'RootDir'}.$DEFAULT_DATABASE;
+}
+
+if ( exists($ARGS{'CacheDir'}) )
+{
+	$paths{'CacheDir'} = $ARGS{'CacheDir'};
+}
+elsif ( not exists($paths{'CacheDir'}) )
+{
+	$paths{'CacheDir'} = [$paths{'RootDir'}.$DEFAULT_CACHE];
+}
+
+
+&message('Checking permissions for given cache directories.');
+# determine first writable cache, if any (again, as specified in the official documentation)
+CACHE: foreach my $cache ( @{ $paths{'CacheDir'} } )
+{
+	if (!-e $cache)
+	{
+		&warning("Specified cache does not exist: $cache\n");
+	}
+	elsif (-w $cache)
+	{
+		$paths{'OutDir'} = $cache;
+		last CACHE;
+	}
+}
+if (not exists($paths{'OutDir'}))
+{
+	&error('You do not have cache write permissions. Cache list: '.join (', ', map {"\"$_\""} @{ $paths{'CacheDir'} } ) );
+	&error('Either specify a cache directory with the "--cachedir <dir>" option or try running powerpill as root');
+	&error("Exiting...\n");
+	close $log_fh if $log_fh;
+	exit;
+}
+
+
+
+
+
+
+
+# ========== Preparations for Building Metalink ==========
+
+
+# the metalink file
+my $metalink = $metalink_start;
+
+# file list specified by pacman
+my @file_list = ();
+
+# files that failed the checksums
+my @invalid_checksum_files = ();
+
+# MD5 checksums of target files in cache (if present)
+my %cache_checksums = %{&getCacheChecksums(\@files, $paths{'CacheDir'})};
+
+# MD5 checksums listed in the database
+my %db_checksums = ();
+
+# keep track of the compressed file sizes to display the total download size
+my $total_csize = 0;
+my %csizes = ();
+
+# keep track of the installed file size to display the total installation size
+my $total_isize = 0;
+
+
+
+
+
+# ========== Parse Files and Build Metalink File ==========
+
+# Parse each URI to determine file and repository
+# and then check pacman database to get file size
+# and md5 checksum. Compare the database checksum
+# against the checksum for each file found in the
+# cache. If the checksums do not match, check the
+# action specified in the configuration. Finally,
+# create file sections in the metalink for later.
+FILE: foreach my $def_URI (@default_URIs)
+{
+	# get package file name, add it to the list, get the server (the one pacman passed with --print-uris), get the repository, get the file's cache path
+	my ($file_name) = ($def_URI =~ m/([^\/]+)$/);
+	my ($package_name) = ($file_name =~ m/$package_name_regex/);
+	my $server = substr($def_URI, 0, length($def_URI)-length($file_name)-1);
+	my $repo = ($def_URI =~ m/\/(community|core|current|extra|testing|unstable)\/os/) ? $1 : 'custom' ;
+	my @servers = @{ $mirrors->{$repo} };
+	my $cache_path = $paths{'OutDir'}.$file_name;
+	my $csize=0;
+	my $isize=0;
+	my $md5_checksum;
+
+	# load data from package description file if present (this should always work)
+	my $desc_file = $paths{'DBPath'}.'sync/'.$repo.'/'.$package_name.'/desc';
+	if (-e $desc_file)
+	{
+		open (my $fh, '<', $desc_file);
+		{
+			local $/ = "\n\n";
+			while (<$fh>)
+			{
+				if ($_ =~ m/%(.+?)%\n(.*)/)
+				{
+					if ($1 eq 'CSIZE')
+					{
+						$csize = $2;
+
+					}
+					elsif ($1 eq 'ISIZE')
+					{
+						$isize = $2;
+						# add to total install size
+						$total_isize += $isize;
+					}
+					elsif ($1 eq 'MD5SUM')
+					{
+						$md5_checksum = lc($2);
+						$db_checksums{$file_name} = $md5_checksum;
+
+					}
+				}
+			}
+		}
+		close $fh;
+	}
+	# else display a warning (this should never happen)
+	else
+	{
+		&error("Unable to find database entry for $package_name at $desc_file");
+		&error("This should not happen.");
+		&error("Unable to verify checksums or calculate download sizes for this file");
+	}
+
+	# The man pages says that only the first writable directory of the
+	# specified CacheDirs will be written to, but that ALL CacheDirs
+	# should be checked for the package before downloading. This loops
+	# through the CacheDirs looking for the package, and deals with
+	# corrupt files as it goes (if it can).
+
+	# cycle through specified CacheDirs first to see if the file is there
+	foreach my $cache ( @{$paths{'CacheDir'}} )
+	{
+		# would-be path of the file in this cache
+		my $path = $cache.$file_name;
+
+		# if we find the file and the checksum looks good, we can skip it
+		if ( exists($cache_checksums{$path}) and $cache_checksums{$path} eq $md5_checksum)
+		{
+			&message("Found and verified: $cache$file_name");
+
+			# if there's a leftover aria2 control file, try to remove it
+			if (-e $path.$aria2_ext and -w $cache)
+			{
+				&message("Removing leftover aria2 control file\n");
+			}
+			elsif (-e $path.$aria2_ext and not -w $cache)
+			{
+				&warning("Unable to delete leftover $path$aria2_ext in $cache: you do not have write permissions.");
+			}
+			# no need to download this file, skip to the next one
+			next FILE;
+		}
+	}
+
+	# still here with no file... check the specified output directory (which is necessarily writable)
+
+	# If the file already exists in the cache but has an invalid checksum
+	# and there is no aria2c control file for it, (prompt to) delete it so
+	# that it will be downloaded again.
+	if ( exists($cache_checksums{$cache_path}) and $cache_checksums{$cache_path} ne $md5_checksum and !-e $cache_path.$aria2_ext)
+	{
+		&error("Incorrect checksum in cached file: $cache_path");
+		&message("File appears to be corrupted (download is not resumable)");
+
+		# Check the config settings to determine what to do.
+		if ($BAD_CHECKSUM_ACTION eq 'ask')
+		{
+			next FILE if not &confirm("Would you like to remove this file and add the package to the download queue?");
+		}
+		# "if NOT delete" is used here to ensure that the only way it deletes the file is if
+		# 'delete' has been correctly specified in the configuration... better to unintentionally
+		# keep than to unintentionally delete (I'm considerate like that)
+		elsif ($BAD_CHECKSUM_ACTION ne 'delete')
+		{
+			&warning("Skipping this file based on your \"Bad Checksum Action\" settings");
+			next FILE;
+		}
+		# get rid of the file
+		unlink $cache_path;
+		&message("Successfully removed corrupted file: $cache_path");
+		&message("File will be redownloaded");
+
+	}
+
+	# We're still here, so it's time to add the package to the download queue.
+	$csizes{$file_name} = $csize;
+	if ($SHOW_FILE_SIZES eq 'yes')
+	{
+		&message("Added to download queue: $package_name (".&formatBytes($csize).')');
+	}
+	else
+	{
+		&message("Added to download queue: $package_name");
+	}
+	push @file_list, $file_name;
+	$total_csize += $csize;
+
+	#create the URIs from the package name and the mirrors
+
+	my @URIs;
+	# Only connect to the default/given server when using a custom repository.
+	if ($repo  eq 'custom')
+	{
+		@URIs = ($def_URI);
+	}
+
+	# Create URIs for each server otherwise.
+	else
+	{
+		@URIs = map {my $uri = $_; $uri=~s/\$repo/$repo/; $uri.'/'.$file_name} @servers;
+	}
+
+	$metalink_sections{$file_name} = &createMetalinkSection($file_name,$csize,$md5_checksum,@URIs);
+	$metalink .= $metalink_sections{$file_name};
+}
+$metalink .= $metalink_end;
+
+# This is just for debugging the metalink
+#$metalink =~ s/></>\n</g;
+#open(FH,'>','/tmp/pp.ml') or die;
+#print FH $metalink;
+#close FH;
+#close $log_fh if $log_fh;
+#exit;
+
+
+
+
+# ========== Aria2c Arguments ==========
+# convert min size from bytes to MB
+my $out_dir = substr($paths{'OutDir'},0,-1);
+
+# aria2c arguments
+my $aria2c_arguments = "--dir=$out_dir --timeout=$TIMEOUT --max-tries=$MAX_TRIES --allow-overwrite=$OVERWRITE --auto-file-renaming=false --file-allocation=$FILE_ALLOC --lowest-speed-limit=$MIN_SPEED --max-download-limit=$MAX_SPEED --continue --metalink-enable-unique-protocol=false --metalink-file=-";
+if ($TOTAL_CONNECTIONS > 0)
+{
+	$aria2c_arguments .= " --max-concurrent-downloads=$TOTAL_CONNECTIONS";
+	$aria2c_arguments .= " --metalink-servers=$TOTAL_CONNECTIONS";
+}
+if ($PASSIVE_FTP eq 'yes')
+{
+	$aria2c_arguments .= ' --ftp-pasv';
+}
+if ($ARIA2_VERBOSE eq 'yes')
+{
+	$aria2c_arguments .= " --log=-";
+}
+if ($ADDITIONAL_ARIA2C_ARGUMENTS)
+{
+	$aria2c_arguments .= " $ADDITIONAL_ARIA2C_ARGUMENTS";
+}
+
+
+
+# ========== Get Confirmation Before Starting Download ==========
+# Display the number of files to download and total download size, then ask for confirmation to proceed.
+print STDERR "\n";
+$total_csize = &formatBytes($total_csize);
+$total_isize = &formatBytes($total_isize);
+my $number_of_downloads = scalar @file_list;
+if ($number_of_downloads > 0)
+{
+	&message('About to download '.( ($number_of_downloads > 1) ? $number_of_downloads.' files' : '1 file' ) );
+	&message('Total download size: '.$total_csize);
+	&message('Total install size: '.$total_isize);
+}
+else
+{
+	&message('No files to download. Will invoke pacman and exit.');
+}
+print "\n";
+if (not &confirm("Proceed?"))
+{
+	close $log_fh if  $log_fh;
+	exit;
+}
+
+
+
+# ========== Download and Show Results ==========
+# Download files if there are any to download.
+while ($number_of_downloads > 0)
+{
+	my @failed_downloads = ();
+	my $successful_download_size = 0;
+	my $failed_download_size = 0;
+	my $current_download_speed = 0;
+	my $best_download_speed = 0;
+	my $current_connections = 0;
+
+	# pipe metalink file to aria2c to download files
+	#$metalink =~ s/^\s*(.*?)\s*$/$1/mg;
+	#open (my $pipe, '|-', "$ARIA2C $aria2c_arguments") or die "Unable to open pipe to $ARIA2C: $!\n";
+	#{
+	#	local $| = 1;
+	#	print $pipe $metalink;
+	#}
+	#close $pipe;
+	
+	my $start_time = time;
+	# place this in a block to flush the buffer locally
+	{
+		use IPC::Open2;
+		local $| = 1;
+		my ($pipe_in,$pipe_out);
+		#$pipe_out = '>&';
+		my $pid = open2($pipe_out, $pipe_in, "$ARIA2C $aria2c_arguments ") or die "Unable to open pipe to $ARIA2C: $!\n";
+		print $pipe_in $metalink;
+		close $pipe_in;
+		while (defined(my $line = <$pipe_out>))
+		{
+			chomp $line;
+			next if ($line eq '');
+			#if ($line =~ m/(\d{4}-\d\d-\d\d\s\d\d:\d\d:\d\d)\s.*?Download complete: (.+)/)
+			#{
+			#	&aria2msg("Completed: $2");
+			#}
+			#elsif ($line =~ m/(\d{4}-\d\d-\d\d\s\d\d:\d\d:\d\d)\s.*?Verification finished successfully\. file=(.+)/)
+			#{
+			#	&aria2msg("Verified: $2");
+			#}
+			if ($line =~ m/\[.*\sCN:(\d+).*\[TOTAL SPD:(\d*\.\d*).*?\]/)
+			{
+			#	$current_connections = $1;
+				$current_download_speed = $2;
+				$best_download_speed = $2 if $2 > $best_download_speed;
+			#	&aria2msg(sprintf("Connections: %3s  Download speed: %8.2f KiB/s", $1, $2));
+			}
+			elsif ($line =~ m/\[.*\sCN:(\d+).*SPD:(\d*\.\d*).*?/)
+			{
+			#	$current_connections = $1;
+				$current_download_speed = $2;
+				$best_download_speed = $2 if $2 > $best_download_speed;
+			#	&aria2msg(sprintf("Connections: %3s  Download speed: %8.2f KiB/s", $1, $2));
+			}
+			#elsif ($line ne '')
+			#{
+			&aria2msg($line);
+			#}
+		}
+		waitpid $pid, 0;
+	}
+
+	my $time_difference = time - $start_time;
+
+	# get checksums of downloaded files
+	%cache_checksums = %{ &getCacheChecksums(\@file_list, [$paths{'OutDir'}]) };
+
+	# check each file
+	foreach my $file (@file_list)
+	{
+		my $cache_path = $paths{'OutDir'}.$file;
+		# file exists in cache
+		if (-e $cache_path)
+		{
+			chmod 0644, $cache_path;
+			# checksum is correct -> success
+			if ( exists($db_checksums{$file}) and exists($cache_checksums{$cache_path}) and $db_checksums{$file} eq $cache_checksums{$cache_path} )
+			{
+				&success("Checksum verified: $file");
+				$successful_download_size += $csizes{$file};
+			}
+			# checksum is incorrect -> error and redownload
+			elsif ( exists($db_checksums{$file}) and exists($cache_checksums{$cache_path}) and $db_checksums{$file} ne $cache_checksums{$cache_path} )
+			{
+				&error("Incorrect checksum:  $file");
+				push @failed_downloads, $file;
+				$failed_download_size += $csizes{$file};
+				if ($BAD_CHECKSUM_ACTION eq 'ask')
+				{
+					if (-e $cache_path.$aria2_ext)
+					{
+						&message("It appears to be an incomplete download.");
+						&message("Running the download again may solve this problem");
+					}
+					else
+					{
+						&message("It appears to be an unrecoverable corrupted download.");
+					}
+					if (&confirm("Would you like to delete this file now?"))
+					{
+						unlink $cache_path;
+						unlink $cache_path.$aria2_ext if -e $cache_path.$aria2_ext;
+					}
+				}
+				elsif ($BAD_CHECKSUM_ACTION eq 'delete')
+				{
+					unlink $cache_path;
+					unlink $cache_path.$aria2_ext if -e $cache_path.$aria2_ext;
+				}
+			}
+			# just in case, although this should never happen
+			else
+			{
+				&warning("Unable to verify checksum: $file");
+				&warning("This shouldn't happen. Try running powerpill again to see if it resolves the issue.");
+				&warning("If that doesn't work, try running pacman directly.");
+				&warning("If even that doesn't work, delete the file and try powerpill then pacman again.");
+			}
+		}
+		# file doesn't exist in cache
+		else
+		{
+			&error("Failed to download $file.");
+			push @failed_downloads, $file;
+			$failed_download_size += $csizes{$file};
+		}
+	}
+	$number_of_downloads = 0;
+
+	# print some basic stats
+	my $average_rate = ($time_difference > 0 ? &formatBytes($successful_download_size/$time_difference).'/s' : 'N/A' );
+	$successful_download_size = &formatBytes($successful_download_size);
+	$failed_download_size = &formatBytes($failed_download_size);
+	&message("$successful_download_size downloaded and verified in $time_difference s.");
+	&message("Average rate: $average_rate");
+	$best_download_speed = &formatBytes($best_download_speed * 1024);
+	&message("Maximum rate: $best_download_speed/s");
+
+	if (scalar @failed_downloads > 0)
+	{
+		&error((scalar @failed_downloads).' downloads failed ('.$failed_download_size.').');
+		if (&confirm("Would you like to try downloading the missing files again?"))
+		{
+			$number_of_downloads = scalar @failed_downloads;
+		}
+		else
+		{
+			$number_of_downloads = 0;
+		}
+	}
+}
+close $log_fh if $log_fh;
+&pacmsg('Starting... ');
+# if pacman spit out an error before about needing root, call it again with sudo
+$pacman_needs_root ? exec "sudo pacman $pacman_args" : exec "pacman $pacman_args";
+exit;

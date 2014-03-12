@@ -1,0 +1,6 @@
+#!/bin/bash
+# $Id: ob_exit  09-15-2008 09:50PM wimac ver: 10.352.1554
+# exit and lock
+
+padlock
+openbox --exit

@@ -1,0 +1,10 @@
+#!/bin/bash
+# a script for use in *box menus to toggle xapps like xpenguins, and xsnow etc.
+USAGE='USAGE: xswitch <xapp> args';
+[ "$#" = 0 ] && { echo 1>&2 "${USAGE?}"; exit 1; }
+
+if [ -z "`/bin/ps x | /bin/grep \"[0-9] $1"`" ]; then
+   $1 $2 $3 $4 $5 $6 $7 $8 $9
+else
+   killall $1
+fi

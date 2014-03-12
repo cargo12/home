@@ -1,0 +1,299 @@
+#!/usr/bin/env python
+
+#
+# wifi-picker: show a list of known wi-fi networks and keys,
+# and allow the user to choose one or add a new one.
+# Intended to be called as part of the ifup process, as root.
+#
+# Usage: wifi-picker [device [configfile] ]
+# Defaults: eth0 $HOME/.wifi-picker
+#
+# The config file should be a list of known networks, one per line,
+# with essid= and/or key=
+# Like this:
+# Home essid=home-essid
+# Work essid=work-essid key=work-key
+#
+# A word with no = will be taken to be a key.
+# Comments are specified with #, just like in this python file.
+#
+# Copyright 2004,2007 by Akkana Peck.
+# You are free to use, distribute and modify this software
+# under the terms of the GPL.
+#
+
+import os, sys, string, gtk
+
+# Globals
+
+# The network device:
+netDev = "eth0"
+
+# The networks visible through iwlist scan.
+# This is an array of essid names.
+visibleNets = []
+
+# Dictionary of known networks (from the config file):
+known_networks = {}
+
+# UI widgets:
+name_entry = 0
+essid_entry = 0
+key_label = 0
+key_entry = 0
+known_menu = 0
+visible_menu = 0
+
+# Returns a triple: name, essid, key
+def parse_options_line(line) :
+    words = string.split(line, " ")
+    name = words[0]
+    essid = ""
+    key = ""
+    for w in words[1:] :
+        parts = string.split(w, "=")
+        if len(parts) == 1 :
+            key = parts[0]
+        else :
+            if parts[0] == "key" :
+                key = parts[1]
+            elif parts[0] == "essid" or parts[0] == "ssid" :
+                essid = parts[1]
+            else :
+                print "Bad config line:", line
+
+    return name, essid, key
+
+# Take the output of iwlist and find the available networks.
+def parse_iwlist_output() :
+    global visibleNets
+    visibleNets = []
+    pipe = os.popen("iwlist eth0 scan")
+    #pipe = os.popen("cat ~/iwlist.out")
+    curDev = ""
+    curCell = {}
+    while 1 :
+        line = pipe.readline()
+        if not line : break
+        if line[0].isalpha():             # New network device
+            curDev = string.split(line)[0]
+            continue
+        if curDev != netDev :
+            continue
+
+        # If we get here, we're reading the lines for the right device.
+        line = string.strip(line)
+        if line[0:4] == "Cell" :        # New cell
+            if len(curCell) > 0 :
+                visibleNets.append(curCell)
+            curCell = {}
+            continue
+        words = string.split(line, ":")
+        if words[0] == "ESSID" :
+            curCell["essid"] = string.strip(words[1], '"')
+        elif words[0] == "Encryption key" :
+            if words[1] == "on" :
+                curCell["encrypted"] = True
+            else :
+                curCell["encrypted"] = False
+
+    pipe.close()
+    if len(curCell) > 0 :
+        visibleNets.append(curCell)
+
+def pick_known(combobox) :
+    model = combobox.get_model()
+    index = combobox.get_active()
+    if index > 0 :
+        visible_menu.set_active(0)
+        name = model[index][0]
+        name_entry.set_text(name)
+        essid_entry.set_text(known_networks[name][0])
+        key_entry.set_text(known_networks[name][1])
+
+    else :
+        name_entry.set_text("")
+        essid_entry.set_text("")
+        key_entry.set_text("")
+
+    key_entry.set_sensitive(True);
+    key_label.set_sensitive(True);
+
+def choose_visible_network(combobox) :
+    index = combobox.get_active()
+    if index > 0 :
+        known_menu.set_active(0)
+        essid = visibleNets[index-1]["essid"]
+        name_entry.set_text(essid)
+        essid_entry.set_text(essid)
+        key_entry.set_text("")
+        if (visibleNets[index-1]["encrypted"]) :
+            key_entry.set_sensitive(True);
+            key_label.set_sensitive(True);
+        else :
+            key_entry.set_sensitive(False);
+            key_label.set_sensitive(False);
+    else :
+        name_entry.set_text("")
+        essid_entry.set_text("")
+        key_entry.set_text("")
+        key_entry.set_sensitive(True);
+        key_label.set_sensitive(True);
+
+def create_visible_menu() :
+    parse_iwlist_output()
+    combo = gtk.combo_box_new_text()
+
+    combo.append_text("--")
+    for net in visibleNets :
+        essid = net["essid"]
+        if net["encrypted"] :
+            essid = essid + " (encrypted)"
+        combo.append_text(essid)
+
+    combo.set_active(0)
+    combo.connect("changed", choose_visible_network)
+
+    return combo, len(visibleNets)
+
+# Read in known networks from ~/.wifi-picker
+# and build an option menu of them.
+def create_known_hosts_menu(configfile) :
+    num = 0
+    menu = gtk.combo_box_new_text()
+    menu.append_text("--")
+
+    if configfile == "" :
+        configfile = os.getenv("HOME") + "/.wifi-picker"
+    try :
+        fp = open(configfile, "r")
+        while 1 :
+            line = fp.readline()
+            if not line : break
+            line = string.strip(line)
+            if line == "" : continue
+            # Skip comments
+            if line[0] == "#" : continue
+
+            name, essid, key = parse_options_line(line)
+            known_networks[name] = [essid, key]
+            menu.append_text(name)
+            num = num+1
+
+        fp.close()
+
+    except IOError, e:
+        print "No config file"
+
+    menu.set_active(0)
+    menu.connect("changed", pick_known)
+
+    return menu, num
+
+# Attempt to find out who owns the X server.
+# There doesn't seem to be any good way to do this!
+def get_X_server_owner() :
+    uid = 0
+    fp = os.popen("ps auxn | grep xinit", "r")
+    while 1 :
+        line = fp.readline()
+        if not line : break
+        if string.find(line, "grep") >= 0 : continue
+        uid = int(string.split(line)[0])
+        break
+    fp.close()
+    return uid
+
+def main():
+    global name_entry, essid_entry, key_entry, key_label
+    global known_menu, visible_menu
+    global netDev
+
+    configfile = ""
+
+    if len(sys.argv) > 1 :
+        netDev = sys.argv[1]
+        if len(sys.argv) > 2 :
+            configfile = sys.argv[2]
+
+    # Here we need to set effective uid to the owner of the X server,
+    # so that we can bring up a window.
+    #os.seteuid(get_X_server_owner())
+    
+    window = gtk.Dialog("Wi-fi Picker", None, 0,
+                        (gtk.STOCK_CLOSE, gtk.RESPONSE_NONE,
+                         gtk.STOCK_OK, gtk.RESPONSE_OK))
+    window.connect('destroy', lambda win: gtk.main_quit())
+
+    outer_vbox = gtk.VBox(False, 5)
+    window.vbox.pack_start(outer_vbox, True, True, 0)
+    outer_vbox.set_border_width(5)
+    
+    # The Known Networks menu:
+    known_menu, num = create_known_hosts_menu(configfile)
+
+    frame = gtk.Frame("Known networks (" + str(num) + ")")
+    outer_vbox.pack_start(frame, True, True, 0)
+    
+    frame.add(known_menu)
+
+    # The menu of networks found locally:
+    visible_menu, num = create_visible_menu()
+
+    frame = gtk.Frame("Visible network essids (" + str(num) +")")
+    outer_vbox.pack_start(frame, True, True, 0)
+    
+    frame.add(visible_menu)
+
+    # Space to put in new network parameters:
+    frame = gtk.Frame("Network Settings")
+    outer_vbox.pack_start(frame, True, True, 0)
+
+    table = gtk.Table(2, 3, False)
+    table.set_border_width(5)
+    table.set_row_spacings(5)
+    table.set_col_spacings(10)
+    frame.add(table)
+
+    label = gtk.Label("Name:")
+    label.set_justify(gtk.JUSTIFY_RIGHT)
+    table.attach(label, 0, 1, 0, 1,
+                 gtk.SHRINK, 0, 0, 0)
+    name_entry = gtk.Entry()
+    table.attach(name_entry, 1, 2, 0, 1,
+                 gtk.EXPAND | gtk.FILL, 0, 0, 0)
+
+    label = gtk.Label("Essid:")
+    label.set_justify(gtk.JUSTIFY_RIGHT)
+    table.attach(label, 0, 1, 1, 2,
+                 gtk.SHRINK, 0, 0, 0)
+    essid_entry = gtk.Entry()
+    table.attach(essid_entry, 1, 2, 1, 2,
+                 gtk.EXPAND | gtk.FILL, 0, 0, 0)
+    
+    key_label = gtk.Label("Key:")
+    key_label.set_justify(gtk.JUSTIFY_RIGHT)
+    table.attach(key_label, 0, 1, 2, 3,
+                 gtk.SHRINK, 0, 0, 0)
+    key_entry= gtk.Entry()
+    key_entry.set_visibility(False)
+    table.attach(key_entry, 1, 2, 2, 3,
+                 gtk.EXPAND | gtk.FILL, 0, 0, 0)
+    
+    window.show_all()
+    
+    response = window.run()
+    if response == gtk.RESPONSE_OK:
+        #os.seteuid(0)
+        cmd = "iwconfig " + netDev
+        essid = essid_entry.get_text()
+        if essid != "" : cmd = cmd + " essid " + essid
+        key = key_entry.get_text()
+        if key != "" : cmd = cmd + " key " + key
+        
+        print cmd
+        os.system(cmd)
+    # Do nothing if the user hits Cancel/Close
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,67 @@
+#!/bin/sh
+#
+# $Id: xnote,v 1.7 2005/05/07 21:12:42 johndoe Exp $
+#
+# when using this via mail to johndoe-xnote from a remote system,
+# have the dotfile set up as follows:
+#
+#    user% cat ~/.qmail-default
+#    | forward johndoe-$EXT@example.com
+#
+# otherwise, the environment doesn't get set up properly to handle
+# Xwindow activity.
+
+PATH=/bin:/usr/bin:/usr/X11R6/bin;     export PATH
+DISPLAY="`uname -n`:0.0";              export DISPLAY
+USER=johndoe;                          export USER
+
+test -f "$HOME/.noxnote" && exit 0
+
+# send message if running from cron or
+# if running under X-Windows.
+
+EMAIL=0
+case "$#" in
+    0)  EMAIL=1; msg="`cat -`" ;;
+    *)  str=${1+"$@"} ;;
+esac
+
+case "${EMAIL}${CRON}${WINDOWID}" in
+    "")  exit 0 ;;     # not an X-session
+    *)   ;;
+esac
+
+# if email and the message body is empty, look for the subject.
+# if no subject, just print whatever came in via stdin.
+
+case "$EMAIL" in
+    0)  ;;
+    1)  str=`echo "$msg" | sed -n -e '/^$/,$p`
+
+        case "$str" in
+            "") str=`echo "$msg" | grep 'Subject:' |
+	        sed -e 's/Subject://g'` ;;
+            *)  ;;
+        esac
+
+        case "$str" in
+            "") str="$msg" ;;
+            *)  ;;
+        esac
+        ;;
+esac
+
+# if nothing came in, bail.
+# otherwise print the date and each separate line from the message.
+
+case "$str" in
+    "")  exit 0 ;;     # no message
+    *)   ;;
+esac
+
+set X `date`
+today="$4 $3 $5"
+xalarm -name xmemo -time +0 -geometry +20-40 -nowarn "$today
+$str"
+
+exit 0

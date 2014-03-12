@@ -1,0 +1,3010 @@
+12/22/2011 20:35:29 [3179] set the loglevel to 1
+12/22/2011 20:35:29 [3179] forticlientsslvpn control daemon version:4.0.2010 started
+12/22/2011 20:36:17 [3179] rcv cmd:0 at state[0]
+12/22/2011 20:36:17 [3179] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+12/22/2011 20:36:18 [3179] ssl vpn tunnel started
+12/22/2011 20:36:18 [3202] set loglevel to 1
+12/22/2011 20:36:19 [3203] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2dZ0HAF9mmi5UHAixGtZNuCsnVIqTLZeCmpBXrv/3Mgu%0aDl36R8LJNTI=%0a
+
+12/22/2011 20:36:19 [3203] starting pppd
+12/22/2011 20:36:19 [3202] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2dZ0HAF9mmi5UHAixGtZNuCsnVIqTLZeCmpBXrv/3Mgu%0aDl36R8LJNTI=%0a
+12/22/2011 20:36:19 [3203] use tty:/dev/pts/5
+12/22/2011 20:36:19 [3203] connecting to server
+12/22/2011 20:36:19 [3203] tunnel running...
+12/22/2011 20:36:20 [3203] interface up
+12/22/2011 20:36:20 [3223] execl /home/crunchbang/downloads/forticlientsslvpn/.//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.50
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.50 server route 
+route -n add default gw 192.168.102.50
+12/22/2011 20:51:22 [3179] rcv cmd:0 at state[1]
+12/22/2011 20:51:22 [3179] stopping ssl vpn tunnel[v4.0.2010]
+12/22/2011 20:51:22 [3179] kill_child:3203
+12/22/2011 20:51:22 [3179] kill_child:3202
+12/22/2011 20:51:22 [3203] killing session timer...
+12/22/2011 20:51:22 [3203] kill_child:3207
+12/22/2011 20:51:22 [3203] kill_child:3223
+12/22/2011 20:51:22 [3202] signal rcved, logout now
+12/22/2011 20:51:22 [3179] tunnel terminated
+12/22/2011 20:51:22 [3535] execl /home/crunchbang/downloads/forticlientsslvpn/.//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+12/22/2011 20:51:22 [3179] ssl vpn tunnel stopped
+12/22/2011 20:51:25 [3179] rcv cmd:2 at state[0]
+12/22/2011 20:51:25 [3179] forticlient ssl vpn[4.0.2010] stopped
+12/22/2011 16:19:47 [2722] set the loglevel to 1
+12/22/2011 16:19:47 [2722] forticlientsslvpn control daemon version:4.0.2010 started
+12/22/2011 16:19:57 [2722] rcv cmd:0 at state[0]
+12/22/2011 16:19:57 [2722] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+12/22/2011 16:19:57 [2722] ssl vpn tunnel started
+12/22/2011 16:19:57 [2743] set loglevel to 1
+12/22/2011 16:19:59 [2744] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2azanjh4kgbEX1Cf7eL1fbCa0zb5cWrccnia08T50/CO%0akWYL9H+rwn8=%0a
+
+12/22/2011 16:19:59 [2744] starting pppd
+12/22/2011 16:19:59 [2743] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2azanjh4kgbEX1Cf7eL1fbCa0zb5cWrccnia08T50/CO%0akWYL9H+rwn8=%0a
+12/22/2011 16:19:59 [2744] use tty:/dev/pts/4
+12/22/2011 16:19:59 [2744] connecting to server
+12/22/2011 16:19:59 [2744] tunnel running...
+12/22/2011 16:19:59 [2744] interface up
+12/22/2011 16:19:59 [2765] execl /home/crunchbang/Dropbox/skel/bin/forticlientsslvpn/.//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.63
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.63 server route 
+route -n add default gw 192.168.102.63
+12/22/2011 21:20:41 [2743] system might be waken up from sleep
+12/22/2011 21:20:41 [2722] session timer terminated
+12/22/2011 21:20:41 [2722] session is killed, killing tunnel
+12/22/2011 21:20:42 [2722] kill_child:2744
+12/22/2011 21:20:42 [2744] killing session timer...
+12/22/2011 21:20:42 [2744] kill_child:2748
+12/22/2011 21:20:42 [2744] kill_child:2765
+12/22/2011 21:20:42 [3093] execl /home/crunchbang/Dropbox/skel/bin/forticlientsslvpn/.//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+12/22/2011 21:20:42 [2722] select: Interrupted system call
+12/22/2011 21:20:43 [2722] rcv cmd:0 at state[0]
+12/22/2011 21:20:43 [2722] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+12/22/2011 21:20:43 [2722] ssl vpn tunnel started
+12/22/2011 21:20:43 [3128] set loglevel to 1
+12/22/2011 21:20:44 [3128] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2b3AlHfNHpiyNX4S0NR5jo+b/mPPoT5DoUI1eFvbJnz7%0aaa7TlUti3EY=%0a
+12/22/2011 21:20:44 [3129] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2b3AlHfNHpiyNX4S0NR5jo+b/mPPoT5DoUI1eFvbJnz7%0aaa7TlUti3EY=%0a
+
+12/22/2011 21:20:44 [3129] starting pppd
+12/22/2011 21:20:44 [3129] use tty:/dev/pts/4
+12/22/2011 21:20:44 [3129] connecting to server
+12/22/2011 21:20:44 [3129] tunnel running...
+12/22/2011 21:20:45 [3129] interface up
+12/22/2011 21:20:45 [3141] execl /home/crunchbang/Dropbox/skel/bin/forticlientsslvpn/.//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.29
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.29 server route 
+route -n add default gw 192.168.102.29
+12/22/2011 21:23:08 [2722] rcv cmd:0 at state[1]
+12/22/2011 21:23:08 [2722] stopping ssl vpn tunnel[v4.0.2010]
+12/22/2011 21:23:08 [2722] kill_child:3129
+12/22/2011 21:23:08 [2722] kill_child:3128
+12/22/2011 21:23:08 [3129] killing session timer...
+12/22/2011 21:23:08 [3129] kill_child:3133
+12/22/2011 21:23:08 [3129] kill_child:3141
+12/22/2011 21:23:08 [3128] signal rcved, logout now
+12/22/2011 21:23:08 [2722] tunnel terminated
+12/22/2011 21:23:08 [3565] execl /home/crunchbang/Dropbox/skel/bin/forticlientsslvpn/.//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+12/22/2011 21:23:08 [2722] ssl vpn tunnel stopped
+12/22/2011 21:23:11 [2722] rcv cmd:2 at state[0]
+12/22/2011 21:23:11 [2722] forticlient ssl vpn[4.0.2010] stopped
+12/28/2011 19:57:23 [4465] set the loglevel to 1
+12/28/2011 19:57:23 [4465] forticlientsslvpn control daemon version:4.0.2010 started
+12/28/2011 20:01:36 [4465] rcv cmd:0 at state[0]
+12/28/2011 20:01:36 [4465] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+12/28/2011 20:01:37 [4465] ssl vpn tunnel started
+12/28/2011 20:01:37 [4570] set loglevel to 1
+12/28/2011 20:01:42 [4570] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2QMCvkxJXBZ6e9HNZH/x0coqwHgliNizLvX3ojZwnoet%0aJ9YbV1+GnTI=%0a
+12/28/2011 20:01:42 [4571] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2QMCvkxJXBZ6e9HNZH/x0coqwHgliNizLvX3ojZwnoet%0aJ9YbV1+GnTI=%0a
+
+12/28/2011 20:01:42 [4571] starting pppd
+12/28/2011 20:01:42 [4571] use tty:/dev/pts/1
+12/28/2011 20:01:42 [4571] connecting to server
+12/28/2011 20:01:52 [4571] tunnel running...
+12/28/2011 20:01:52 [4571] pppd may die...trying to fix it
+12/28/2011 20:02:29 [4571] read error from tty[]
+12/28/2011 20:02:29 [4571] rcv frame from tty fail
+12/28/2011 20:02:29 [4571] io finished, kill pppd
+12/28/2011 20:02:29 [4571] kill_child:4575
+12/28/2011 20:02:29 [4571] tunnel finished, killing session
+12/28/2011 20:02:29 [4571] killing session timer...
+12/28/2011 20:02:29 [4571] kill_child:-1
+12/28/2011 20:02:29 [4571] kill_child:-1
+12/28/2011 20:02:29 [4465] tunnel terminated
+12/28/2011 20:02:29 [4465] tunnel down unexpected
+12/28/2011 20:02:29 [4465] kill_child:4570
+12/28/2011 20:02:29 [4570] signal rcved, logout now
+12/28/2011 20:02:29 [4593] execl /home/crunchbang/Dropbox/skel/bin/forticlientsslvpn/.//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+12/28/2011 20:02:30 [4465] select: Interrupted system call
+12/28/2011 20:10:05 [4465] rcv cmd:0 at state[0]
+12/28/2011 20:10:05 [4465] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+12/28/2011 20:10:05 [4465] ssl vpn tunnel started
+12/28/2011 20:10:05 [4730] set loglevel to 1
+12/28/2011 20:10:07 [4730] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2TBNTXLqR/e6ikuRjNlmNdtt3+Qs+PniYNMVfovG0iRc%0aMAjda/zqBhY=%0a
+12/28/2011 20:10:07 [4731] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2TBNTXLqR/e6ikuRjNlmNdtt3+Qs+PniYNMVfovG0iRc%0aMAjda/zqBhY=%0a
+
+12/28/2011 20:10:07 [4731] starting pppd
+12/28/2011 20:10:07 [4731] use tty:/dev/pts/1
+12/28/2011 20:10:07 [4731] connecting to server
+12/28/2011 20:10:07 [4731] tunnel running...
+12/28/2011 20:10:07 [4731] interface up
+12/28/2011 20:10:07 [4744] execl /home/crunchbang/Dropbox/skel/bin/forticlientsslvpn/.//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.26
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.26 server route 
+route -n add default gw 192.168.102.26
+12/28/2011 20:12:10 [4465] rcv cmd:0 at state[1]
+12/28/2011 20:12:10 [4465] stopping ssl vpn tunnel[v4.0.2010]
+12/28/2011 20:12:10 [4465] kill_child:4731
+12/28/2011 20:12:10 [4465] kill_child:4730
+12/28/2011 20:12:10 [4731] killing session timer...
+12/28/2011 20:12:10 [4731] kill_child:4735
+12/28/2011 20:12:10 [4731] kill_child:4744
+12/28/2011 20:12:10 [4730] signal rcved, logout now
+12/28/2011 20:12:10 [4465] tunnel terminated
+12/28/2011 20:12:10 [4902] execl /home/crunchbang/Dropbox/skel/bin/forticlientsslvpn/.//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+12/28/2011 20:12:10 [4465] ssl vpn tunnel stopped
+12/28/2011 20:13:43 [4465] rcv cmd:2 at state[0]
+12/28/2011 20:13:43 [4465] forticlient ssl vpn[4.0.2010] stopped
+12/28/2011 20:42:19 [2906] set the loglevel to 1
+12/28/2011 20:42:19 [2906] forticlientsslvpn control daemon version:4.0.2010 started
+12/28/2011 20:42:28 [2906] rcv cmd:0 at state[0]
+12/28/2011 20:42:28 [2906] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+12/28/2011 20:42:28 [2906] ssl vpn tunnel started
+12/28/2011 20:42:28 [3048] set loglevel to 1
+12/28/2011 20:42:30 [3048] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2axVEuQQioS3RvaJ3QIZHzSAD0WxhwFz7ffu56XlEgTm%0aCbGPQeAGP+M=%0a
+12/28/2011 20:42:30 [3049] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2axVEuQQioS3RvaJ3QIZHzSAD0WxhwFz7ffu56XlEgTm%0aCbGPQeAGP+M=%0a
+
+12/28/2011 20:42:30 [3049] starting pppd
+12/28/2011 20:42:30 [3049] use tty:/dev/pts/4
+12/28/2011 20:42:30 [3049] connecting to server
+12/28/2011 20:42:30 [3049] tunnel running...
+12/28/2011 20:42:30 [3049] interface up
+12/28/2011 20:42:30 [3071] execl /home/crunchbang/Dropbox/skel/bin/forticlientsslvpn/.//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.50
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.50 server route 
+route -n add default gw 192.168.102.50
+12/28/2011 20:54:02 [2906] rcv cmd:0 at state[1]
+12/28/2011 20:54:02 [2906] stopping ssl vpn tunnel[v4.0.2010]
+12/28/2011 20:54:02 [2906] kill_child:3049
+12/28/2011 20:54:02 [2906] kill_child:3048
+12/28/2011 20:54:02 [3049] killing session timer...
+12/28/2011 20:54:02 [3049] kill_child:3053
+12/28/2011 20:54:02 [3049] kill_child:3071
+12/28/2011 20:54:02 [3048] signal rcved, logout now
+12/28/2011 20:54:02 [2906] tunnel terminated
+12/28/2011 20:54:02 [3186] execl /home/crunchbang/Dropbox/skel/bin/forticlientsslvpn/.//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+12/28/2011 20:54:02 [2906] ssl vpn tunnel stopped
+12/28/2011 20:54:06 [2906] rcv cmd:2 at state[0]
+12/28/2011 20:54:06 [2906] forticlient ssl vpn[4.0.2010] stopped
+12/29/2011 10:31:38 [2667] set the loglevel to 1
+12/29/2011 10:31:38 [2667] forticlientsslvpn control daemon version:4.0.2010 started
+12/29/2011 10:32:06 [2667] rcv cmd:0 at state[0]
+12/29/2011 10:32:06 [2667] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+12/29/2011 10:32:06 [2667] ssl vpn tunnel started
+12/29/2011 10:32:06 [2688] set loglevel to 1
+12/29/2011 10:32:07 [2688] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2fQmz70/d+gOzVoFLdmd8pbo9fi88sqwHc75yj8OxQZK%0aTc3A18MbT2g=%0a
+12/29/2011 10:32:07 [2689] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2fQmz70/d+gOzVoFLdmd8pbo9fi88sqwHc75yj8OxQZK%0aTc3A18MbT2g=%0a
+
+12/29/2011 10:32:07 [2689] starting pppd
+12/29/2011 10:32:07 [2689] use tty:/dev/pts/4
+12/29/2011 10:32:07 [2689] connecting to server
+12/29/2011 10:32:08 [2689] tunnel running...
+12/29/2011 10:32:08 [2689] interface up
+12/29/2011 10:32:08 [2710] execl /home/crunchbang/Dropbox/skel/bin/forticlientsslvpn/.//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.61
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+12/29/2011 15:29:51 [2688] system might be waken up from sleep
+12/29/2011 15:29:51 [2667] session timer terminated
+12/29/2011 15:29:51 [2667] session is killed, killing tunnel
+12/29/2011 15:29:52 [2667] kill_child:2689
+12/29/2011 15:29:52 [2689] killing session timer...
+12/29/2011 15:29:52 [2689] kill_child:2693
+12/29/2011 15:29:52 [2689] kill_child:2710
+12/29/2011 15:29:52 [2820] execl /home/crunchbang/Dropbox/skel/bin/forticlientsslvpn/.//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+12/29/2011 15:29:52 [2667] select: Interrupted system call
+12/29/2011 15:29:53 [2667] rcv cmd:0 at state[0]
+12/29/2011 15:29:53 [2667] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+12/29/2011 15:29:53 [2667] ssl vpn tunnel started
+12/29/2011 15:29:53 [2867] set loglevel to 1
+12/29/2011 15:29:54 [2867] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2QFOXeerLGV6Z9UMotOSIuieqdO9LHF0JaQ2KUzBS6WA%0aPp9qnVUu7Y0=%0a
+12/29/2011 15:29:54 [2868] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2QFOXeerLGV6Z9UMotOSIuieqdO9LHF0JaQ2KUzBS6WA%0aPp9qnVUu7Y0=%0a
+
+12/29/2011 15:29:54 [2868] starting pppd
+12/29/2011 15:29:54 [2868] use tty:/dev/pts/5
+12/29/2011 15:29:54 [2868] connecting to server
+12/29/2011 15:29:55 [2868] tunnel running...
+router 192.168.102.61 server route 
+route -n add default gw 192.168.102.61
+12/29/2011 15:29:55 [2868] interface up
+12/29/2011 15:29:55 [3033] execl /home/crunchbang/Dropbox/skel/bin/forticlientsslvpn/.//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp1
+address 192.168.102.69
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.69 server route 
+route -n add default gw 192.168.102.69
+12/29/2011 15:56:14 [2667] rcv cmd:0 at state[1]
+12/29/2011 15:56:14 [2667] stopping ssl vpn tunnel[v4.0.2010]
+12/29/2011 15:56:14 [2667] kill_child:2868
+12/29/2011 15:56:14 [2667] kill_child:2867
+12/29/2011 15:56:14 [2868] killing session timer...
+12/29/2011 15:56:14 [2868] kill_child:2992
+12/29/2011 15:56:14 [2868] kill_child:3033
+12/29/2011 15:56:14 [2867] signal rcved, logout now
+12/29/2011 15:56:14 [2667] tunnel terminated
+12/29/2011 15:56:14 [3231] execl /home/crunchbang/Dropbox/skel/bin/forticlientsslvpn/.//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+12/29/2011 15:56:14 [2667] ssl vpn tunnel stopped
+12/29/2011 15:56:18 [2667] rcv cmd:2 at state[0]
+12/29/2011 15:56:18 [2667] forticlient ssl vpn[4.0.2010] stopped
+01/18/2012 11:31:18 [2865] set the loglevel to 1
+01/18/2012 11:31:18 [2865] forticlientsslvpn control daemon version:4.0.2010 started
+01/18/2012 11:31:31 [2865] rcv cmd:0 at state[0]
+01/18/2012 11:31:31 [2865] starting ssl vpn tunnel[v4.0.2010]
+01/18/2012 11:32:11 [2865] can not resolve name DurSSL.BellHowell.net
+gateway for 1.1.1.1:71.148.48.174 for DurSSL.BellHowell.net:
+if has single route record for 1.1.1.1:0 for DurSSL.BellHowell.net:0
+01/18/2012 11:32:11 [2865] ssl vpn tunnel started
+01/18/2012 11:32:11 [2886] set loglevel to 1
+01/18/2012 11:32:52 [2886] getaddrinfo error for DurSSL.BellHowell.net, 443: Name or service not known: No such file or directory
+01/18/2012 11:32:52 [2886] tcp connect: No such file or directory
+01/18/2012 11:32:52 [2887] rcv notice:1|Can not connect to FortiGate.
+01/18/2012 11:32:53 [2865] tunnel terminated
+01/18/2012 11:32:53 [2865] tunnel down unexpected
+01/18/2012 11:32:53 [2865] kill_child:2886
+01/18/2012 11:32:53 [3099] execl /home/crunchbang/Dropbox/skel/bin/forticlientsslvpn/.//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+01/18/2012 11:32:55 [2865] select: Interrupted system call
+01/18/2012 11:33:34 [2865] rcv cmd:0 at state[0]
+01/18/2012 11:33:34 [2865] starting ssl vpn tunnel[v4.0.2010]
+01/18/2012 11:34:14 [2865] can not resolve name DurSSL.BellHowell.net
+gateway for 1.1.1.1:71.148.48.174 for DurSSL.BellHowell.net:
+if has single route record for 1.1.1.1:0 for DurSSL.BellHowell.net:0
+01/18/2012 11:34:14 [2865] ssl vpn tunnel started
+01/18/2012 11:34:14 [2865] rcv cmd:2 at state[1]
+01/18/2012 11:34:14 [2865] stopping ssl vpn tunnel[v4.0.2010]
+01/18/2012 11:34:14 [2865] kill_child:3200
+01/18/2012 11:34:14 [2865] kill_child:3199
+01/18/2012 11:34:14 [3201] execl /home/crunchbang/Dropbox/skel/bin/forticlientsslvpn/.//helper//cleanup.linux.sh ...
+01/18/2012 11:34:14 [3200] forticlient ssl vpn[4.0.2010] stopped
+01/18/2012 11:34:14 [2865] tunnel terminated
+01/18/2012 11:34:14 [3199] forticlient ssl vpn[4.0.2010] stopped
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+01/18/2012 11:34:14 [2865] ssl vpn tunnel stopped
+01/18/2012 11:34:15 [2865] snd cmd error: Broken pipe
+01/18/2012 11:34:15 [2865] snd cmd error: Broken pipe
+01/18/2012 11:34:15 [2865] forticlient ssl vpn[4.0.2010] stopped
+01/25/2012 17:25:23 [4593] set the loglevel to 1
+01/25/2012 17:25:23 [4593] forticlientsslvpn control daemon version:4.0.2010 started
+01/25/2012 17:25:33 [4593] rcv cmd:0 at state[0]
+01/25/2012 17:25:33 [4593] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+01/25/2012 17:25:34 [4593] ssl vpn tunnel started
+01/25/2012 17:25:34 [4614] set loglevel to 1
+01/25/2012 17:25:35 [4614] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2dkgRZ4T+CsEjqknLZKabtdJ6+Sngas2uN1xHS0Q9jpi%0apOEo3aY0+l8=%0a
+01/25/2012 17:25:35 [4615] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2dkgRZ4T+CsEjqknLZKabtdJ6+Sngas2uN1xHS0Q9jpi%0apOEo3aY0+l8=%0a
+
+01/25/2012 17:25:35 [4615] starting pppd
+01/25/2012 17:25:35 [4615] use tty:/dev/pts/6
+01/25/2012 17:25:35 [4615] connecting to server
+01/25/2012 17:25:36 [4615] tunnel running...
+01/25/2012 17:25:36 [4615] interface up
+01/25/2012 17:25:36 [4636] execl /home/crunchbang/Dropbox/skel/bin/forticlientsslvpn/.//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.67
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.67 server route 
+route -n add default gw 192.168.102.67
+01/25/2012 17:30:56 [4593] rcv cmd:0 at state[1]
+01/25/2012 17:30:56 [4593] stopping ssl vpn tunnel[v4.0.2010]
+01/25/2012 17:30:56 [4593] kill_child:4615
+01/25/2012 17:30:56 [4593] kill_child:4614
+01/25/2012 17:30:56 [4615] killing session timer...
+01/25/2012 17:30:56 [4615] kill_child:4619
+01/25/2012 17:30:56 [4615] kill_child:4636
+01/25/2012 17:30:56 [4614] signal rcved, logout now
+01/25/2012 17:30:56 [4593] tunnel terminated
+01/25/2012 17:30:56 [4766] execl /home/crunchbang/Dropbox/skel/bin/forticlientsslvpn/.//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+01/25/2012 17:30:57 [4593] ssl vpn tunnel stopped
+01/25/2012 17:34:34 [4593] rcv cmd:2 at state[0]
+01/25/2012 17:34:34 [4593] forticlient ssl vpn[4.0.2010] stopped
+04/10/2012 16:00:54 [2030] set the loglevel to 1
+04/10/2012 16:00:54 [2030] forticlientsslvpn control daemon version:4.0.2010 started
+04/10/2012 16:01:10 [2030] rcv cmd:0 at state[0]
+04/10/2012 16:01:10 [2030] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+04/10/2012 16:01:10 [2030] ssl vpn tunnel started
+04/10/2012 16:01:10 [2066] set loglevel to 1
+04/10/2012 16:01:12 [2066] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2eAbq+Sz6Md7jauPwH6RexuHrQ39kCG8EPPs3OH2VdRX%0a2B1U2yzQTDo=%0a
+04/10/2012 16:01:12 [2067] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2eAbq+Sz6Md7jauPwH6RexuHrQ39kCG8EPPs3OH2VdRX%0a2B1U2yzQTDo=%0a
+
+04/10/2012 16:01:12 [2067] starting pppd
+04/10/2012 16:01:12 [2067] use tty:/dev/pts/4
+04/10/2012 16:01:12 [2067] connecting to server
+04/10/2012 16:01:12 [2067] tunnel running...
+04/10/2012 16:01:13 [2067] interface up
+04/10/2012 16:01:13 [2088] execl /home/wimac/Dropbox/skel/bin/forticlientsslvpn/.//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.46
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.46 server route 
+route -n add default gw 192.168.102.46
+04/10/2012 16:08:19 [2030] rcv cmd:0 at state[1]
+04/10/2012 16:08:19 [2030] stopping ssl vpn tunnel[v4.0.2010]
+04/10/2012 16:08:19 [2030] kill_child:2067
+04/10/2012 16:08:19 [2030] kill_child:2066
+04/10/2012 16:08:19 [2067] killing session timer...
+04/10/2012 16:08:19 [2067] kill_child:2071
+04/10/2012 16:08:19 [2067] kill_child:2088
+04/10/2012 16:08:19 [2066] signal rcved, logout now
+04/10/2012 16:08:19 [2030] tunnel terminated
+04/10/2012 16:08:19 [2429] execl /home/wimac/Dropbox/skel/bin/forticlientsslvpn/.//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+04/10/2012 16:08:19 [2030] ssl vpn tunnel stopped
+04/10/2012 16:08:21 [2030] rcv cmd:2 at state[0]
+04/10/2012 16:08:21 [2030] forticlient ssl vpn[4.0.2010] stopped
+06/21/2012 18:06:15 [3760] set the loglevel to 1
+06/21/2012 18:06:15 [3760] forticlientsslvpn control daemon version:4.0.2010 started
+06/21/2012 18:06:25 [3760] rcv cmd:0 at state[0]
+06/21/2012 18:06:25 [3760] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+06/21/2012 18:06:25 [3760] ssl vpn tunnel started
+06/21/2012 18:06:26 [3783] set loglevel to 1
+06/21/2012 18:06:27 [3783] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzyqW/sdojTF/S3arBTmdzEHpZi0EHPo21Nu+ykFQC1bTKnP9S40N2Gx%0aWci68xL8Wfbyuum5/Ybhk+3a+ymDrnPgtPc948WYWoSzwa/uEtHpfN8ANcTlak3l%0ax7tjcindCow=%0a
+06/21/2012 18:06:27 [3784] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzyqW/sdojTF/S3arBTmdzEHpZi0EHPo21Nu+ykFQC1bTKnP9S40N2Gx%0aWci68xL8Wfbyuum5/Ybhk+3a+ymDrnPgtPc948WYWoSzwa/uEtHpfN8ANcTlak3l%0ax7tjcindCow=%0a
+
+06/21/2012 18:06:27 [3784] starting pppd
+06/21/2012 18:06:27 [3784] use tty:/dev/pts/4
+06/21/2012 18:06:27 [3784] connecting to server
+06/21/2012 18:06:27 [3784] tunnel running...
+06/21/2012 18:06:28 [3784] interface up
+06/21/2012 18:06:28 [3805] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.49
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.49 server route 
+route -n add default gw 192.168.102.49
+06/21/2012 18:16:38 [3760] rcv cmd:2 at state[1]
+06/21/2012 18:16:38 [3760] stopping ssl vpn tunnel[v4.0.2010]
+06/21/2012 18:16:38 [3760] kill_child:3784
+06/21/2012 18:16:38 [3760] kill_child:3783
+06/21/2012 18:16:38 [3784] killing session timer...
+06/21/2012 18:16:38 [3784] kill_child:3788
+06/21/2012 18:16:38 [3784] kill_child:3805
+06/21/2012 18:16:38 [3783] signal rcved, logout now
+06/21/2012 18:16:38 [3760] tunnel terminated
+06/21/2012 18:16:38 [4386] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+06/21/2012 18:16:38 [3760] ssl vpn tunnel stopped
+06/21/2012 18:16:39 [3760] snd cmd error: Broken pipe
+06/21/2012 18:16:39 [3760] snd cmd error: Broken pipe
+06/21/2012 18:16:39 [3760] forticlient ssl vpn[4.0.2010] stopped
+06/27/2012 15:33:57 [2765] set the loglevel to 1
+06/27/2012 15:33:57 [2765] forticlientsslvpn control daemon version:4.0.2010 started
+06/27/2012 15:34:04 [2765] rcv cmd:0 at state[0]
+06/27/2012 15:34:04 [2765] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+06/27/2012 15:34:04 [2765] ssl vpn tunnel started
+06/27/2012 15:34:04 [2787] set loglevel to 1
+06/27/2012 15:34:05 [2787] no SVPNCOOKIE found
+06/27/2012 15:34:05 [2788] rcv notice:1|Insufficient credential(s). Please check the password, client certificate, etc.
+06/27/2012 15:34:06 [2765] tunnel terminated
+06/27/2012 15:34:06 [2765] tunnel down unexpected
+06/27/2012 15:34:06 [2765] kill_child:2787
+06/27/2012 15:34:06 [2790] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+06/27/2012 15:34:08 [2765] select: Interrupted system call
+06/27/2012 15:34:16 [2765] rcv cmd:0 at state[0]
+06/27/2012 15:34:16 [2765] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+06/27/2012 15:34:16 [2765] ssl vpn tunnel started
+06/27/2012 15:34:16 [2814] set loglevel to 1
+06/27/2012 15:34:17 [2814] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzyqW/sdojTF/S3arBTmdzEHpZi0EHPo21Nu+ykFQC1bTKnP9S40N2Gx%0aWci68xL8Wfbyuum5/Ybhk+hQFM9/14+xRNraBrMdLdn7J7yuEO7aSN2q9YW9dsnP%0aPsw9PZOY9PM=%0a
+06/27/2012 15:34:17 [2815] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzyqW/sdojTF/S3arBTmdzEHpZi0EHPo21Nu+ykFQC1bTKnP9S40N2Gx%0aWci68xL8Wfbyuum5/Ybhk+hQFM9/14+xRNraBrMdLdn7J7yuEO7aSN2q9YW9dsnP%0aPsw9PZOY9PM=%0a
+
+06/27/2012 15:34:17 [2815] starting pppd
+06/27/2012 15:34:17 [2815] use tty:/dev/pts/4
+06/27/2012 15:34:17 [2815] connecting to server
+06/27/2012 15:34:18 [2815] tunnel running...
+06/27/2012 15:34:18 [2815] interface up
+06/27/2012 15:34:18 [2835] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.49
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.49 server route 
+route -n add default gw 192.168.102.49
+06/27/2012 15:38:16 [2765] rcv cmd:0 at state[1]
+06/27/2012 15:38:16 [2765] stopping ssl vpn tunnel[v4.0.2010]
+06/27/2012 15:38:16 [2765] kill_child:2815
+06/27/2012 15:38:16 [2765] kill_child:2814
+06/27/2012 15:38:16 [2815] killing session timer...
+06/27/2012 15:38:16 [2815] kill_child:2819
+06/27/2012 15:38:16 [2815] kill_child:2835
+06/27/2012 15:38:16 [2814] signal rcved, logout now
+06/27/2012 15:38:16 [2765] tunnel terminated
+06/27/2012 15:38:16 [3084] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+06/27/2012 15:38:16 [2765] ssl vpn tunnel stopped
+06/27/2012 15:38:25 [2765] rcv cmd:2 at state[0]
+06/27/2012 15:38:25 [2765] forticlient ssl vpn[4.0.2010] stopped
+06/27/2012 15:38:28 [3121] set the loglevel to 1
+06/27/2012 15:38:28 [3121] forticlientsslvpn control daemon version:4.0.2010 started
+06/27/2012 15:38:37 [3121] rcv cmd:0 at state[0]
+06/27/2012 15:38:37 [3121] starting ssl vpn tunnel[v4.0.2010]
+06/27/2012 15:38:37 [3121] can not resolve name DurSSL.BellHowell.net
+gateway for 1.1.1.1:71.148.45.174 for DurSSL.BellHowell.net:
+if has single route record for 1.1.1.1:0 for DurSSL.BellHowell.net:0
+06/27/2012 15:38:37 [3121] ssl vpn tunnel started
+06/27/2012 15:38:37 [3145] set loglevel to 1
+06/27/2012 15:38:37 [3145] getaddrinfo error for DurSSL.BellHowell.net, 443: Name or service not known: No such file or directory
+06/27/2012 15:38:37 [3145] tcp connect: No such file or directory
+06/27/2012 15:38:37 [3146] rcv notice:1|Can not connect to FortiGate.
+06/27/2012 15:38:38 [3121] tunnel terminated
+06/27/2012 15:38:38 [3121] tunnel down unexpected
+06/27/2012 15:38:38 [3121] kill_child:3145
+06/27/2012 15:38:38 [3148] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+06/27/2012 15:38:39 [3121] select: Interrupted system call
+06/27/2012 15:38:45 [3121] rcv cmd:0 at state[0]
+06/27/2012 15:38:45 [3121] starting ssl vpn tunnel[v4.0.2010]
+06/27/2012 15:38:45 [3121] can not resolve name DurSSL.BellHowell.net
+gateway for 1.1.1.1:71.148.45.174 for DurSSL.BellHowell.net:
+if has single route record for 1.1.1.1:0 for DurSSL.BellHowell.net:0
+06/27/2012 15:38:45 [3121] ssl vpn tunnel started
+06/27/2012 15:38:45 [3190] set loglevel to 1
+06/27/2012 15:38:45 [3190] getaddrinfo error for DurSSL.BellHowell.net, 443: Name or service not known: No such file or directory
+06/27/2012 15:38:45 [3190] tcp connect: No such file or directory
+06/27/2012 15:38:45 [3191] rcv notice:1|Can not connect to FortiGate.
+06/27/2012 15:38:46 [3121] tunnel terminated
+06/27/2012 15:38:46 [3121] tunnel down unexpected
+06/27/2012 15:38:46 [3121] kill_child:3190
+06/27/2012 15:38:46 [3193] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+06/27/2012 15:38:47 [3121] select: Interrupted system call
+06/27/2012 15:38:48 [3121] rcv cmd:0 at state[0]
+06/27/2012 15:38:48 [3121] starting ssl vpn tunnel[v4.0.2010]
+06/27/2012 15:38:48 [3121] can not resolve name DurSSL.BellHowell.net
+gateway for 1.1.1.1:71.148.45.174 for DurSSL.BellHowell.net:
+if has single route record for 1.1.1.1:0 for DurSSL.BellHowell.net:0
+06/27/2012 15:38:48 [3121] ssl vpn tunnel started
+06/27/2012 15:38:48 [3217] set loglevel to 1
+06/27/2012 15:38:48 [3217] getaddrinfo error for DurSSL.BellHowell.net, 443: Name or service not known: No such file or directory
+06/27/2012 15:38:48 [3217] tcp connect: No such file or directory
+06/27/2012 15:38:48 [3218] rcv notice:1|Can not connect to FortiGate.
+06/27/2012 15:38:49 [3121] tunnel terminated
+06/27/2012 15:38:49 [3121] tunnel down unexpected
+06/27/2012 15:38:49 [3121] kill_child:3217
+06/27/2012 15:38:49 [3220] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+06/27/2012 15:38:50 [3121] select: Interrupted system call
+06/27/2012 15:38:58 [3121] rcv cmd:0 at state[0]
+06/27/2012 15:38:58 [3121] starting ssl vpn tunnel[v4.0.2010]
+06/27/2012 15:38:58 [3121] can not resolve name DurSSL.BellHowell.net
+gateway for 1.1.1.1:71.148.45.174 for DurSSL.BellHowell.net:
+if has single route record for 1.1.1.1:0 for DurSSL.BellHowell.net:0
+06/27/2012 15:38:58 [3121] ssl vpn tunnel started
+06/27/2012 15:38:58 [3244] set loglevel to 1
+06/27/2012 15:38:58 [3244] getaddrinfo error for DurSSL.BellHowell.net, 443: Name or service not known: No such file or directory
+06/27/2012 15:38:58 [3244] tcp connect: No such file or directory
+06/27/2012 15:38:58 [3245] rcv notice:1|Can not connect to FortiGate.
+06/27/2012 15:38:59 [3121] tunnel terminated
+06/27/2012 15:38:59 [3121] tunnel down unexpected
+06/27/2012 15:38:59 [3121] kill_child:3244
+06/27/2012 15:38:59 [3247] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+06/27/2012 15:39:00 [3121] select: Interrupted system call
+06/27/2012 15:39:00 [3121] rcv cmd:2 at state[0]
+06/27/2012 15:39:00 [3121] forticlient ssl vpn[4.0.2010] stopped
+02/06/2013 15:19:13 [2050] set the loglevel to 1
+02/06/2013 15:19:13 [2050] forticlientsslvpn control daemon version:4.0.2010 started
+02/06/2013 15:19:15 [2050] rcv cmd:0 at state[0]
+02/06/2013 15:19:15 [2050] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+02/06/2013 15:19:16 [2050] ssl vpn tunnel started
+02/06/2013 15:19:16 [2071] set loglevel to 1
+02/06/2013 15:19:16 [2071] no SVPNCOOKIE found
+02/06/2013 15:19:16 [2072] rcv notice:1|Insufficient credential(s). Please check the password, client certificate, etc.
+02/06/2013 15:19:17 [2050] tunnel terminated
+02/06/2013 15:19:17 [2050] tunnel down unexpected
+02/06/2013 15:19:17 [2050] kill_child:2071
+02/06/2013 15:19:17 [2074] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/06/2013 15:19:19 [2050] select: Interrupted system call
+02/06/2013 15:19:26 [2050] rcv cmd:0 at state[0]
+02/06/2013 15:19:26 [2050] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+02/06/2013 15:19:26 [2050] ssl vpn tunnel started
+02/06/2013 15:19:26 [2098] set loglevel to 1
+02/06/2013 15:19:27 [2099] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2UyEi42DnXQk3axTkCtEedB+GYEjXQc7AipT/GUhAmU1%0ay42zoKkvrf4=%0a
+
+02/06/2013 15:19:27 [2099] starting pppd
+02/06/2013 15:19:27 [2098] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2UyEi42DnXQk3axTkCtEedB+GYEjXQc7AipT/GUhAmU1%0ay42zoKkvrf4=%0a
+02/06/2013 15:19:27 [2099] use tty:/dev/pts/1
+02/06/2013 15:19:28 [2099] connecting to server
+02/06/2013 15:19:28 [2099] tunnel running...
+02/06/2013 15:19:28 [2099] interface up
+02/06/2013 15:19:28 [2120] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.52
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+02/06/2013 15:19:36 [2050] rcv cmd:0 at state[1]
+02/06/2013 15:19:36 [2050] stopping ssl vpn tunnel[v4.0.2010]
+02/06/2013 15:19:36 [2050] kill_child:2099
+02/06/2013 15:19:36 [2050] kill_child:2098
+02/06/2013 15:19:36 [2099] killing session timer...
+02/06/2013 15:19:36 [2099] kill_child:2103
+02/06/2013 15:19:36 [2099] kill_child:2120
+02/06/2013 15:19:36 [2098] signal rcved, logout now
+02/06/2013 15:19:36 [2050] tunnel terminated
+02/06/2013 15:19:36 [2213] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/06/2013 15:19:36 [2050] ssl vpn tunnel stopped
+02/06/2013 15:19:37 [2050] rcv cmd:2 at state[0]
+02/06/2013 15:19:37 [2050] forticlient ssl vpn[4.0.2010] stopped
+router 192.168.102.52 server route 
+route -n add default gw 192.168.102.52
+02/06/2013 16:47:17 [1786] set the loglevel to 1
+02/06/2013 16:47:18 [1786] forticlientsslvpn control daemon version:4.0.2010 started
+02/06/2013 16:47:19 [1786] rcv cmd:0 at state[0]
+02/06/2013 16:47:19 [1786] starting ssl vpn tunnel[v4.0.2010]
+02/06/2013 16:47:19 [1786] can not resolve name DurSSL.BellHowell.net
+gateway for 1.1.1.1: for DurSSL.BellHowell.net:
+if has single route record for 1.1.1.1:0 for DurSSL.BellHowell.net:0
+02/06/2013 16:47:19 [1786] ssl vpn tunnel started
+02/06/2013 16:47:19 [1867] set loglevel to 1
+02/06/2013 16:47:20 [1867] getaddrinfo error for DurSSL.BellHowell.net, 443: Name or service not known: No such file or directory
+02/06/2013 16:47:20 [1867] tcp connect: No such file or directory
+02/06/2013 16:47:20 [1868] rcv notice:1|Can not connect to FortiGate.
+02/06/2013 16:47:21 [1786] tunnel terminated
+02/06/2013 16:47:21 [1786] tunnel down unexpected
+02/06/2013 16:47:21 [1786] kill_child:1867
+02/06/2013 16:47:21 [1881] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/06/2013 16:47:22 [1786] select: Interrupted system call
+02/06/2013 16:47:36 [1786] rcv cmd:0 at state[0]
+02/06/2013 16:47:36 [1786] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+02/06/2013 16:47:36 [1786] ssl vpn tunnel started
+02/06/2013 16:47:36 [1968] set loglevel to 1
+02/06/2013 16:47:37 [1968] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2cD2/ivgekyKP29s3EvDL+6JaQP0uWfN5E6IpA9YcP/X%0aFe7SmZMhDqc=%0a
+02/06/2013 16:47:37 [1969] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2cD2/ivgekyKP29s3EvDL+6JaQP0uWfN5E6IpA9YcP/X%0aFe7SmZMhDqc=%0a
+
+02/06/2013 16:47:37 [1969] starting pppd
+02/06/2013 16:47:37 [1969] use tty:/dev/pts/4
+02/06/2013 16:47:38 [1969] connecting to server
+02/06/2013 16:47:38 [1969] tunnel running...
+02/06/2013 16:47:38 [1969] interface up
+02/06/2013 16:47:38 [2006] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...02/06/2013 16:48:31 [1969] read error from tty[]
+02/06/2013 16:48:31 [1969] rcv frame from tty fail
+02/06/2013 16:48:31 [1969] io finished, kill pppd
+02/06/2013 16:48:31 [1969] kill_child:1975
+02/06/2013 16:48:31 [1969] tunnel finished, killing session
+02/06/2013 16:48:31 [1969] killing session timer...
+02/06/2013 16:48:31 [1969] kill_child:-1
+02/06/2013 16:48:31 [1969] kill_child:2006
+02/06/2013 16:48:31 [1786] tunnel terminated
+02/06/2013 16:48:31 [1786] tunnel down unexpected
+02/06/2013 16:48:31 [1786] kill_child:1968
+02/06/2013 16:48:31 [1968] signal rcved, logout now
+02/06/2013 16:48:31 [2607] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/06/2013 16:48:32 [1786] select: Interrupted system call
+02/06/2013 16:52:18 [1786] rcv command from client: Interrupted system call
+02/06/2013 16:52:18 [1786] Prentend to rcv exit cmd
+02/06/2013 16:52:18 [1786] rcv cmd:2 at state[0]
+02/06/2013 16:52:18 [1786] forticlient ssl vpn[4.0.2010] stopped
+02/06/2013 17:07:29 [1947] set the loglevel to 1
+02/06/2013 17:07:29 [1947] forticlientsslvpn control daemon version:4.0.2010 started
+02/06/2013 17:07:31 [1947] rcv cmd:0 at state[0]
+02/06/2013 17:07:31 [1947] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+02/06/2013 17:07:31 [1947] ssl vpn tunnel started
+02/06/2013 17:07:31 [1968] set loglevel to 1
+02/06/2013 17:07:32 [1968] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2exYEkWlS4Rrlx0/jIqgse4k9b0FiiM3xNKs7PTwn+ca%0aVhLIbv5bAts=%0a
+02/06/2013 17:07:32 [1969] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2exYEkWlS4Rrlx0/jIqgse4k9b0FiiM3xNKs7PTwn+ca%0aVhLIbv5bAts=%0a
+
+02/06/2013 17:07:32 [1969] starting pppd
+02/06/2013 17:07:32 [1969] use tty:/dev/pts/4
+02/06/2013 17:07:32 [1969] connecting to server
+02/06/2013 17:07:33 [1969] tunnel running...
+02/06/2013 17:07:33 [1969] interface up
+02/06/2013 17:07:33 [1990] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.30
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.30 server route 
+route -n add default gw 192.168.102.30
+02/06/2013 17:14:39 [1947] rcv cmd:0 at state[1]
+02/06/2013 17:14:39 [1947] stopping ssl vpn tunnel[v4.0.2010]
+02/06/2013 17:14:39 [1947] kill_child:1969
+02/06/2013 17:14:39 [1947] kill_child:1968
+02/06/2013 17:14:39 [1969] killing session timer...
+02/06/2013 17:14:39 [1969] kill_child:1973
+02/06/2013 17:14:39 [1969] kill_child:1990
+02/06/2013 17:14:39 [1968] signal rcved, logout now
+02/06/2013 17:14:39 [1947] tunnel terminated
+02/06/2013 17:14:39 [2183] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/06/2013 17:14:39 [1947] ssl vpn tunnel stopped
+02/06/2013 17:14:41 [1947] rcv cmd:2 at state[0]
+02/06/2013 17:14:41 [1947] forticlient ssl vpn[4.0.2010] stopped
+02/19/2013 16:45:55 [2064] set the loglevel to 1
+02/19/2013 16:45:55 [2064] forticlientsslvpn control daemon version:4.0.2010 started
+02/19/2013 16:45:57 [2064] rcv cmd:0 at state[0]
+02/19/2013 16:45:57 [2064] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+02/19/2013 16:45:58 [2064] ssl vpn tunnel started
+02/19/2013 16:45:58 [2085] set loglevel to 1
+02/19/2013 16:45:58 [2085] no SVPNCOOKIE found
+02/19/2013 16:45:58 [2086] rcv notice:1|Insufficient credential(s). Please check the password, client certificate, etc.
+02/19/2013 16:45:59 [2064] tunnel terminated
+02/19/2013 16:45:59 [2064] tunnel down unexpected
+02/19/2013 16:45:59 [2064] kill_child:2085
+02/19/2013 16:46:00 [2091] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/19/2013 16:46:01 [2064] select: Interrupted system call
+02/19/2013 16:46:07 [2064] rcv cmd:0 at state[0]
+02/19/2013 16:46:07 [2064] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+02/19/2013 16:46:07 [2064] ssl vpn tunnel started
+02/19/2013 16:46:07 [2118] set loglevel to 1
+02/19/2013 16:46:08 [2119] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2VdiWHCeoH8/X74LgQBn1cr+3v7QUsCFXrC5UvjhMUj8%0aMe8K0J3l6mc=%0a
+
+02/19/2013 16:46:08 [2119] starting pppd
+02/19/2013 16:46:08 [2118] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2VdiWHCeoH8/X74LgQBn1cr+3v7QUsCFXrC5UvjhMUj8%0aMe8K0J3l6mc=%0a
+02/19/2013 16:46:08 [2119] use tty:/dev/pts/4
+02/19/2013 16:46:08 [2119] connecting to server
+02/19/2013 16:46:09 [2119] tunnel running...
+02/19/2013 16:46:09 [2119] interface up
+02/19/2013 16:46:09 [2140] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.60
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.60 server route 
+route -n add default gw 192.168.102.60
+02/19/2013 17:03:19 [2064] rcv cmd:0 at state[1]
+02/19/2013 17:03:19 [2064] stopping ssl vpn tunnel[v4.0.2010]
+02/19/2013 17:03:19 [2064] kill_child:2119
+02/19/2013 17:03:19 [2064] kill_child:2118
+02/19/2013 17:03:19 [2119] killing session timer...
+02/19/2013 17:03:19 [2119] kill_child:2123
+02/19/2013 17:03:19 [2119] kill_child:2140
+02/19/2013 17:03:19 [2118] signal rcved, logout now
+02/19/2013 17:03:19 [2064] tunnel terminated
+02/19/2013 17:03:19 [3124] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/19/2013 17:03:19 [2064] ssl vpn tunnel stopped
+02/19/2013 17:03:25 [2064] rcv cmd:2 at state[0]
+02/19/2013 17:03:25 [2064] forticlient ssl vpn[4.0.2010] stopped
+02/21/2013 15:20:06 [2343] set the loglevel to 1
+02/21/2013 15:20:06 [2343] forticlientsslvpn control daemon version:4.0.2010 started
+02/21/2013 15:20:08 [2343] rcv cmd:0 at state[0]
+02/21/2013 15:20:08 [2343] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+02/21/2013 15:20:09 [2343] ssl vpn tunnel started
+02/21/2013 15:20:09 [2367] set loglevel to 1
+02/21/2013 15:20:10 [2367] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2XgAt6YKQaOFacR0/vInVEKt+wg1HZswhds5jFu0gliK%0awXZO08L3RSQ=%0a
+02/21/2013 15:20:10 [2368] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2XgAt6YKQaOFacR0/vInVEKt+wg1HZswhds5jFu0gliK%0awXZO08L3RSQ=%0a
+
+02/21/2013 15:20:10 [2368] starting pppd
+02/21/2013 15:20:10 [2368] use tty:/dev/pts/4
+02/21/2013 15:20:10 [2368] connecting to server
+02/21/2013 15:20:10 [2368] tunnel running...
+02/21/2013 15:20:11 [2368] interface up
+02/21/2013 15:20:11 [2389] execl /home/wimac/Dropbox/skel/bin/forticlientsslvpn/.//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.39
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.39 server route 
+route -n add default gw 192.168.102.39
+02/21/2013 16:25:54 [2343] rcv cmd:0 at state[1]
+02/21/2013 16:25:54 [2343] stopping ssl vpn tunnel[v4.0.2010]
+02/21/2013 16:25:54 [2343] kill_child:2368
+02/21/2013 16:25:54 [2343] kill_child:2367
+02/21/2013 16:25:54 [2368] killing session timer...
+02/21/2013 16:25:54 [2368] kill_child:2372
+02/21/2013 16:25:54 [2368] kill_child:2389
+02/21/2013 16:25:54 [2367] signal rcved, logout now
+02/21/2013 16:25:54 [2343] tunnel terminated
+02/21/2013 16:25:54 [5719] execl /home/wimac/Dropbox/skel/bin/forticlientsslvpn/.//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/21/2013 16:25:54 [2343] ssl vpn tunnel stopped
+02/21/2013 16:25:55 [2343] rcv cmd:2 at state[0]
+02/21/2013 16:25:55 [2343] forticlient ssl vpn[4.0.2010] stopped
+03/01/2013 16:14:14 [5806] set the loglevel to 1
+03/01/2013 16:14:14 [5806] forticlientsslvpn control daemon version:4.0.2010 started
+03/01/2013 16:14:16 [5806] rcv cmd:0 at state[0]
+03/01/2013 16:14:16 [5806] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+03/01/2013 16:14:17 [5806] ssl vpn tunnel started
+03/01/2013 16:14:17 [5830] set loglevel to 1
+03/01/2013 16:14:23 [5830] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2Z5sorGUDU+zHyQwI9im7UFSrP5C2wEC/kdbE54NFCKB%0aP+GqiNH2frA=%0a
+03/01/2013 16:14:23 [5831] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2Z5sorGUDU+zHyQwI9im7UFSrP5C2wEC/kdbE54NFCKB%0aP+GqiNH2frA=%0a
+
+03/01/2013 16:14:23 [5831] starting pppd
+03/01/2013 16:14:23 [5831] use tty:/dev/pts/4
+03/01/2013 16:14:23 [5831] connecting to server
+03/01/2013 16:14:24 [5831] tunnel running...
+03/01/2013 16:14:24 [5831] interface up
+03/01/2013 16:14:24 [5855] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.4
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.4 server route 
+route -n add default gw 192.168.102.4
+03/01/2013 16:17:30 [5831] read error from tty[]
+03/01/2013 16:17:30 [5831] rcv frame from tty fail
+03/01/2013 16:17:30 [5831] io finished, kill pppd
+03/01/2013 16:17:30 [5831] kill_child:5838
+03/01/2013 16:17:30 [5831] tunnel finished, killing session
+03/01/2013 16:17:30 [5831] killing session timer...
+03/01/2013 16:17:30 [5831] kill_child:-1
+03/01/2013 16:17:30 [5831] kill_child:5855
+03/01/2013 16:17:30 [5806] tunnel terminated
+03/01/2013 16:17:30 [5806] tunnel down unexpected
+03/01/2013 16:17:30 [5806] kill_child:5830
+03/01/2013 16:17:30 [5830] signal rcved, logout now
+03/01/2013 16:17:30 [6146] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+03/01/2013 16:17:32 [5806] select: Interrupted system call
+03/01/2013 16:50:50 [5806] rcv cmd:2 at state[0]
+03/01/2013 16:50:50 [5806] forticlient ssl vpn[4.0.2010] stopped
+04/23/2013 23:57:07 [5019] set the loglevel to 1
+04/23/2013 23:57:07 [5019] forticlientsslvpn control daemon version:4.0.2010 started
+04/23/2013 23:57:09 [5019] rcv cmd:0 at state[0]
+04/23/2013 23:57:09 [5019] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+04/23/2013 23:57:15 [5019] ssl vpn tunnel started
+04/23/2013 23:57:15 [5111] set loglevel to 1
+04/23/2013 23:57:20 [5111] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2S1XPhc6mUnnBlPfsZ9e/Z94EgGH1gRC13P+9MPBbT2u%0aCecfMXrgPM0=%0a
+04/23/2013 23:57:20 [5112] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2S1XPhc6mUnnBlPfsZ9e/Z94EgGH1gRC13P+9MPBbT2u%0aCecfMXrgPM0=%0a
+
+04/23/2013 23:57:20 [5112] starting pppd
+04/23/2013 23:57:20 [5112] use tty:/dev/pts/4
+04/23/2013 23:57:20 [5112] connecting to server
+04/23/2013 23:57:21 [5112] tunnel running...
+04/23/2013 23:57:25 [5112] interface up
+04/23/2013 23:57:25 [5242] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.1
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.1 server route 
+route -n add default gw 192.168.102.1
+04/24/2013 00:12:02 [5019] rcv cmd:0 at state[1]
+04/24/2013 00:12:02 [5019] stopping ssl vpn tunnel[v4.0.2010]
+04/24/2013 00:12:02 [5019] kill_child:5112
+04/24/2013 00:12:02 [5019] kill_child:5111
+04/24/2013 00:12:02 [5112] killing session timer...
+04/24/2013 00:12:02 [5112] kill_child:5222
+04/24/2013 00:12:02 [5112] kill_child:5242
+04/24/2013 00:12:02 [5111] signal rcved, logout now
+04/24/2013 00:12:02 [6017] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+04/24/2013 00:12:02 [5019] tunnel terminated
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+04/24/2013 00:12:03 [5019] ssl vpn tunnel stopped
+04/24/2013 00:13:57 [5019] rcv cmd:2 at state[0]
+04/24/2013 00:13:57 [5019] forticlient ssl vpn[4.0.2010] stopped
+05/09/2013 01:28:30 [3045] set the loglevel to 1
+05/09/2013 01:28:30 [3045] forticlientsslvpn control daemon version:4.0.2010 started
+05/09/2013 01:28:32 [3045] rcv cmd:0 at state[0]
+05/09/2013 01:28:32 [3045] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+05/09/2013 01:28:32 [3045] ssl vpn tunnel started
+05/09/2013 01:28:32 [3071] set loglevel to 1
+05/09/2013 01:28:33 [3071] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2Y1kW/e8xHjbCkmUsePAsrrq6rqd/+XMokloq5MpqUjh%0avixHeOyXam4=%0a
+05/09/2013 01:28:33 [3072] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2Y1kW/e8xHjbCkmUsePAsrrq6rqd/+XMokloq5MpqUjh%0avixHeOyXam4=%0a
+
+05/09/2013 01:28:33 [3072] starting pppd
+05/09/2013 01:28:33 [3072] use tty:/dev/pts/4
+05/09/2013 01:28:34 [3072] connecting to server
+05/09/2013 01:28:34 [3072] tunnel running...
+05/09/2013 01:28:34 [3072] interface up
+05/09/2013 01:28:34 [3092] execl /home/wimac/Dropbox/skel/bin/forticlientsslvpn/.//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...05/09/2013 01:28:40 [3045] rcv cmd:0 at state[1]
+05/09/2013 01:28:40 [3045] stopping ssl vpn tunnel[v4.0.2010]
+05/09/2013 01:28:40 [3045] kill_child:3072
+05/09/2013 01:28:40 [3045] kill_child:3071
+05/09/2013 01:28:40 [3072] killing session timer...
+05/09/2013 01:28:40 [3072] kill_child:3076
+05/09/2013 01:28:40 [3072] kill_child:3092
+05/09/2013 01:28:40 [3071] signal rcved, logout now
+05/09/2013 01:28:40 [3045] tunnel terminated
+05/09/2013 01:28:40 [3176] execl /home/wimac/Dropbox/skel/bin/forticlientsslvpn/.//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+05/09/2013 01:28:41 [3045] ssl vpn tunnel stopped
+server route 
+interface 
+address 71.148.45.170
+
+127.0.0.1
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 71.148.45.170
+
+127.0.0.1 server route 
+route -n add default gw 71.148.45.170
+
+127.0.0.1
+05/09/2013 01:29:55 [3045] rcv cmd:2 at state[0]
+05/09/2013 01:29:55 [3045] forticlient ssl vpn[4.0.2010] stopped
+05/09/2013 01:30:34 [3355] set the loglevel to 1
+05/09/2013 01:30:34 [3355] forticlientsslvpn control daemon version:4.0.2010 started
+05/09/2013 01:30:36 [3355] rcv cmd:0 at state[0]
+05/09/2013 01:30:36 [3355] starting ssl vpn tunnel[v4.0.2010]
+05/09/2013 01:31:16 [3355] can not resolve name DurSSL.BellHowell.net
+gateway for 1.1.1.1:71.148.45.174 for DurSSL.BellHowell.net:
+if has single route record for 1.1.1.1:0 for DurSSL.BellHowell.net:0
+05/09/2013 01:31:16 [3355] ssl vpn tunnel started
+05/09/2013 01:31:16 [3414] set loglevel to 1
+05/09/2013 01:31:56 [3414] getaddrinfo error for DurSSL.BellHowell.net, 443: Name or service not known: No such file or directory
+05/09/2013 01:31:56 [3414] tcp connect: No such file or directory
+05/09/2013 01:31:56 [3415] rcv notice:1|Can not connect to FortiGate.
+05/09/2013 01:31:57 [3355] tunnel terminated
+05/09/2013 01:31:57 [3355] tunnel down unexpected
+05/09/2013 01:31:57 [3355] kill_child:3414
+05/09/2013 01:31:57 [3451] execl /home/wimac/Dropbox/skel/bin/forticlientsslvpn/.//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+05/09/2013 01:32:38 [3355] select: Interrupted system call
+05/09/2013 01:33:11 [3355] rcv cmd:2 at state[0]
+05/09/2013 01:33:11 [3355] forticlient ssl vpn[4.0.2010] stopped
+05/09/2013 01:33:18 [3532] set the loglevel to 1
+05/09/2013 01:33:18 [3532] forticlientsslvpn control daemon version:4.0.2010 started
+05/09/2013 01:33:20 [3532] rcv cmd:0 at state[0]
+05/09/2013 01:33:20 [3532] starting ssl vpn tunnel[v4.0.2010]
+05/09/2013 01:34:00 [3532] can not resolve name DurSSL.BellHowell.net
+gateway for 1.1.1.1:71.148.45.174 for DurSSL.BellHowell.net:
+if has single route record for 1.1.1.1:0 for DurSSL.BellHowell.net:0
+05/09/2013 01:34:00 [3532] ssl vpn tunnel started
+05/09/2013 01:34:00 [3585] set loglevel to 1
+05/09/2013 01:34:40 [3585] getaddrinfo error for DurSSL.BellHowell.net, 443: Name or service not known: No such file or directory
+05/09/2013 01:34:40 [3585] tcp connect: No such file or directory
+05/09/2013 01:34:40 [3586] rcv notice:1|Can not connect to FortiGate.
+05/09/2013 01:34:41 [3532] tunnel terminated
+05/09/2013 01:34:41 [3532] tunnel down unexpected
+05/09/2013 01:34:41 [3532] kill_child:3585
+05/09/2013 01:34:41 [3620] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+05/09/2013 01:34:42 [3532] select: Interrupted system call
+05/09/2013 01:35:26 [3532] rcv command from client: Interrupted system call
+05/09/2013 01:35:26 [3532] Prentend to rcv exit cmd
+05/09/2013 01:35:26 [3532] rcv cmd:2 at state[0]
+05/09/2013 01:35:26 [3532] forticlient ssl vpn[4.0.2010] stopped
+05/09/2013 23:23:13 [3195] set the loglevel to 1
+05/09/2013 23:23:14 [3195] forticlientsslvpn control daemon version:4.0.2010 started
+05/09/2013 23:23:15 [3195] rcv cmd:0 at state[0]
+05/09/2013 23:23:15 [3195] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+05/09/2013 23:23:17 [3195] ssl vpn tunnel started
+05/09/2013 23:23:17 [3195] rcv cmd:0 at state[1]
+05/09/2013 23:23:17 [3195] stopping ssl vpn tunnel[v4.0.2010]
+05/09/2013 23:23:17 [3195] kill_child:3307
+05/09/2013 23:23:17 [3195] kill_child:3306
+05/09/2013 23:23:17 [3307] killing session timer...
+05/09/2013 23:23:17 [3307] kill_child:-1
+05/09/2013 23:23:17 [3307] kill_child:-1
+05/09/2013 23:23:17 [3195] tunnel terminated
+05/09/2013 23:23:17 [3309] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+05/09/2013 23:23:18 [3195] ssl vpn tunnel stopped
+05/09/2013 23:23:27 [3195] rcv cmd:0 at state[0]
+05/09/2013 23:23:27 [3195] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+05/09/2013 23:23:27 [3195] ssl vpn tunnel started
+05/09/2013 23:23:27 [3342] set loglevel to 1
+05/09/2013 23:23:29 [3342] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2YC4RZZ0XwBbI0ts0pTWynnkIszh5fxp10HQ72jyf9aG%0aoFhxcbuwCUs=%0a
+05/09/2013 23:23:29 [3343] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2YC4RZZ0XwBbI0ts0pTWynnkIszh5fxp10HQ72jyf9aG%0aoFhxcbuwCUs=%0a
+
+05/09/2013 23:23:29 [3343] starting pppd
+05/09/2013 23:23:29 [3343] use tty:/dev/pts/4
+05/09/2013 23:23:29 [3343] connecting to server
+05/09/2013 23:23:29 [3343] tunnel running...
+05/09/2013 23:23:30 [3343] interface up
+05/09/2013 23:23:30 [3372] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.15
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.15 server route 
+route -n add default gw 192.168.102.15
+05/09/2013 23:40:16 [3195] rcv cmd:0 at state[1]
+05/09/2013 23:40:16 [3195] stopping ssl vpn tunnel[v4.0.2010]
+05/09/2013 23:40:16 [3195] kill_child:3343
+05/09/2013 23:40:16 [3195] kill_child:3342
+05/09/2013 23:40:16 [3343] killing session timer...
+05/09/2013 23:40:16 [3343] kill_child:3351
+05/09/2013 23:40:16 [3342] signal rcved, logout now
+05/09/2013 23:40:16 [3343] kill_child:3372
+05/09/2013 23:40:16 [4363] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+05/09/2013 23:40:16 [3195] tunnel terminated
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+05/09/2013 23:40:16 [3195] ssl vpn tunnel stopped
+05/09/2013 23:40:21 [3195] rcv cmd:2 at state[0]
+05/09/2013 23:40:21 [3195] forticlient ssl vpn[4.0.2010] stopped
+05/24/2013 05:24:57 [19335] set the loglevel to 1
+05/24/2013 05:24:57 [19335] forticlientsslvpn control daemon version:4.0.2010 started
+05/24/2013 05:24:59 [19335] rcv cmd:0 at state[0]
+05/24/2013 05:24:59 [19335] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+05/24/2013 05:24:59 [19335] ssl vpn tunnel started
+05/24/2013 05:24:59 [19356] set loglevel to 1
+05/24/2013 05:25:01 [19356] 0|DurSSL.BellHowell.net|443|1||9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2WcTBJtipO8YnifVYsdgJOYkBW4ao70lWICeixtZjxPa%0atvCcmfKlIb4=%0a
+05/24/2013 05:25:01 [19357] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=9HuplggSbzxoyDoggkXEbOLIyIyiwDTPU0rN9SzjXj5xjgYBMdp5R5gVMOPtNi+7%0agEBVCGJ09vrmX+nDo9Gk2WcTBJtipO8YnifVYsdgJOYkBW4ao70lWICeixtZjxPa%0atvCcmfKlIb4=%0a
+
+05/24/2013 05:25:01 [19357] starting pppd
+05/24/2013 05:25:01 [19357] use tty:/dev/pts/4
+05/24/2013 05:25:01 [19357] connecting to server
+05/24/2013 05:25:01 [19357] tunnel running...
+05/24/2013 05:25:02 [19357] interface up
+05/24/2013 05:25:02 [19380] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.29
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.29 server route 
+route -n add default gw 192.168.102.29
+05/24/2013 05:42:10 [19335] rcv cmd:0 at state[1]
+05/24/2013 05:42:10 [19335] stopping ssl vpn tunnel[v4.0.2010]
+05/24/2013 05:42:10 [19335] kill_child:19357
+05/24/2013 05:42:10 [19335] kill_child:19356
+05/24/2013 05:42:10 [19357] killing session timer...
+05/24/2013 05:42:10 [19357] kill_child:19361
+05/24/2013 05:42:10 [19357] kill_child:19380
+05/24/2013 05:42:10 [19356] signal rcved, logout now
+05/24/2013 05:42:10 [19335] tunnel terminated
+05/24/2013 05:42:10 [20248] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+05/24/2013 05:42:10 [19335] ssl vpn tunnel stopped
+05/24/2013 05:42:21 [19335] rcv cmd:2 at state[0]
+05/24/2013 05:42:21 [19335] forticlient ssl vpn[4.0.2010] stopped
+08/22/2013 23:22:14 [3875] set the loglevel to 1
+08/22/2013 23:22:14 [3875] forticlientsslvpn control daemon version:4.0.2010 started
+08/22/2013 23:22:16 [3875] rcv cmd:0 at state[0]
+08/22/2013 23:22:16 [3875] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+08/22/2013 23:22:16 [3875] ssl vpn tunnel started
+08/22/2013 23:22:16 [3896] set loglevel to 1
+08/22/2013 23:22:17 [3896] no SVPNCOOKIE found
+08/22/2013 23:22:17 [3897] rcv notice:1|Insufficient credential(s). Please check the password, client certificate, etc.
+08/22/2013 23:22:18 [3875] tunnel terminated
+08/22/2013 23:22:18 [3875] tunnel down unexpected
+08/22/2013 23:22:18 [3875] kill_child:3896
+08/22/2013 23:22:18 [3899] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+08/22/2013 23:22:19 [3875] select: Interrupted system call
+08/22/2013 23:22:27 [3875] rcv cmd:0 at state[0]
+08/22/2013 23:22:27 [3875] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+08/22/2013 23:22:27 [3875] ssl vpn tunnel started
+08/22/2013 23:22:27 [3939] set loglevel to 1
+08/22/2013 23:22:27 [3939] 0|DurSSL.BellHowell.net|443|1||ve8nFQSLmHQc3rNEPP2Yn7Vp71UDCAZ0nH9FmdXAONTI4akRuCtiXC+jIFIUtqTS%0acfevoe5EokrXoZycjaVthoYE3wvJZEVUDRHd6Chz0VIw8Vk+6gx8NkythdTGNJa4%0a5Xah8jYkWg1ycMqV/712h9HmSAg6ZOdo6/I20dX/ErEPHBDvYsYRBcj3HfHy8YrV%0aorzHt7UFPDh1YXJ0v/AEfQ==%0a
+08/22/2013 23:22:27 [3940] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=ve8nFQSLmHQc3rNEPP2Yn7Vp71UDCAZ0nH9FmdXAONTI4akRuCtiXC+jIFIUtqTS%0acfevoe5EokrXoZycjaVthoYE3wvJZEVUDRHd6Chz0VIw8Vk+6gx8NkythdTGNJa4%0a5Xah8jYkWg1ycMqV/712h9HmSAg6ZOdo6/I20dX/ErEPHBDvYsYRBcj3HfHy8YrV%0aorzHt7UFPDh1YXJ0v/AEfQ==%0a
+
+08/22/2013 23:22:27 [3940] starting pppd
+08/22/2013 23:22:28 [3940] use tty:/dev/pts/4
+08/22/2013 23:22:28 [3940] connecting to server
+08/22/2013 23:22:28 [3940] tunnel running...
+08/22/2013 23:22:28 [3940] interface up
+08/22/2013 23:22:28 [3960] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.27
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.27 server route 
+route -n add default gw 192.168.102.27
+08/22/2013 23:33:00 [3875] rcv cmd:0 at state[1]
+08/22/2013 23:33:00 [3875] stopping ssl vpn tunnel[v4.0.2010]
+08/22/2013 23:33:00 [3875] kill_child:3940
+08/22/2013 23:33:00 [3875] kill_child:3939
+08/22/2013 23:33:00 [3940] killing session timer...
+08/22/2013 23:33:00 [3940] kill_child:3944
+08/22/2013 23:33:00 [3940] kill_child:3960
+08/22/2013 23:33:00 [5088] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+08/22/2013 23:33:00 [3939] signal rcved, logout now
+08/22/2013 23:33:00 [3875] tunnel terminated
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+08/22/2013 23:33:00 [3875] ssl vpn tunnel stopped
+08/22/2013 23:33:03 [3875] rcv cmd:0 at state[0]
+08/22/2013 23:33:03 [3875] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+08/22/2013 23:33:03 [3875] ssl vpn tunnel started
+08/22/2013 23:33:03 [5130] set loglevel to 1
+08/22/2013 23:33:04 [5130] 0|DurSSL.BellHowell.net|443|1||ve8nFQSLmHQc3rNEPP2Yn7Vp71UDCAZ0nH9FmdXAONTI4akRuCtiXC+jIFIUtqTS%0acfevoe5EokrXoZycjaVthoYE3wvJZEVUDRHd6Chz0VIw8Vk+6gx8NkythdTGNJa4%0aI2oUfOVPA41kL2jp4/tafEoiXUYEIQjuHT5SZ/J05WkQgEDqlt9ip6EQ2DwLSgnd%0aQVqk0wWG1IaVMdxv8U1kUA==%0a
+08/22/2013 23:33:04 [5131] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=ve8nFQSLmHQc3rNEPP2Yn7Vp71UDCAZ0nH9FmdXAONTI4akRuCtiXC+jIFIUtqTS%0acfevoe5EokrXoZycjaVthoYE3wvJZEVUDRHd6Chz0VIw8Vk+6gx8NkythdTGNJa4%0aI2oUfOVPA41kL2jp4/tafEoiXUYEIQjuHT5SZ/J05WkQgEDqlt9ip6EQ2DwLSgnd%0aQVqk0wWG1IaVMdxv8U1kUA==%0a
+
+08/22/2013 23:33:04 [5131] starting pppd
+08/22/2013 23:33:04 [5131] use tty:/dev/pts/4
+08/22/2013 23:33:04 [5131] connecting to server
+08/22/2013 23:33:04 [5131] tunnel running...
+08/22/2013 23:33:04 [3875] rcv cmd:0 at state[1]
+08/22/2013 23:33:04 [3875] stopping ssl vpn tunnel[v4.0.2010]
+08/22/2013 23:33:04 [3875] kill_child:5131
+08/22/2013 23:33:04 [3875] kill_child:5130
+08/22/2013 23:33:04 [5131] killing session timer...
+08/22/2013 23:33:04 [5131] kill_child:5135
+08/22/2013 23:33:04 [5131] kill_child:-1
+08/22/2013 23:33:04 [5130] signal rcved, logout now
+08/22/2013 23:33:04 [5142] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+08/22/2013 23:33:04 [3875] tunnel terminated
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+08/22/2013 23:33:04 [3875] ssl vpn tunnel stopped
+08/22/2013 23:33:10 [3875] rcv command from client: No child processes
+08/22/2013 23:33:10 [3875] Prentend to rcv exit cmd
+08/22/2013 23:33:10 [3875] rcv cmd:2 at state[0]
+08/22/2013 23:33:10 [3875] forticlient ssl vpn[4.0.2010] stopped
+10/04/2013 04:01:09 [22351] set the loglevel to 1
+10/04/2013 04:01:09 [22351] forticlientsslvpn control daemon version:4.0.2010 started
+10/04/2013 04:01:11 [22351] rcv cmd:0 at state[0]
+10/04/2013 04:01:11 [22351] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+10/04/2013 04:01:12 [22351] ssl vpn tunnel started
+10/04/2013 04:01:12 [22351] rcv cmd:0 at state[1]
+10/04/2013 04:01:12 [22351] stopping ssl vpn tunnel[v4.0.2010]
+10/04/2013 04:01:12 [22351] kill_child:22373
+10/04/2013 04:01:12 [22351] kill_child:22372
+10/04/2013 04:01:12 [22373] forticlient ssl vpn[4.0.2010] stopped
+10/04/2013 04:01:12 [22374] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+10/04/2013 04:01:12 [22351] tunnel terminated
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+10/04/2013 04:01:12 [22351] ssl vpn tunnel stopped
+10/04/2013 04:01:29 [22351] rcv cmd:0 at state[0]
+10/04/2013 04:01:29 [22351] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+10/04/2013 04:01:29 [22351] ssl vpn tunnel started
+10/04/2013 04:01:29 [22415] set loglevel to 1
+10/04/2013 04:01:30 [22415] no SVPNCOOKIE found
+10/04/2013 04:01:30 [22416] rcv notice:1|Insufficient credential(s). Please check the password, client certificate, etc.
+10/04/2013 04:01:31 [22351] tunnel terminated
+10/04/2013 04:01:31 [22351] tunnel down unexpected
+10/04/2013 04:01:31 [22351] kill_child:22415
+10/04/2013 04:01:31 [22418] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+10/04/2013 04:01:32 [22351] select: Interrupted system call
+10/04/2013 04:01:40 [22351] rcv cmd:0 at state[0]
+10/04/2013 04:01:40 [22351] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+10/04/2013 04:01:40 [22351] ssl vpn tunnel started
+10/04/2013 04:01:40 [22448] set loglevel to 1
+10/04/2013 04:01:41 [22448] no SVPNCOOKIE found
+10/04/2013 04:01:41 [22449] rcv notice:1|Insufficient credential(s). Please check the password, client certificate, etc.
+10/04/2013 04:01:42 [22351] tunnel terminated
+10/04/2013 04:01:42 [22351] tunnel down unexpected
+10/04/2013 04:01:42 [22351] kill_child:22448
+10/04/2013 04:01:42 [22451] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+10/04/2013 04:01:43 [22351] select: Interrupted system call
+10/04/2013 04:01:54 [22351] rcv cmd:0 at state[0]
+10/04/2013 04:01:54 [22351] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+10/04/2013 04:01:54 [22351] ssl vpn tunnel started
+10/04/2013 04:01:54 [22487] set loglevel to 1
+10/04/2013 04:01:54 [22487] no SVPNCOOKIE found
+10/04/2013 04:01:54 [22488] rcv notice:1|Insufficient credential(s). Please check the password, client certificate, etc.
+10/04/2013 04:01:55 [22351] tunnel terminated
+10/04/2013 04:01:55 [22351] tunnel down unexpected
+10/04/2013 04:01:55 [22351] kill_child:22487
+10/04/2013 04:01:55 [22490] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+10/04/2013 04:01:56 [22351] select: Interrupted system call
+10/04/2013 04:02:10 [22351] rcv cmd:2 at state[0]
+10/04/2013 04:02:10 [22351] forticlient ssl vpn[4.0.2010] stopped
+10/14/2013 23:26:15 [2813] set the loglevel to 1
+10/14/2013 23:26:15 [2813] forticlientsslvpn control daemon version:4.0.2010 started
+10/14/2013 23:26:16 [2813] rcv cmd:0 at state[0]
+10/14/2013 23:26:16 [2813] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+10/14/2013 23:26:18 [2813] ssl vpn tunnel started
+10/14/2013 23:26:19 [2868] set loglevel to 1
+10/14/2013 23:26:19 [2868] no SVPNCOOKIE found
+10/14/2013 23:26:20 [2869] rcv notice:1|Insufficient credential(s). Please check the password, client certificate, etc.
+10/14/2013 23:26:21 [2813] tunnel terminated
+10/14/2013 23:26:21 [2813] tunnel down unexpected
+10/14/2013 23:26:21 [2813] kill_child:2868
+10/14/2013 23:26:21 [2877] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+10/14/2013 23:26:23 [2813] select: Interrupted system call
+10/14/2013 23:26:32 [2813] rcv cmd:0 at state[0]
+10/14/2013 23:26:32 [2813] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+10/14/2013 23:26:34 [2813] ssl vpn tunnel started
+10/14/2013 23:26:34 [3015] set loglevel to 1
+10/14/2013 23:26:34 [3015] 0|DurSSL.BellHowell.net|443|1||ve8nFQSLmHQc3rNEPP2Yn7Vp71UDCAZ0nH9FmdXAONTI4akRuCtiXC+jIFIUtqTS%0acfevoe5EokrXoZycjaVthoYE3wvJZEVUDRHd6Chz0VLu94PS720zWlPHc2KfhOax%0adHDtQA467F8iuyZEmSBZB/Y/adMEl5McrssqXDCl3MJInNBG3TeeU1dlYv12lfrz%0aQ4X4Fstt2TDRc0rVSOjhwA==%0a
+10/14/2013 23:26:34 [3016] server=DurSSL.BellHowell.net port=443 version=1 tunnel= cookie=ve8nFQSLmHQc3rNEPP2Yn7Vp71UDCAZ0nH9FmdXAONTI4akRuCtiXC+jIFIUtqTS%0acfevoe5EokrXoZycjaVthoYE3wvJZEVUDRHd6Chz0VLu94PS720zWlPHc2KfhOax%0adHDtQA467F8iuyZEmSBZB/Y/adMEl5McrssqXDCl3MJInNBG3TeeU1dlYv12lfrz%0aQ4X4Fstt2TDRc0rVSOjhwA==%0a
+
+10/14/2013 23:26:34 [3016] starting pppd
+10/14/2013 23:26:36 [3016] use tty:/dev/pts/4
+10/14/2013 23:26:37 [3016] connecting to server
+10/14/2013 23:26:37 [3016] tunnel running...
+10/14/2013 23:26:40 [3016] interface up
+10/14/2013 23:26:40 [3122] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh DurSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.100.74
+nameserver	192.168.100.75
+server route 
+interface ppp0
+address 192.168.102.27
+delete route 1.1.1.1
+Add route for DurSSL.BellHowell.net(71.148.45.174)
+router 192.168.102.27 server route 
+route -n add default gw 192.168.102.27
+10/14/2013 23:39:45 [2813] rcv cmd:0 at state[1]
+10/14/2013 23:39:45 [2813] stopping ssl vpn tunnel[v4.0.2010]
+10/14/2013 23:39:45 [2813] kill_child:3016
+10/14/2013 23:39:45 [2813] kill_child:3015
+10/14/2013 23:39:45 [3015] signal rcved, logout now
+10/14/2013 23:39:45 [3016] killing session timer...
+10/14/2013 23:39:45 [3016] kill_child:3024
+10/14/2013 23:39:45 [3016] kill_child:3122
+10/14/2013 23:39:45 [4754] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+10/14/2013 23:39:45 [2813] tunnel terminated
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+10/14/2013 23:39:45 [2813] ssl vpn tunnel stopped
+10/14/2013 23:39:54 [2813] rcv command from client: No child processes
+10/14/2013 23:39:54 [2813] Prentend to rcv exit cmd
+10/14/2013 23:39:54 [2813] rcv cmd:2 at state[0]
+10/14/2013 23:39:54 [2813] forticlient ssl vpn[4.0.2010] stopped
+10/16/2013 05:24:56 [25896] set the loglevel to 1
+10/16/2013 05:24:56 [25896] forticlientsslvpn control daemon version:4.0.2010 started
+10/16/2013 05:24:58 [25896] rcv cmd:0 at state[0]
+10/16/2013 05:24:58 [25896] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+10/16/2013 05:24:58 [25896] ssl vpn tunnel started
+10/16/2013 05:24:58 [25917] set loglevel to 1
+10/16/2013 05:25:00 [25917] no SVPNCOOKIE found
+10/16/2013 05:25:00 [25918] rcv notice:1|Insufficient credential(s). Please check the password, client certificate, etc.
+10/16/2013 05:25:01 [25896] tunnel terminated
+10/16/2013 05:25:01 [25896] tunnel down unexpected
+10/16/2013 05:25:01 [25896] kill_child:25917
+10/16/2013 05:25:01 [25923] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+10/16/2013 05:25:02 [25896] select: Interrupted system call
+10/16/2013 05:25:18 [25896] rcv cmd:0 at state[0]
+10/16/2013 05:25:18 [25896] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+10/16/2013 05:25:18 [25896] ssl vpn tunnel started
+10/16/2013 05:25:18 [25964] set loglevel to 1
+10/16/2013 05:25:24 [25964] no SVPNCOOKIE found
+10/16/2013 05:25:24 [25965] rcv notice:1|Insufficient credential(s). Please check the password, client certificate, etc.
+10/16/2013 05:25:25 [25896] tunnel terminated
+10/16/2013 05:25:25 [25896] tunnel down unexpected
+10/16/2013 05:25:25 [25896] kill_child:25964
+10/16/2013 05:25:25 [25973] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+10/16/2013 05:25:26 [25896] select: Interrupted system call
+10/16/2013 05:30:10 [25896] rcv cmd:2 at state[0]
+10/16/2013 05:30:10 [25896] forticlient ssl vpn[4.0.2010] stopped
+10/17/2013 00:15:59 [3689] set the loglevel to 1
+10/17/2013 00:15:59 [3689] forticlientsslvpn control daemon version:4.0.2010 started
+10/17/2013 00:16:01 [3689] rcv cmd:0 at state[0]
+10/17/2013 00:16:01 [3689] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 207.235.66.110:71.148.45.174
+if has single route record for 1.1.1.1:0 for 207.235.66.110:0
+10/17/2013 00:16:01 [3689] ssl vpn tunnel started
+10/17/2013 00:16:01 [3710] set loglevel to 1
+10/17/2013 00:16:02 [3710] no SVPNCOOKIE found
+10/17/2013 00:16:02 [3711] rcv notice:1|Insufficient credential(s). Please check the password, client certificate, etc.
+10/17/2013 00:16:03 [3689] tunnel terminated
+10/17/2013 00:16:03 [3689] tunnel down unexpected
+10/17/2013 00:16:03 [3689] kill_child:3710
+10/17/2013 00:16:03 [3716] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+10/17/2013 00:16:04 [3689] select: Interrupted system call
+10/17/2013 00:16:11 [3689] rcv cmd:0 at state[0]
+10/17/2013 00:16:11 [3689] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+10/17/2013 00:16:11 [3689] ssl vpn tunnel started
+10/17/2013 00:16:11 [3743] set loglevel to 1
+10/17/2013 00:16:12 [3743] no SVPNCOOKIE found
+10/17/2013 00:16:12 [3744] rcv notice:1|Insufficient credential(s). Please check the password, client certificate, etc.
+10/17/2013 00:16:13 [3689] tunnel terminated
+10/17/2013 00:16:13 [3689] tunnel down unexpected
+10/17/2013 00:16:13 [3689] kill_child:3743
+10/17/2013 00:16:13 [3749] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+10/17/2013 00:16:14 [3689] select: Interrupted system call
+10/17/2013 00:16:21 [3689] rcv cmd:0 at state[0]
+10/17/2013 00:16:21 [3689] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+10/17/2013 00:16:21 [3689] ssl vpn tunnel started
+10/17/2013 00:16:21 [3776] set loglevel to 1
+10/17/2013 00:16:22 [3776] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aNNvYB0jXnJD6LOP7FOVuyry5ekQ8P/PjyXHcVL32XESvxyInuy1ubOtFLRskIeIA%0a8H44B+0rSXVtXyDkflz72w==%0a
+10/17/2013 00:16:22 [3777] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aNNvYB0jXnJD6LOP7FOVuyry5ekQ8P/PjyXHcVL32XESvxyInuy1ubOtFLRskIeIA%0a8H44B+0rSXVtXyDkflz72w==%0a
+
+10/17/2013 00:16:22 [3777] starting pppd
+10/17/2013 00:16:22 [3777] use tty:/dev/pts/4
+10/17/2013 00:16:22 [3777] connecting to server
+10/17/2013 00:16:22 [3777] tunnel running...
+10/17/2013 00:16:22 [3777] interface up
+10/17/2013 00:16:22 [3797] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.1
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.1 server route 
+route -n add default gw 192.168.214.1
+10/17/2013 00:17:19 [3689] rcv cmd:0 at state[1]
+10/17/2013 00:17:19 [3689] stopping ssl vpn tunnel[v4.0.2010]
+10/17/2013 00:17:19 [3689] kill_child:3777
+10/17/2013 00:17:19 [3689] kill_child:3776
+10/17/2013 00:17:19 [3777] killing session timer...
+10/17/2013 00:17:19 [3777] kill_child:3781
+10/17/2013 00:17:19 [3777] kill_child:3797
+10/17/2013 00:17:19 [3776] signal rcved, logout now
+10/17/2013 00:17:19 [4036] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+10/17/2013 00:17:19 [3689] tunnel terminated
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+10/17/2013 00:17:19 [3689] ssl vpn tunnel stopped
+10/17/2013 00:17:21 [3689] rcv cmd:2 at state[0]
+10/17/2013 00:17:21 [3689] forticlient ssl vpn[4.0.2010] stopped
+10/17/2013 00:23:24 [4765] set the loglevel to 1
+10/17/2013 00:23:24 [4765] forticlientsslvpn control daemon version:4.0.2010 started
+10/17/2013 00:23:26 [4765] rcv cmd:0 at state[0]
+10/17/2013 00:23:26 [4765] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+10/17/2013 00:23:27 [4765] ssl vpn tunnel started
+10/17/2013 00:23:27 [4789] set loglevel to 1
+10/17/2013 00:23:28 [4765] rcv cmd:0 at state[1]
+10/17/2013 00:23:28 [4765] stopping ssl vpn tunnel[v4.0.2010]
+10/17/2013 00:23:28 [4765] kill_child:4790
+10/17/2013 00:23:28 [4765] kill_child:4789
+10/17/2013 00:23:28 [4790] killing session timer...
+10/17/2013 00:23:28 [4790] kill_child:-1
+10/17/2013 00:23:28 [4790] kill_child:-1
+10/17/2013 00:23:28 [4792] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+10/17/2013 00:23:28 [4765] tunnel terminated
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+10/17/2013 00:23:28 [4765] ssl vpn tunnel stopped
+10/17/2013 00:23:36 [4765] rcv cmd:2 at state[0]
+10/17/2013 00:23:36 [4765] forticlient ssl vpn[4.0.2010] stopped
+10/17/2013 04:23:38 [19090] set the loglevel to 1
+10/17/2013 04:23:38 [19090] forticlientsslvpn control daemon version:4.0.2010 started
+10/17/2013 04:23:41 [19090] rcv cmd:0 at state[0]
+10/17/2013 04:23:41 [19090] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+10/17/2013 04:23:41 [19090] ssl vpn tunnel started
+10/17/2013 04:23:41 [19114] set loglevel to 1
+10/17/2013 04:23:42 [19114] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0ahMM7ASDLCwxj0qvFYqhOalmXyfA2Ky+giTuGWJtAL+IGs5Rx6O7HVbe0N7jA7bcd%0ajyBcQ+3UqhzFbwhim7xkjg==%0a
+10/17/2013 04:23:42 [19115] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0ahMM7ASDLCwxj0qvFYqhOalmXyfA2Ky+giTuGWJtAL+IGs5Rx6O7HVbe0N7jA7bcd%0ajyBcQ+3UqhzFbwhim7xkjg==%0a
+
+10/17/2013 04:23:42 [19115] starting pppd
+10/17/2013 04:23:42 [19115] use tty:/dev/pts/4
+10/17/2013 04:23:42 [19115] connecting to server
+10/17/2013 04:23:42 [19115] tunnel running...
+10/17/2013 04:23:43 [19115] interface up
+10/17/2013 04:23:43 [19129] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.5
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.5 server route 
+route -n add default gw 192.168.214.5
+10/17/2013 05:09:43 [19090] rcv cmd:0 at state[1]
+10/17/2013 05:09:43 [19090] stopping ssl vpn tunnel[v4.0.2010]
+10/17/2013 05:09:43 [19090] kill_child:19115
+10/17/2013 05:09:43 [19090] kill_child:19114
+10/17/2013 05:09:43 [19115] killing session timer...
+10/17/2013 05:09:43 [19115] kill_child:19119
+10/17/2013 05:09:43 [19115] kill_child:19129
+10/17/2013 05:09:43 [19114] signal rcved, logout now
+10/17/2013 05:09:43 [19090] tunnel terminated
+10/17/2013 05:09:43 [21393] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+10/17/2013 05:09:43 [19090] ssl vpn tunnel stopped
+10/17/2013 05:09:45 [19090] rcv cmd:2 at state[0]
+10/17/2013 05:09:45 [19090] forticlient ssl vpn[4.0.2010] stopped
+10/23/2013 03:33:17 [17735] set the loglevel to 1
+10/23/2013 03:33:17 [17735] forticlientsslvpn control daemon version:4.0.2010 started
+10/23/2013 03:33:19 [17735] rcv cmd:0 at state[0]
+10/23/2013 03:33:19 [17735] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+10/23/2013 03:33:20 [17735] ssl vpn tunnel started
+10/23/2013 03:33:20 [17757] set loglevel to 1
+10/23/2013 03:33:21 [17757] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aVp/sQ2m6etAo4WKgqv6AXYgvIXTzhrVdZfgBTrXNlbDjSAKsyNg5YHrbvtE4ftQK%0aJxcvQarN0bp/AbRI0jUGug==%0a
+10/23/2013 03:33:21 [17758] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aVp/sQ2m6etAo4WKgqv6AXYgvIXTzhrVdZfgBTrXNlbDjSAKsyNg5YHrbvtE4ftQK%0aJxcvQarN0bp/AbRI0jUGug==%0a
+
+10/23/2013 03:33:21 [17758] starting pppd
+10/23/2013 03:33:21 [17758] use tty:/dev/pts/4
+10/23/2013 03:33:21 [17758] connecting to server
+10/23/2013 03:33:23 [17758] tunnel running...
+10/23/2013 03:33:24 [17758] interface up
+10/23/2013 03:33:24 [17792] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...10/23/2013 03:33:46 [17735] rcv cmd:0 at state[1]
+10/23/2013 03:33:46 [17735] stopping ssl vpn tunnel[v4.0.2010]
+10/23/2013 03:33:46 [17735] kill_child:17758
+10/23/2013 03:33:46 [17735] kill_child:17757
+10/23/2013 03:33:46 [17758] killing session timer...
+10/23/2013 03:33:46 [17758] kill_child:17765
+10/23/2013 03:33:47 [17758] kill_child:17792
+10/23/2013 03:33:47 [17735] tunnel terminated
+10/23/2013 03:33:47 [18106] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+10/23/2013 03:33:47 [17735] ssl vpn tunnel stopped
+10/23/2013 03:33:51 [17757] signal rcved, logout now
+10/23/2013 03:33:51 [17735] select: Interrupted system call
+10/23/2013 03:33:59 [17735] rcv command from client: Interrupted system call
+10/23/2013 03:33:59 [17735] Prentend to rcv exit cmd
+10/23/2013 03:33:59 [17735] rcv cmd:2 at state[0]
+10/23/2013 03:33:59 [17735] forticlient ssl vpn[4.0.2010] stopped
+10/23/2013 04:04:02 [3288] set the loglevel to 1
+10/23/2013 04:04:02 [3288] forticlientsslvpn control daemon version:4.0.2010 started
+10/23/2013 04:04:04 [3288] rcv cmd:0 at state[0]
+10/23/2013 04:04:04 [3288] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+10/23/2013 04:04:04 [3288] ssl vpn tunnel started
+10/23/2013 04:04:04 [3309] set loglevel to 1
+10/23/2013 04:04:05 [3288] rcv cmd:0 at state[1]
+10/23/2013 04:04:05 [3288] stopping ssl vpn tunnel[v4.0.2010]
+10/23/2013 04:04:05 [3288] kill_child:3310
+10/23/2013 04:04:05 [3288] kill_child:3309
+10/23/2013 04:04:05 [3310] killing session timer...
+10/23/2013 04:04:05 [3310] kill_child:-1
+10/23/2013 04:04:05 [3310] kill_child:-1
+10/23/2013 04:04:05 [3312] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+10/23/2013 04:04:05 [3288] tunnel terminated
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+10/23/2013 04:04:05 [3288] ssl vpn tunnel stopped
+10/23/2013 04:04:10 [3288] rcv cmd:0 at state[0]
+10/23/2013 04:04:10 [3288] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+10/23/2013 04:04:10 [3288] ssl vpn tunnel started
+10/23/2013 04:04:10 [3339] set loglevel to 1
+10/23/2013 04:04:11 [3339] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aVp/sQ2m6etAo4WKgqv6AXY7Vl5jRnjUL8+oWBrocVL+XVgML3MFLkftnI/LcibfX%0aFoC7yay8Fm1v3SB5A0nd1g==%0a
+10/23/2013 04:04:11 [3340] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aVp/sQ2m6etAo4WKgqv6AXY7Vl5jRnjUL8+oWBrocVL+XVgML3MFLkftnI/LcibfX%0aFoC7yay8Fm1v3SB5A0nd1g==%0a
+
+10/23/2013 04:04:11 [3340] starting pppd
+10/23/2013 04:04:11 [3340] use tty:/dev/pts/4
+10/23/2013 04:04:11 [3340] connecting to server
+10/23/2013 04:04:11 [3340] tunnel running...
+10/23/2013 04:04:11 [3340] interface up
+10/23/2013 04:04:11 [3362] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.4
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.4 server route 
+route -n add default gw 192.168.214.4
+10/23/2013 04:19:37 [3288] rcv cmd:0 at state[1]
+10/23/2013 04:19:37 [3288] stopping ssl vpn tunnel[v4.0.2010]
+10/23/2013 04:19:37 [3288] kill_child:3340
+10/23/2013 04:19:37 [3288] kill_child:3339
+10/23/2013 04:19:37 [3340] killing session timer...
+10/23/2013 04:19:37 [3340] kill_child:3347
+10/23/2013 04:19:37 [3340] kill_child:3362
+10/23/2013 04:19:37 [4718] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+10/23/2013 04:19:37 [3339] signal rcved, logout now
+10/23/2013 04:19:37 [3288] tunnel terminated
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+10/23/2013 04:19:38 [3288] ssl vpn tunnel stopped
+10/23/2013 04:19:41 [3288] rcv cmd:2 at state[0]
+10/23/2013 04:19:41 [3288] forticlient ssl vpn[4.0.2010] stopped
+11/12/2013 01:48:27 [12583] set the loglevel to 1
+11/12/2013 01:48:27 [12583] forticlientsslvpn control daemon version:4.0.2010 started
+11/12/2013 01:48:29 [12583] rcv cmd:0 at state[0]
+11/12/2013 01:48:29 [12583] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+11/12/2013 01:48:29 [12583] ssl vpn tunnel started
+11/12/2013 01:48:29 [12604] set loglevel to 1
+11/12/2013 01:48:30 [12604] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aeuhwdJyabumoD/DY4nc1fCveRZMR6ZQozmTR2wtpMLZecyB8VS8GXfMlMXJhr0Np%0aximhfP5vp3GeQ9qTopaqVg==%0a
+11/12/2013 01:48:30 [12605] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aeuhwdJyabumoD/DY4nc1fCveRZMR6ZQozmTR2wtpMLZecyB8VS8GXfMlMXJhr0Np%0aximhfP5vp3GeQ9qTopaqVg==%0a
+
+11/12/2013 01:48:30 [12605] starting pppd
+11/12/2013 01:48:30 [12605] use tty:/dev/pts/4
+11/12/2013 01:48:30 [12605] connecting to server
+11/12/2013 01:48:30 [12605] tunnel running...
+11/12/2013 01:48:31 [12605] interface up
+11/12/2013 01:48:31 [12624] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.9
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.9 server route 
+route -n add default gw 192.168.214.9
+11/12/2013 01:51:37 [12605] read error from tty[]
+11/12/2013 01:51:37 [12605] rcv frame from tty fail
+11/12/2013 01:51:37 [12605] io finished, kill pppd
+11/12/2013 01:51:37 [12605] kill_child:12609
+11/12/2013 01:51:37 [12605] tunnel finished, killing session
+11/12/2013 01:51:37 [12605] killing session timer...
+11/12/2013 01:51:37 [12605] kill_child:-1
+11/12/2013 01:51:37 [12605] kill_child:12624
+11/12/2013 01:51:37 [12583] tunnel terminated
+11/12/2013 01:51:37 [12583] tunnel down unexpected
+11/12/2013 01:51:37 [12583] kill_child:12604
+11/12/2013 01:51:37 [12910] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+11/12/2013 01:51:38 [12583] select: Interrupted system call
+11/12/2013 01:53:30 [12604] signal rcved, logout now
+11/12/2013 01:53:30 [12583] select: Interrupted system call
+11/12/2013 02:11:51 [12583] rcv cmd:2 at state[0]
+11/12/2013 02:11:51 [12583] forticlient ssl vpn[4.0.2010] stopped
+11/26/2013 23:57:16 [4936] set the loglevel to 1
+11/26/2013 23:57:16 [4936] forticlientsslvpn control daemon version:4.0.2010 started
+11/26/2013 23:57:18 [4936] rcv cmd:0 at state[0]
+11/26/2013 23:57:18 [4936] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+11/26/2013 23:57:18 [4936] ssl vpn tunnel started
+11/26/2013 23:57:18 [4957] set loglevel to 1
+11/26/2013 23:57:19 [4957] no SVPNCOOKIE found
+11/26/2013 23:57:19 [4958] rcv notice:1|Insufficient credential(s). Please check the password, client certificate, etc.
+11/26/2013 23:57:20 [4936] tunnel terminated
+11/26/2013 23:57:20 [4936] tunnel down unexpected
+11/26/2013 23:57:20 [4936] kill_child:4957
+11/26/2013 23:57:20 [4963] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+11/26/2013 23:57:21 [4936] select: Interrupted system call
+11/26/2013 23:57:35 [4936] rcv cmd:0 at state[0]
+11/26/2013 23:57:35 [4936] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+11/26/2013 23:57:35 [4936] ssl vpn tunnel started
+11/26/2013 23:57:35 [4996] set loglevel to 1
+11/26/2013 23:57:35 [4996] no SVPNCOOKIE found
+11/26/2013 23:57:35 [4997] rcv notice:1|Insufficient credential(s). Please check the password, client certificate, etc.
+11/26/2013 23:57:36 [4936] tunnel terminated
+11/26/2013 23:57:36 [4936] tunnel down unexpected
+11/26/2013 23:57:36 [4936] kill_child:4996
+11/26/2013 23:57:36 [4999] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+11/26/2013 23:57:37 [4936] select: Interrupted system call
+11/26/2013 23:57:47 [4936] rcv cmd:0 at state[0]
+11/26/2013 23:57:47 [4936] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+11/26/2013 23:57:47 [4936] ssl vpn tunnel started
+11/26/2013 23:57:47 [5041] set loglevel to 1
+11/26/2013 23:57:47 [5041] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0akyIjzkRevPHdq+nzk9i/iwJdWSOTD6Cdjhvt6GuGSM4zo7NMSxXUYiKZwtEgpMwq%0atnTXJlskb7jWLWLSeyfxcw==%0a
+11/26/2013 23:57:47 [5042] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0akyIjzkRevPHdq+nzk9i/iwJdWSOTD6Cdjhvt6GuGSM4zo7NMSxXUYiKZwtEgpMwq%0atnTXJlskb7jWLWLSeyfxcw==%0a
+
+11/26/2013 23:57:47 [5042] starting pppd
+11/26/2013 23:57:47 [5042] use tty:/dev/pts/4
+11/26/2013 23:57:47 [5042] connecting to server
+11/26/2013 23:57:47 [5042] tunnel running...
+11/26/2013 23:57:48 [5042] interface up
+11/26/2013 23:57:48 [5062] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.6
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.6 server route 
+route -n add default gw 192.168.214.6
+11/27/2013 00:15:45 [4936] rcv cmd:0 at state[1]
+11/27/2013 00:15:45 [4936] stopping ssl vpn tunnel[v4.0.2010]
+11/27/2013 00:15:45 [4936] kill_child:5042
+11/27/2013 00:15:45 [4936] kill_child:5041
+11/27/2013 00:15:45 [5042] killing session timer...
+11/27/2013 00:15:45 [5042] kill_child:5046
+11/27/2013 00:15:45 [5042] kill_child:5062
+11/27/2013 00:15:45 [5041] signal rcved, logout now
+11/27/2013 00:15:45 [4936] tunnel terminated
+11/27/2013 00:15:45 [6497] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+11/27/2013 00:15:45 [4936] ssl vpn tunnel stopped
+11/27/2013 00:15:46 [4936] rcv cmd:2 at state[0]
+11/27/2013 00:15:46 [4936] forticlient ssl vpn[4.0.2010] stopped
+12/02/2013 00:01:31 [4531] set the loglevel to 1
+12/02/2013 00:01:31 [4531] forticlientsslvpn control daemon version:4.0.2010 started
+12/02/2013 00:01:33 [4531] rcv cmd:0 at state[0]
+12/02/2013 00:01:33 [4531] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+12/02/2013 00:01:33 [4531] ssl vpn tunnel started
+12/02/2013 00:01:33 [4552] set loglevel to 1
+12/02/2013 00:01:34 [4552] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0ahMM7ASDLCwxj0qvFYqhOatId49x1K7MHLrFHlan0mUteGNgIuMNM+diY4xK6BOos%0a0jYFFgEkEWxcG4J6Z3ODqA==%0a
+12/02/2013 00:01:34 [4553] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0ahMM7ASDLCwxj0qvFYqhOatId49x1K7MHLrFHlan0mUteGNgIuMNM+diY4xK6BOos%0a0jYFFgEkEWxcG4J6Z3ODqA==%0a
+
+12/02/2013 00:01:34 [4553] starting pppd
+12/02/2013 00:01:34 [4553] use tty:/dev/pts/4
+12/02/2013 00:01:34 [4553] connecting to server
+12/02/2013 00:01:34 [4553] tunnel running...
+12/02/2013 00:01:34 [4553] interface up
+12/02/2013 00:01:34 [4573] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.5
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.5 server route 
+route -n add default gw 192.168.214.5
+12/02/2013 00:06:22 [4531] rcv cmd:2 at state[1]
+12/02/2013 00:06:22 [4531] stopping ssl vpn tunnel[v4.0.2010]
+12/02/2013 00:06:22 [4531] kill_child:4553
+12/02/2013 00:06:22 [4531] kill_child:4552
+12/02/2013 00:06:22 [4552] signal rcved, logout now
+12/02/2013 00:06:22 [4553] killing session timer...
+12/02/2013 00:06:22 [4553] kill_child:4557
+12/02/2013 00:06:22 [4553] kill_child:4573
+12/02/2013 00:06:22 [4531] tunnel terminated
+12/02/2013 00:06:22 [5038] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+12/02/2013 00:06:23 [4531] ssl vpn tunnel stopped
+12/02/2013 00:06:24 [4531] snd cmd error: Broken pipe
+12/02/2013 00:06:24 [4531] snd cmd error: Broken pipe
+12/02/2013 00:06:24 [4531] forticlient ssl vpn[4.0.2010] stopped
+01/02/2014 01:59:20 [13212] set the loglevel to 1
+01/02/2014 01:59:20 [13212] forticlientsslvpn control daemon version:4.0.2010 started
+01/02/2014 01:59:22 [13212] rcv cmd:0 at state[0]
+01/02/2014 01:59:22 [13212] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+01/02/2014 01:59:22 [13212] ssl vpn tunnel started
+01/02/2014 01:59:23 [13233] set loglevel to 1
+01/02/2014 01:59:23 [13233] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aeuhwdJyabumoD/DY4nc1fHqZreNA0HdijIi72nu65IvT874+t7owB/CFIoh86zJm%0avUt6bsSywkf0L29H2f8ImA==%0a
+01/02/2014 01:59:23 [13234] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aeuhwdJyabumoD/DY4nc1fHqZreNA0HdijIi72nu65IvT874+t7owB/CFIoh86zJm%0avUt6bsSywkf0L29H2f8ImA==%0a
+
+01/02/2014 01:59:23 [13234] starting pppd
+01/02/2014 01:59:23 [13234] use tty:/dev/pts/4
+01/02/2014 01:59:23 [13234] connecting to server
+01/02/2014 01:59:23 [13234] tunnel running...
+01/02/2014 01:59:24 [13234] interface up
+01/02/2014 01:59:24 [13261] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.9
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.9 server route 
+route -n add default gw 192.168.214.9
+01/02/2014 02:01:54 [13212] rcv cmd:0 at state[1]
+01/02/2014 02:01:54 [13212] stopping ssl vpn tunnel[v4.0.2010]
+01/02/2014 02:01:54 [13212] kill_child:13234
+01/02/2014 02:01:54 [13212] kill_child:13233
+01/02/2014 02:01:54 [13234] killing session timer...
+01/02/2014 02:01:54 [13234] kill_child:13238
+01/02/2014 02:01:54 [13234] kill_child:13261
+01/02/2014 02:01:54 [13233] signal rcved, logout now
+01/02/2014 02:01:54 [13212] tunnel terminated
+01/02/2014 02:01:54 [13552] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+01/02/2014 02:01:54 [13212] ssl vpn tunnel stopped
+01/02/2014 02:02:33 [13212] rcv cmd:2 at state[0]
+01/02/2014 02:02:33 [13212] forticlient ssl vpn[4.0.2010] stopped
+01/02/2014 02:03:30 [13708] set the loglevel to 1
+01/02/2014 02:03:30 [13708] forticlientsslvpn control daemon version:4.0.2010 started
+01/02/2014 02:03:32 [13708] rcv cmd:0 at state[0]
+01/02/2014 02:03:32 [13708] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+01/02/2014 02:03:32 [13708] ssl vpn tunnel started
+01/02/2014 02:03:32 [13732] set loglevel to 1
+01/02/2014 02:03:32 [13732] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aeuhwdJyabumoD/DY4nc1fDPRo0duh+iahwKH64ulA2UoITK3YnPs3tJDlT4gvnGs%0aITCk4tX4Bxpams2sC3EIfg==%0a
+01/02/2014 02:03:32 [13733] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aeuhwdJyabumoD/DY4nc1fDPRo0duh+iahwKH64ulA2UoITK3YnPs3tJDlT4gvnGs%0aITCk4tX4Bxpams2sC3EIfg==%0a
+
+01/02/2014 02:03:32 [13733] starting pppd
+01/02/2014 02:03:32 [13733] use tty:/dev/pts/4
+01/02/2014 02:03:32 [13733] connecting to server
+01/02/2014 02:03:32 [13733] tunnel running...
+01/02/2014 02:03:33 [13733] interface up
+01/02/2014 02:03:33 [13744] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.9
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.9 server route 
+route -n add default gw 192.168.214.9
+01/02/2014 02:03:51 [13708] rcv cmd:0 at state[1]
+01/02/2014 02:03:51 [13708] stopping ssl vpn tunnel[v4.0.2010]
+01/02/2014 02:03:51 [13708] kill_child:13733
+01/02/2014 02:03:51 [13708] kill_child:13732
+01/02/2014 02:03:51 [13733] killing session timer...
+01/02/2014 02:03:51 [13733] kill_child:13737
+01/02/2014 02:03:51 [13733] kill_child:13744
+01/02/2014 02:03:51 [13851] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+01/02/2014 02:03:51 [13708] tunnel terminated
+01/02/2014 02:03:51 [13732] signal rcved, logout now
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+01/02/2014 02:03:51 [13708] ssl vpn tunnel stopped
+01/02/2014 02:03:52 [13708] snd cmd error: Broken pipe
+01/02/2014 02:03:52 [13708] snd cmd error: Broken pipe
+01/02/2014 02:03:52 [13708] rcv cmd:2 at state[0]
+01/02/2014 02:03:52 [13708] forticlient ssl vpn[4.0.2010] stopped
+01/09/2014 00:28:22 [6252] set the loglevel to 1
+01/09/2014 00:28:22 [6252] forticlientsslvpn control daemon version:4.0.2010 started
+01/09/2014 00:28:24 [6252] rcv cmd:0 at state[0]
+01/09/2014 00:28:24 [6252] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+01/09/2014 00:28:24 [6252] ssl vpn tunnel started
+01/09/2014 00:28:24 [6288] set loglevel to 1
+01/09/2014 00:28:25 [6288] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aNOiDKrweYkB/UF05eesEfy+EIDu+GhhgaZMB4vAEnjbYMXJInzMw9rgKb10cfyC/%0aS5LJdIeAKhS727wjLSHOag==%0a
+01/09/2014 00:28:25 [6289] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aNOiDKrweYkB/UF05eesEfy+EIDu+GhhgaZMB4vAEnjbYMXJInzMw9rgKb10cfyC/%0aS5LJdIeAKhS727wjLSHOag==%0a
+
+01/09/2014 00:28:25 [6289] starting pppd
+01/09/2014 00:28:26 [6289] use tty:/dev/pts/4
+01/09/2014 00:28:26 [6289] connecting to server
+01/09/2014 00:28:26 [6289] tunnel running...
+01/09/2014 00:28:27 [6289] interface up
+01/09/2014 00:28:27 [6311] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.6
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.6 server route 
+route -n add default gw 192.168.214.6
+01/09/2014 00:33:49 [6252] rcv cmd:0 at state[1]
+01/09/2014 00:33:49 [6252] stopping ssl vpn tunnel[v4.0.2010]
+01/09/2014 00:33:49 [6252] kill_child:6289
+01/09/2014 00:33:49 [6252] kill_child:6288
+01/09/2014 00:33:49 [6288] signal rcved, logout now
+01/09/2014 00:33:49 [6289] killing session timer...
+01/09/2014 00:33:49 [6289] kill_child:6296
+01/09/2014 00:33:49 [6289] kill_child:6311
+01/09/2014 00:33:49 [6252] tunnel terminated
+01/09/2014 00:33:49 [6693] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+01/09/2014 00:33:49 [6252] ssl vpn tunnel stopped
+01/09/2014 00:44:05 [6252] rcv cmd:2 at state[0]
+01/09/2014 00:44:05 [6252] forticlient ssl vpn[4.0.2010] stopped
+01/15/2014 23:27:49 [3136] set the loglevel to 1
+01/15/2014 23:27:49 [3136] forticlientsslvpn control daemon version:4.0.2010 started
+01/15/2014 23:27:51 [3136] rcv cmd:0 at state[0]
+01/15/2014 23:27:51 [3136] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+01/15/2014 23:27:51 [3136] ssl vpn tunnel started
+01/15/2014 23:27:51 [3157] set loglevel to 1
+01/15/2014 23:27:52 [3157] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0a74uMAdTRZvkNuS8ElfnOe0b+XyEKJxojRMO8SDbTkwPWunzZwy0bzhjckJfR3pIz%0afRa5A7O+ummEm+SgJUwRaw==%0a
+01/15/2014 23:27:52 [3158] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0a74uMAdTRZvkNuS8ElfnOe0b+XyEKJxojRMO8SDbTkwPWunzZwy0bzhjckJfR3pIz%0afRa5A7O+ummEm+SgJUwRaw==%0a
+
+01/15/2014 23:27:52 [3158] starting pppd
+01/15/2014 23:27:52 [3158] use tty:/dev/pts/4
+01/15/2014 23:27:52 [3158] connecting to server
+01/15/2014 23:27:52 [3158] tunnel running...
+01/15/2014 23:27:53 [3158] interface up
+01/15/2014 23:27:53 [3181] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.2
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.2 server route 
+route -n add default gw 192.168.214.2
+01/15/2014 23:28:44 [3136] rcv cmd:0 at state[1]
+01/15/2014 23:28:44 [3136] stopping ssl vpn tunnel[v4.0.2010]
+01/15/2014 23:28:44 [3136] kill_child:3158
+01/15/2014 23:28:44 [3136] kill_child:3157
+01/15/2014 23:28:44 [3158] killing session timer...
+01/15/2014 23:28:44 [3158] kill_child:3162
+01/15/2014 23:28:44 [3158] kill_child:3181
+01/15/2014 23:28:44 [3157] signal rcved, logout now
+01/15/2014 23:28:44 [3136] tunnel terminated
+01/15/2014 23:28:44 [3321] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+01/15/2014 23:28:44 [3136] ssl vpn tunnel stopped
+01/15/2014 23:28:48 [3136] rcv command from client: No child processes
+01/15/2014 23:28:48 [3136] Prentend to rcv exit cmd
+01/15/2014 23:28:48 [3136] rcv cmd:2 at state[0]
+01/15/2014 23:28:48 [3136] forticlient ssl vpn[4.0.2010] stopped
+01/15/2014 23:44:52 [3039] set the loglevel to 1
+01/15/2014 23:44:53 [3039] forticlientsslvpn control daemon version:4.0.2010 started
+01/15/2014 23:44:54 [3039] rcv cmd:0 at state[0]
+01/15/2014 23:44:54 [3039] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+01/15/2014 23:44:55 [3039] ssl vpn tunnel started
+01/15/2014 23:44:55 [3039] rcv cmd:0 at state[1]
+01/15/2014 23:44:55 [3039] stopping ssl vpn tunnel[v4.0.2010]
+01/15/2014 23:44:55 [3039] kill_child:3071
+01/15/2014 23:44:55 [3039] kill_child:3070
+01/15/2014 23:44:55 [3071] killing session timer...
+01/15/2014 23:44:55 [3071] kill_child:-1
+01/15/2014 23:44:55 [3071] kill_child:-1
+01/15/2014 23:44:55 [3072] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+01/15/2014 23:44:55 [3039] tunnel terminated
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+01/15/2014 23:44:55 [3039] ssl vpn tunnel stopped
+01/15/2014 23:45:03 [3039] rcv cmd:0 at state[0]
+01/15/2014 23:45:03 [3039] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+01/15/2014 23:45:03 [3039] ssl vpn tunnel started
+01/15/2014 23:45:03 [3116] set loglevel to 1
+01/15/2014 23:45:03 [3116] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0a74uMAdTRZvkNuS8ElfnOe+RBw6gqthWu6ugVmO5JbY9g8VgGn0b11WPPKAgTN4Nk%0aB0CARhTyACcT24OGbumlFA==%0a
+01/15/2014 23:45:03 [3117] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0a74uMAdTRZvkNuS8ElfnOe+RBw6gqthWu6ugVmO5JbY9g8VgGn0b11WPPKAgTN4Nk%0aB0CARhTyACcT24OGbumlFA==%0a
+
+01/15/2014 23:45:03 [3117] starting pppd
+01/15/2014 23:45:03 [3117] use tty:/dev/pts/4
+01/15/2014 23:45:03 [3117] connecting to server
+01/15/2014 23:45:04 [3117] tunnel running...
+01/15/2014 23:45:04 [3117] interface up
+01/15/2014 23:45:04 [3137] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.3
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.3 server route 
+route -n add default gw 192.168.214.3
+01/15/2014 23:49:25 [3039] rcv cmd:0 at state[1]
+01/15/2014 23:49:25 [3039] stopping ssl vpn tunnel[v4.0.2010]
+01/15/2014 23:49:25 [3039] kill_child:3117
+01/15/2014 23:49:25 [3039] kill_child:3116
+01/15/2014 23:49:25 [3117] killing session timer...
+01/15/2014 23:49:25 [3116] signal rcved, logout now
+01/15/2014 23:49:25 [3117] kill_child:3121
+01/15/2014 23:49:25 [3117] kill_child:3137
+01/15/2014 23:49:25 [3846] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+01/15/2014 23:49:25 [3039] tunnel terminated
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+01/15/2014 23:49:25 [3039] ssl vpn tunnel stopped
+01/15/2014 23:49:28 [3039] rcv cmd:0 at state[0]
+01/15/2014 23:49:28 [3039] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+01/15/2014 23:49:28 [3039] ssl vpn tunnel started
+01/15/2014 23:49:28 [3888] set loglevel to 1
+01/15/2014 23:49:28 [3888] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0a74uMAdTRZvkNuS8ElfnOexn2SdR9q5QDJ9sUBSjxPoGmta9C61KiAndPYElcb2Tq%0a+vzDRrcSgcQRn5CzicJIPg==%0a
+01/15/2014 23:49:28 [3889] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0a74uMAdTRZvkNuS8ElfnOexn2SdR9q5QDJ9sUBSjxPoGmta9C61KiAndPYElcb2Tq%0a+vzDRrcSgcQRn5CzicJIPg==%0a
+
+01/15/2014 23:49:28 [3889] starting pppd
+01/15/2014 23:49:28 [3889] use tty:/dev/pts/4
+01/15/2014 23:49:28 [3889] connecting to server
+01/15/2014 23:49:28 [3889] tunnel running...
+01/15/2014 23:49:29 [3889] interface up
+01/15/2014 23:49:29 [3900] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.3
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.3 server route 
+route -n add default gw 192.168.214.3
+01/15/2014 23:50:10 [3039] rcv cmd:0 at state[1]
+01/15/2014 23:50:10 [3039] stopping ssl vpn tunnel[v4.0.2010]
+01/15/2014 23:50:10 [3039] kill_child:3889
+01/15/2014 23:50:10 [3039] kill_child:3888
+01/15/2014 23:50:10 [3889] killing session timer...
+01/15/2014 23:50:10 [3889] kill_child:3893
+01/15/2014 23:50:10 [3889] kill_child:3900
+01/15/2014 23:50:10 [3888] signal rcved, logout now
+01/15/2014 23:50:10 [4053] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+01/15/2014 23:50:10 [3039] tunnel terminated
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+01/15/2014 23:50:10 [3039] ssl vpn tunnel stopped
+01/15/2014 23:50:13 [3039] rcv cmd:2 at state[0]
+01/15/2014 23:50:13 [3039] forticlient ssl vpn[4.0.2010] stopped
+01/21/2014 06:09:30 [11977] set the loglevel to 1
+01/21/2014 06:09:30 [11977] forticlientsslvpn control daemon version:4.0.2010 started
+01/21/2014 06:09:32 [11977] rcv cmd:0 at state[0]
+01/21/2014 06:09:32 [11977] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+01/21/2014 06:09:32 [11977] ssl vpn tunnel started
+01/21/2014 06:09:32 [11998] set loglevel to 1
+01/21/2014 06:09:33 [11998] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aTyKslZA/NpKlciDnqghRnH7J5d9w5p8RLMskKyjJWgo5v03M6QISUey+V/JhiUKl%0ah9lmlsw0ISNTN7228IqtWw==%0a
+01/21/2014 06:09:33 [11999] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aTyKslZA/NpKlciDnqghRnH7J5d9w5p8RLMskKyjJWgo5v03M6QISUey+V/JhiUKl%0ah9lmlsw0ISNTN7228IqtWw==%0a
+
+01/21/2014 06:09:33 [11999] starting pppd
+01/21/2014 06:09:33 [11999] use tty:/dev/pts/4
+01/21/2014 06:09:33 [11999] connecting to server
+01/21/2014 06:09:33 [11999] tunnel running...
+01/21/2014 06:09:34 [11999] interface up
+01/21/2014 06:09:34 [12022] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.5
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.5 server route 
+route -n add default gw 192.168.214.5
+01/21/2014 06:21:05 [11977] rcv cmd:0 at state[1]
+01/21/2014 06:21:05 [11977] stopping ssl vpn tunnel[v4.0.2010]
+01/21/2014 06:21:05 [11977] kill_child:11999
+01/21/2014 06:21:05 [11977] kill_child:11998
+01/21/2014 06:21:05 [11999] killing session timer...
+01/21/2014 06:21:05 [11999] kill_child:12006
+01/21/2014 06:21:05 [11999] kill_child:12022
+01/21/2014 06:21:05 [11998] signal rcved, logout now
+01/21/2014 06:21:05 [12819] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+01/21/2014 06:21:05 [11977] tunnel terminated
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+01/21/2014 06:21:05 [11977] ssl vpn tunnel stopped
+01/21/2014 06:21:07 [11977] rcv cmd:2 at state[0]
+01/21/2014 06:21:07 [11977] forticlient ssl vpn[4.0.2010] stopped
+01/29/2014 03:31:38 [16949] set the loglevel to 1
+01/29/2014 03:31:38 [16949] forticlientsslvpn control daemon version:4.0.2010 started
+01/29/2014 03:31:40 [16949] rcv cmd:0 at state[0]
+01/29/2014 03:31:40 [16949] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+01/29/2014 03:31:41 [16949] ssl vpn tunnel started
+01/29/2014 03:31:41 [16973] set loglevel to 1
+01/29/2014 03:31:41 [16949] rcv cmd:0 at state[1]
+01/29/2014 03:31:41 [16949] stopping ssl vpn tunnel[v4.0.2010]
+01/29/2014 03:31:41 [16949] kill_child:16974
+01/29/2014 03:31:41 [16949] kill_child:16973
+01/29/2014 03:31:41 [16974] killing session timer...
+01/29/2014 03:31:41 [16974] kill_child:-1
+01/29/2014 03:31:41 [16974] kill_child:-1
+01/29/2014 03:31:41 [16949] tunnel terminated
+01/29/2014 03:31:41 [16976] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+01/29/2014 03:31:41 [16949] ssl vpn tunnel stopped
+01/29/2014 03:31:46 [16949] rcv cmd:0 at state[0]
+01/29/2014 03:31:46 [16949] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+01/29/2014 03:31:46 [16949] ssl vpn tunnel started
+01/29/2014 03:31:46 [17003] set loglevel to 1
+01/29/2014 03:31:46 [17003] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0amFU2X8RxTNylJPLqUALF53EX0GoV54zjW4jzYGuS3gcRP+a6KNJ/Cz0JxYujz4EJ%0aNeMQIcIjBAlztR94wXy8Mg==%0a
+01/29/2014 03:31:46 [17004] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0amFU2X8RxTNylJPLqUALF53EX0GoV54zjW4jzYGuS3gcRP+a6KNJ/Cz0JxYujz4EJ%0aNeMQIcIjBAlztR94wXy8Mg==%0a
+
+01/29/2014 03:31:46 [17004] starting pppd
+01/29/2014 03:31:46 [17004] use tty:/dev/pts/4
+01/29/2014 03:31:46 [17004] connecting to server
+01/29/2014 03:31:46 [17004] tunnel running...
+01/29/2014 03:31:47 [17004] interface up
+01/29/2014 03:31:47 [17024] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.9
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.9 server route 
+route -n add default gw 192.168.214.9
+01/29/2014 03:37:46 [16949] rcv cmd:0 at state[1]
+01/29/2014 03:37:46 [16949] stopping ssl vpn tunnel[v4.0.2010]
+01/29/2014 03:37:46 [16949] kill_child:17004
+01/29/2014 03:37:46 [16949] kill_child:17003
+01/29/2014 03:37:46 [17003] signal rcved, logout now
+01/29/2014 03:37:46 [17004] killing session timer...
+01/29/2014 03:37:46 [17004] kill_child:17008
+01/29/2014 03:37:46 [17004] kill_child:17024
+01/29/2014 03:37:46 [17449] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+01/29/2014 03:37:46 [16949] tunnel terminated
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+01/29/2014 03:37:46 [16949] ssl vpn tunnel stopped
+01/29/2014 03:37:47 [16949] snd cmd error: Broken pipe
+01/29/2014 03:37:47 [16949] snd cmd error: Broken pipe
+01/29/2014 03:37:47 [16949] rcv cmd:2 at state[0]
+01/29/2014 03:37:47 [16949] forticlient ssl vpn[4.0.2010] stopped
+01/30/2014 04:38:42 [23372] set the loglevel to 1
+01/30/2014 04:38:42 [23372] forticlientsslvpn control daemon version:4.0.2010 started
+01/30/2014 04:38:44 [23372] rcv cmd:0 at state[0]
+01/30/2014 04:38:44 [23372] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+01/30/2014 04:38:45 [23372] ssl vpn tunnel started
+01/30/2014 04:38:45 [23396] set loglevel to 1
+01/30/2014 04:38:45 [23396] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aIl7KrUgfdYvQ6VkSHKLq/YPmySJEZY4ox9Xn8FN0N8hHAQOopHG5D57+8bHNBb6A%0aU6tqu2Sd19NAYC5gN6+6WQ==%0a
+01/30/2014 04:38:45 [23397] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aIl7KrUgfdYvQ6VkSHKLq/YPmySJEZY4ox9Xn8FN0N8hHAQOopHG5D57+8bHNBb6A%0aU6tqu2Sd19NAYC5gN6+6WQ==%0a
+
+01/30/2014 04:38:45 [23397] starting pppd
+01/30/2014 04:38:45 [23397] use tty:/dev/pts/4
+01/30/2014 04:38:46 [23397] connecting to server
+01/30/2014 04:38:46 [23397] tunnel running...
+01/30/2014 04:38:47 [23397] interface up
+01/30/2014 04:38:47 [23416] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.7
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.7 server route 
+route -n add default gw 192.168.214.7
+01/30/2014 04:56:24 [23372] rcv cmd:0 at state[1]
+01/30/2014 04:56:24 [23372] stopping ssl vpn tunnel[v4.0.2010]
+01/30/2014 04:56:24 [23372] kill_child:23397
+01/30/2014 04:56:24 [23372] kill_child:23396
+01/30/2014 04:56:24 [23397] killing session timer...
+01/30/2014 04:56:24 [23397] kill_child:23401
+01/30/2014 04:56:24 [23397] kill_child:23416
+01/30/2014 04:56:24 [23396] signal rcved, logout now
+01/30/2014 04:56:24 [24502] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+01/30/2014 04:56:24 [23372] tunnel terminated
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+01/30/2014 04:56:24 [23372] ssl vpn tunnel stopped
+01/30/2014 04:56:26 [23372] rcv cmd:2 at state[0]
+01/30/2014 04:56:26 [23372] forticlient ssl vpn[4.0.2010] stopped
+01/31/2014 02:37:33 [15335] set the loglevel to 1
+01/31/2014 02:37:33 [15335] forticlientsslvpn control daemon version:4.0.2010 started
+01/31/2014 02:37:35 [15335] rcv cmd:0 at state[0]
+01/31/2014 02:37:35 [15335] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+01/31/2014 02:37:36 [15335] ssl vpn tunnel started
+01/31/2014 02:37:36 [15358] set loglevel to 1
+01/31/2014 02:37:36 [15358] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aHaeM5dHbG8Lc1FxS14X8RGWZR9EFaVYAmSN2+x12iOEm3aoj8pYUPKRJeAfDuEfH%0amQmxQzoPeOwm7y5YLOl9cw==%0a
+01/31/2014 02:37:36 [15359] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aHaeM5dHbG8Lc1FxS14X8RGWZR9EFaVYAmSN2+x12iOEm3aoj8pYUPKRJeAfDuEfH%0amQmxQzoPeOwm7y5YLOl9cw==%0a
+
+01/31/2014 02:37:36 [15359] starting pppd
+01/31/2014 02:37:36 [15359] use tty:/dev/pts/4
+01/31/2014 02:37:36 [15359] connecting to server
+01/31/2014 02:37:36 [15359] tunnel running...
+01/31/2014 02:37:37 [15359] interface up
+01/31/2014 02:37:37 [15381] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.8
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.8 server route 
+route -n add default gw 192.168.214.8
+01/31/2014 02:58:41 [15335] rcv cmd:0 at state[1]
+01/31/2014 02:58:41 [15335] stopping ssl vpn tunnel[v4.0.2010]
+01/31/2014 02:58:41 [15335] kill_child:15359
+01/31/2014 02:58:41 [15335] kill_child:15358
+01/31/2014 02:58:41 [15358] signal rcved, logout now
+01/31/2014 02:58:41 [15359] killing session timer...
+01/31/2014 02:58:41 [15359] kill_child:15363
+01/31/2014 02:58:41 [16966] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+01/31/2014 02:58:41 [15359] kill_child:15381
+01/31/2014 02:58:41 [15335] tunnel terminated
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+01/31/2014 02:58:41 [15335] ssl vpn tunnel stopped
+01/31/2014 02:58:42 [15335] rcv cmd:2 at state[0]
+01/31/2014 02:58:42 [15335] forticlient ssl vpn[4.0.2010] stopped
+01/31/2014 05:39:13 [27955] set the loglevel to 1
+01/31/2014 05:39:13 [27955] forticlientsslvpn control daemon version:4.0.2010 started
+01/31/2014 05:39:15 [27955] rcv cmd:0 at state[0]
+01/31/2014 05:39:15 [27955] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+01/31/2014 05:39:15 [27955] ssl vpn tunnel started
+01/31/2014 05:39:15 [27979] set loglevel to 1
+01/31/2014 05:39:16 [27979] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0amFU2X8RxTNylJPLqUALF5ypaXOTau3wd1U+rJQGdmzs6oQg82Msq1leMqgJ8VUEM%0a4X2hFiXA1QK7lTBtlkpkqg==%0a
+01/31/2014 05:39:16 [27980] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0amFU2X8RxTNylJPLqUALF5ypaXOTau3wd1U+rJQGdmzs6oQg82Msq1leMqgJ8VUEM%0a4X2hFiXA1QK7lTBtlkpkqg==%0a
+
+01/31/2014 05:39:16 [27980] starting pppd
+01/31/2014 05:39:16 [27980] use tty:/dev/pts/4
+01/31/2014 05:39:16 [27980] connecting to server
+01/31/2014 05:39:16 [27980] tunnel running...
+01/31/2014 05:39:16 [27980] interface up
+01/31/2014 05:39:16 [27991] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.9
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.9 server route 
+route -n add default gw 192.168.214.9
+01/31/2014 06:25:28 [27955] rcv cmd:2 at state[1]
+01/31/2014 06:25:28 [27955] stopping ssl vpn tunnel[v4.0.2010]
+01/31/2014 06:25:28 [27955] kill_child:27980
+01/31/2014 06:25:28 [27955] kill_child:27979
+01/31/2014 06:25:28 [27980] killing session timer...
+01/31/2014 06:25:28 [27979] signal rcved, logout now
+01/31/2014 06:25:28 [27980] kill_child:27984
+01/31/2014 06:25:28 [27980] kill_child:27991
+01/31/2014 06:25:28 [27955] tunnel terminated
+01/31/2014 06:25:28 [666] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+01/31/2014 06:25:28 [27955] ssl vpn tunnel stopped
+01/31/2014 06:25:29 [27955] snd cmd error: Broken pipe
+01/31/2014 06:25:29 [27955] snd cmd error: Broken pipe
+01/31/2014 06:25:29 [27955] forticlient ssl vpn[4.0.2010] stopped
+02/11/2014 23:31:38 [4086] set the loglevel to 1
+02/11/2014 23:31:38 [4086] forticlientsslvpn control daemon version:4.0.2010 started
+02/11/2014 23:31:40 [4086] rcv cmd:0 at state[0]
+02/11/2014 23:31:40 [4086] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+02/11/2014 23:31:41 [4086] ssl vpn tunnel started
+02/11/2014 23:31:41 [4110] set loglevel to 1
+02/11/2014 23:31:44 [4110] no SVPNCOOKIE found
+02/11/2014 23:31:44 [4111] rcv notice:1|Insufficient credential(s). Please check the password, client certificate, etc.
+02/11/2014 23:31:45 [4086] tunnel terminated
+02/11/2014 23:31:45 [4086] tunnel down unexpected
+02/11/2014 23:31:45 [4086] kill_child:4110
+02/11/2014 23:31:45 [4126] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/11/2014 23:31:47 [4086] select: Interrupted system call
+02/11/2014 23:31:48 [4086] rcv cmd:2 at state[0]
+02/11/2014 23:31:48 [4086] forticlient ssl vpn[4.0.2010] stopped
+02/20/2014 03:19:37 [15031] set the loglevel to 1
+02/20/2014 03:19:37 [15031] forticlientsslvpn control daemon version:4.0.2010 started
+02/20/2014 03:19:39 [15031] rcv cmd:0 at state[0]
+02/20/2014 03:19:39 [15031] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+02/20/2014 03:19:40 [15031] ssl vpn tunnel started
+02/20/2014 03:19:40 [15031] rcv cmd:0 at state[1]
+02/20/2014 03:19:40 [15031] stopping ssl vpn tunnel[v4.0.2010]
+02/20/2014 03:19:40 [15031] kill_child:15053
+02/20/2014 03:19:40 [15031] kill_child:15052
+02/20/2014 03:19:40 [15053] killing session timer...
+02/20/2014 03:19:40 [15053] kill_child:-1
+02/20/2014 03:19:40 [15053] kill_child:-1
+02/20/2014 03:19:40 [15054] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+02/20/2014 03:19:40 [15031] tunnel terminated
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/20/2014 03:19:40 [15031] ssl vpn tunnel stopped
+02/20/2014 03:19:52 [15031] rcv cmd:0 at state[0]
+02/20/2014 03:19:53 [15031] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+02/20/2014 03:20:00 [15031] ssl vpn tunnel started
+02/20/2014 03:20:01 [15150] set loglevel to 1
+02/20/2014 03:20:02 [15150] no SVPNCOOKIE found
+02/20/2014 03:20:03 [15151] rcv notice:1|Insufficient credential(s). Please check the password, client certificate, etc.
+02/20/2014 03:20:04 [15031] tunnel terminated
+02/20/2014 03:20:04 [15031] tunnel down unexpected
+02/20/2014 03:20:04 [15031] kill_child:15150
+02/20/2014 03:20:04 [15157] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/20/2014 03:20:05 [15031] select: Interrupted system call
+02/20/2014 03:20:14 [15031] rcv cmd:0 at state[0]
+02/20/2014 03:20:14 [15031] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+02/20/2014 03:20:14 [15031] ssl vpn tunnel started
+02/20/2014 03:20:14 [15188] set loglevel to 1
+02/20/2014 03:20:20 [15188] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0agu2o9ZXKFQoZfTDAW21pH71AhTYjp+kfjPso0hFNvRNWfcyXVUXrmK8PZ12FfSnk%0agItZqBWhc1vFVjrKJI3XGA==%0a
+02/20/2014 03:20:20 [15189] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0agu2o9ZXKFQoZfTDAW21pH71AhTYjp+kfjPso0hFNvRNWfcyXVUXrmK8PZ12FfSnk%0agItZqBWhc1vFVjrKJI3XGA==%0a
+
+02/20/2014 03:20:20 [15189] starting pppd
+02/20/2014 03:20:21 [15189] use tty:/dev/pts/4
+02/20/2014 03:20:21 [15189] connecting to server
+02/20/2014 03:20:21 [15189] tunnel running...
+02/20/2014 03:20:24 [15189] interface up
+02/20/2014 03:20:24 [15217] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.4
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.4 server route 
+route -n add default gw 192.168.214.4
+02/20/2014 03:31:33 [15031] rcv cmd:0 at state[1]
+02/20/2014 03:31:33 [15031] stopping ssl vpn tunnel[v4.0.2010]
+02/20/2014 03:31:33 [15031] kill_child:15189
+02/20/2014 03:31:33 [15031] kill_child:15188
+02/20/2014 03:31:33 [15189] killing session timer...
+02/20/2014 03:31:33 [15189] kill_child:15201
+02/20/2014 03:31:33 [15189] kill_child:15217
+02/20/2014 03:31:33 [15188] signal rcved, logout now
+02/20/2014 03:31:33 [16232] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+02/20/2014 03:31:33 [15031] tunnel terminated
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/20/2014 03:31:33 [15031] ssl vpn tunnel stopped
+02/20/2014 03:31:37 [15031] rcv cmd:2 at state[0]
+02/20/2014 03:31:37 [15031] forticlient ssl vpn[4.0.2010] stopped
+02/21/2014 03:13:33 [14632] set the loglevel to 1
+02/21/2014 03:13:33 [14632] forticlientsslvpn control daemon version:4.0.2010 started
+02/21/2014 03:13:35 [14632] rcv cmd:0 at state[0]
+02/21/2014 03:13:35 [14632] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+02/21/2014 03:13:36 [14632] ssl vpn tunnel started
+02/21/2014 03:13:36 [14654] set loglevel to 1
+02/21/2014 03:13:36 [14654] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aIl7KrUgfdYvQ6VkSHKLq/c2jiUDZ2sAIdLpZ4NmCfJYbNonp/eFrg7Gq0wsJvncZ%0ajIP+tNzDRC5gUYieK7olXg==%0a
+02/21/2014 03:13:36 [14655] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aIl7KrUgfdYvQ6VkSHKLq/c2jiUDZ2sAIdLpZ4NmCfJYbNonp/eFrg7Gq0wsJvncZ%0ajIP+tNzDRC5gUYieK7olXg==%0a
+
+02/21/2014 03:13:36 [14655] starting pppd
+02/21/2014 03:13:36 [14655] use tty:/dev/pts/4
+02/21/2014 03:13:36 [14655] connecting to server
+02/21/2014 03:13:37 [14655] tunnel running...
+02/21/2014 03:13:37 [14655] interface up
+02/21/2014 03:13:37 [14678] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.7
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.7 server route 
+route -n add default gw 192.168.214.7
+02/21/2014 03:16:43 [14655] read error from tty[]
+02/21/2014 03:16:43 [14655] rcv frame from tty fail
+02/21/2014 03:16:43 [14655] io finished, kill pppd
+02/21/2014 03:16:43 [14655] kill_child:14659
+02/21/2014 03:16:43 [14655] tunnel finished, killing session
+02/21/2014 03:16:43 [14655] killing session timer...
+02/21/2014 03:16:43 [14655] kill_child:-1
+02/21/2014 03:16:43 [14655] kill_child:14678
+02/21/2014 03:16:43 [14632] tunnel terminated
+02/21/2014 03:16:43 [14632] tunnel down unexpected
+02/21/2014 03:16:43 [14632] kill_child:14654
+02/21/2014 03:16:43 [15006] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/21/2014 03:16:45 [14632] select: Interrupted system call
+02/21/2014 03:18:28 [14654] signal rcved, logout now
+02/21/2014 03:18:28 [14632] select: Interrupted system call
+02/21/2014 03:19:05 [14632] rcv cmd:2 at state[0]
+02/21/2014 03:19:05 [14632] forticlient ssl vpn[4.0.2010] stopped
+02/21/2014 03:19:08 [15232] set the loglevel to 1
+02/21/2014 03:19:08 [15232] forticlientsslvpn control daemon version:4.0.2010 started
+02/21/2014 03:19:10 [15232] rcv cmd:0 at state[0]
+02/21/2014 03:19:10 [15232] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+02/21/2014 03:19:10 [15232] ssl vpn tunnel started
+02/21/2014 03:19:10 [15253] set loglevel to 1
+02/21/2014 03:19:11 [15253] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aIl7KrUgfdYvQ6VkSHKLq/cOutfGDVcaJ/Dj/pXWfdzaz/IoJhvGQnvhdeM/j/qJW%0aQWAbiuEI0vEaTcS51tzCVQ==%0a
+02/21/2014 03:19:11 [15254] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aIl7KrUgfdYvQ6VkSHKLq/cOutfGDVcaJ/Dj/pXWfdzaz/IoJhvGQnvhdeM/j/qJW%0aQWAbiuEI0vEaTcS51tzCVQ==%0a
+
+02/21/2014 03:19:11 [15254] starting pppd
+02/21/2014 03:19:11 [15254] use tty:/dev/pts/4
+02/21/2014 03:19:11 [15254] connecting to server
+02/21/2014 03:19:11 [15254] tunnel running...
+02/21/2014 03:19:11 [15254] interface up
+02/21/2014 03:19:11 [15265] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.7
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.7 server route 
+route -n add default gw 192.168.214.7
+02/21/2014 03:19:31 [15232] rcv cmd:0 at state[1]
+02/21/2014 03:19:31 [15232] stopping ssl vpn tunnel[v4.0.2010]
+02/21/2014 03:19:31 [15232] kill_child:15254
+02/21/2014 03:19:31 [15232] kill_child:15253
+02/21/2014 03:19:31 [15254] killing session timer...
+02/21/2014 03:19:31 [15254] kill_child:15258
+02/21/2014 03:19:31 [15254] kill_child:15265
+02/21/2014 03:19:31 [15232] tunnel terminated
+02/21/2014 03:19:31 [15365] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/21/2014 03:19:31 [15232] ssl vpn tunnel stopped
+02/21/2014 03:19:35 [15253] signal rcved, logout now
+02/21/2014 03:19:35 [15232] select: Interrupted system call
+02/21/2014 03:19:47 [15232] rcv cmd:0 at state[0]
+02/21/2014 03:19:47 [15232] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+02/21/2014 03:19:47 [15232] ssl vpn tunnel started
+02/21/2014 03:19:47 [15427] set loglevel to 1
+02/21/2014 03:19:48 [15427] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aIl7KrUgfdYvQ6VkSHKLq/a310ufNxq5DgyAVd5w7r1WhYOZO75Hve4Sjs/0eXGaL%0a/oIOQ0FaqmSPxGeFlSV0Ww==%0a
+02/21/2014 03:19:48 [15428] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aIl7KrUgfdYvQ6VkSHKLq/a310ufNxq5DgyAVd5w7r1WhYOZO75Hve4Sjs/0eXGaL%0a/oIOQ0FaqmSPxGeFlSV0Ww==%0a
+
+02/21/2014 03:19:48 [15428] starting pppd
+02/21/2014 03:19:48 [15428] use tty:/dev/pts/4
+02/21/2014 03:19:48 [15428] connecting to server
+02/21/2014 03:19:48 [15428] tunnel running...
+02/21/2014 03:19:48 [15428] interface up
+02/21/2014 03:19:48 [15442] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.7
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.7 server route 
+route -n add default gw 192.168.214.7
+02/21/2014 03:23:13 [15232] rcv cmd:0 at state[1]
+02/21/2014 03:23:13 [15232] stopping ssl vpn tunnel[v4.0.2010]
+02/21/2014 03:23:13 [15232] kill_child:15428
+02/21/2014 03:23:13 [15232] kill_child:15427
+02/21/2014 03:23:13 [15428] killing session timer...
+02/21/2014 03:23:13 [15428] kill_child:15432
+02/21/2014 03:23:13 [15428] kill_child:15442
+02/21/2014 03:23:13 [15708] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+02/21/2014 03:23:13 [15427] signal rcved, logout now
+02/21/2014 03:23:13 [15232] tunnel terminated
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/21/2014 03:23:14 [15232] ssl vpn tunnel stopped
+02/21/2014 03:23:20 [15232] rcv cmd:2 at state[0]
+02/21/2014 03:23:20 [15232] forticlient ssl vpn[4.0.2010] stopped
+02/27/2014 03:17:57 [15836] set the loglevel to 1
+02/27/2014 03:17:57 [15836] forticlientsslvpn control daemon version:4.0.2010 started
+02/27/2014 03:17:59 [15836] rcv cmd:0 at state[0]
+02/27/2014 03:17:59 [15836] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+02/27/2014 03:17:59 [15836] ssl vpn tunnel started
+02/27/2014 03:17:59 [15857] set loglevel to 1
+02/27/2014 03:18:01 [15857] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aKxj6ScAfXfTy01QWnIH8UCN0/ru3cVViiI7fmPBs8l8P7nugt8yP+ztCyKA+CFRK%0awtB5WIdohhqhBbA59P7ZSw==%0a
+02/27/2014 03:18:01 [15858] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aKxj6ScAfXfTy01QWnIH8UCN0/ru3cVViiI7fmPBs8l8P7nugt8yP+ztCyKA+CFRK%0awtB5WIdohhqhBbA59P7ZSw==%0a
+
+02/27/2014 03:18:01 [15858] starting pppd
+02/27/2014 03:18:01 [15858] use tty:/dev/pts/4
+02/27/2014 03:18:02 [15858] connecting to server
+02/27/2014 03:18:03 [15858] tunnel running...
+02/27/2014 03:18:05 [15858] interface up
+02/27/2014 03:18:05 [15881] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.1
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.1 server route 
+route -n add default gw 192.168.214.1
+02/27/2014 03:22:50 [15836] rcv cmd:0 at state[1]
+02/27/2014 03:22:50 [15836] stopping ssl vpn tunnel[v4.0.2010]
+02/27/2014 03:22:50 [15836] kill_child:15858
+02/27/2014 03:22:50 [15836] kill_child:15857
+02/27/2014 03:22:50 [15858] killing session timer...
+02/27/2014 03:22:50 [15857] signal rcved, logout now
+02/27/2014 03:22:50 [15858] kill_child:15865
+02/27/2014 03:22:50 [15858] kill_child:15881
+02/27/2014 03:22:50 [16443] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+02/27/2014 03:22:50 [15836] tunnel terminated
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/27/2014 03:22:50 [15836] ssl vpn tunnel stopped
+02/27/2014 03:22:51 [15836] snd cmd error: Broken pipe
+02/27/2014 03:22:51 [15836] snd cmd error: Broken pipe
+02/27/2014 03:22:51 [15836] rcv cmd:2 at state[0]
+02/27/2014 03:22:51 [15836] forticlient ssl vpn[4.0.2010] stopped
+02/28/2014 03:14:06 [14411] set the loglevel to 1
+02/28/2014 03:14:06 [14411] forticlientsslvpn control daemon version:4.0.2010 started
+02/28/2014 03:14:08 [14411] rcv cmd:0 at state[0]
+02/28/2014 03:14:08 [14411] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+02/28/2014 03:14:08 [14411] ssl vpn tunnel started
+02/28/2014 03:14:08 [14432] set loglevel to 1
+02/28/2014 03:14:09 [14432] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0amFU2X8RxTNylJPLqUALF586Pd5bHSoqhrNEke+DuFixpurlDCxietZKrsJQ6QkVm%0a/7BgoOalws/abmkuoPVHfw==%0a
+02/28/2014 03:14:09 [14433] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0amFU2X8RxTNylJPLqUALF586Pd5bHSoqhrNEke+DuFixpurlDCxietZKrsJQ6QkVm%0a/7BgoOalws/abmkuoPVHfw==%0a
+
+02/28/2014 03:14:09 [14433] starting pppd
+02/28/2014 03:14:09 [14433] use tty:/dev/pts/4
+02/28/2014 03:14:09 [14433] connecting to server
+02/28/2014 03:14:09 [14433] tunnel running...
+02/28/2014 03:14:10 [14433] interface up
+02/28/2014 03:14:10 [14452] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.9
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.9 server route 
+route -n add default gw 192.168.214.9
+02/28/2014 03:17:16 [14433] read error from tty[]
+02/28/2014 03:17:16 [14433] rcv frame from tty fail
+02/28/2014 03:17:16 [14433] io finished, kill pppd
+02/28/2014 03:17:16 [14433] kill_child:14437
+02/28/2014 03:17:16 [14433] tunnel finished, killing session
+02/28/2014 03:17:16 [14433] killing session timer...
+02/28/2014 03:17:16 [14433] kill_child:-1
+02/28/2014 03:17:16 [14433] kill_child:14452
+02/28/2014 03:17:16 [14411] tunnel terminated
+02/28/2014 03:17:16 [14411] tunnel down unexpected
+02/28/2014 03:17:16 [14411] kill_child:14432
+02/28/2014 03:17:16 [14432] signal rcved, logout now
+02/28/2014 03:17:16 [14806] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/28/2014 03:17:17 [14411] select: Interrupted system call
+02/28/2014 03:17:59 [14411] rcv cmd:2 at state[0]
+02/28/2014 03:17:59 [14411] forticlient ssl vpn[4.0.2010] stopped
+02/28/2014 03:18:04 [14864] set the loglevel to 1
+02/28/2014 03:18:04 [14864] forticlientsslvpn control daemon version:4.0.2010 started
+02/28/2014 03:18:06 [14864] rcv cmd:0 at state[0]
+02/28/2014 03:18:06 [14864] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+02/28/2014 03:18:06 [14864] ssl vpn tunnel started
+02/28/2014 03:18:06 [14885] set loglevel to 1
+02/28/2014 03:18:06 [14885] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aHaeM5dHbG8Lc1FxS14X8RM9oZZlM42Asy4lg8wubdSmu+bjhuaftdqwDa7L+re01%0aMz4XsViEYUZhDOXn6ipuIA==%0a
+02/28/2014 03:18:06 [14886] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aHaeM5dHbG8Lc1FxS14X8RM9oZZlM42Asy4lg8wubdSmu+bjhuaftdqwDa7L+re01%0aMz4XsViEYUZhDOXn6ipuIA==%0a
+
+02/28/2014 03:18:06 [14886] starting pppd
+02/28/2014 03:18:06 [14886] use tty:/dev/pts/4
+02/28/2014 03:18:06 [14886] connecting to server
+02/28/2014 03:18:06 [14864] rcv cmd:0 at state[1]
+02/28/2014 03:18:06 [14864] stopping ssl vpn tunnel[v4.0.2010]
+02/28/2014 03:18:06 [14864] kill_child:14886
+02/28/2014 03:18:06 [14864] kill_child:14885
+02/28/2014 03:18:06 [14886] killing session timer...
+02/28/2014 03:18:06 [14886] kill_child:14893
+02/28/2014 03:18:06 [14886] kill_child:-1
+02/28/2014 03:18:06 [14885] signal rcved, logout now
+02/28/2014 03:18:06 [14864] tunnel terminated
+02/28/2014 03:18:06 [14896] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/28/2014 03:18:06 [14864] ssl vpn tunnel stopped
+02/28/2014 03:18:10 [14864] rcv cmd:0 at state[0]
+02/28/2014 03:18:10 [14864] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+02/28/2014 03:18:10 [14864] ssl vpn tunnel started
+02/28/2014 03:18:10 [14923] set loglevel to 1
+02/28/2014 03:18:10 [14923] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aHaeM5dHbG8Lc1FxS14X8RHP8AtB5i8Nrs9XighISIn0YUSC0HKHWQVB+A9bj1HZQ%0a/UhVfFSQ1RH+RKTGZ7lFHg==%0a
+02/28/2014 03:18:10 [14924] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aHaeM5dHbG8Lc1FxS14X8RHP8AtB5i8Nrs9XighISIn0YUSC0HKHWQVB+A9bj1HZQ%0a/UhVfFSQ1RH+RKTGZ7lFHg==%0a
+
+02/28/2014 03:18:10 [14924] starting pppd
+02/28/2014 03:18:10 [14924] use tty:/dev/pts/4
+02/28/2014 03:18:10 [14924] connecting to server
+02/28/2014 03:18:11 [14924] tunnel running...
+02/28/2014 03:18:11 [14924] interface up
+02/28/2014 03:18:11 [14938] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.8
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.8 server route 
+route -n add default gw 192.168.214.8
+02/28/2014 03:27:06 [14864] rcv cmd:0 at state[1]
+02/28/2014 03:27:06 [14864] stopping ssl vpn tunnel[v4.0.2010]
+02/28/2014 03:27:06 [14864] kill_child:14924
+02/28/2014 03:27:06 [14864] kill_child:14923
+02/28/2014 03:27:06 [14924] killing session timer...
+02/28/2014 03:27:06 [14924] kill_child:14928
+02/28/2014 03:27:06 [14924] kill_child:14938
+02/28/2014 03:27:06 [14923] signal rcved, logout now
+02/28/2014 03:27:06 [15511] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+02/28/2014 03:27:06 [14864] tunnel terminated
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+02/28/2014 03:27:06 [14864] ssl vpn tunnel stopped
+02/28/2014 03:27:07 [14864] snd cmd error: Broken pipe
+02/28/2014 03:27:07 [14864] snd cmd error: Broken pipe
+02/28/2014 03:27:07 [14864] rcv cmd:2 at state[0]
+02/28/2014 03:27:07 [14864] forticlient ssl vpn[4.0.2010] stopped
+03/02/2014 01:32:19 [2891] set the loglevel to 1
+03/02/2014 01:32:20 [2891] forticlientsslvpn control daemon version:4.0.2010 started
+03/02/2014 01:32:21 [2891] rcv cmd:0 at state[0]
+03/02/2014 01:32:21 [2891] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+03/02/2014 01:32:23 [2891] ssl vpn tunnel started
+03/02/2014 01:32:24 [2922] set loglevel to 1
+03/02/2014 01:32:25 [2922] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aHaeM5dHbG8Lc1FxS14X8RIgA6P/5Iis4hxIwXX1Y8pylefOkpw6AFhYRPOXhkkYj%0atGAIRio29mO/494Z5Q7gow==%0a
+03/02/2014 01:32:25 [2923] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aHaeM5dHbG8Lc1FxS14X8RIgA6P/5Iis4hxIwXX1Y8pylefOkpw6AFhYRPOXhkkYj%0atGAIRio29mO/494Z5Q7gow==%0a
+
+03/02/2014 01:32:25 [2923] starting pppd
+03/02/2014 01:32:25 [2923] use tty:/dev/pts/4
+03/02/2014 01:32:26 [2923] connecting to server
+03/02/2014 01:32:26 [2923] tunnel running...
+03/02/2014 01:32:27 [2923] interface up
+03/02/2014 01:32:27 [2948] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.9
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.9 server route 
+route -n add default gw 192.168.214.9
+03/02/2014 01:35:33 [2923] read error from tty[]
+03/02/2014 01:35:33 [2923] rcv frame from tty fail
+03/02/2014 01:35:33 [2923] io finished, kill pppd
+03/02/2014 01:35:33 [2923] kill_child:2928
+03/02/2014 01:35:33 [2923] tunnel finished, killing session
+03/02/2014 01:35:33 [2923] killing session timer...
+03/02/2014 01:35:33 [2923] kill_child:-1
+03/02/2014 01:35:33 [2923] kill_child:2948
+03/02/2014 01:35:33 [2891] tunnel terminated
+03/02/2014 01:35:33 [2891] tunnel down unexpected
+03/02/2014 01:35:33 [2891] kill_child:2922
+03/02/2014 01:35:33 [3535] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+03/02/2014 01:35:34 [2891] select: Interrupted system call
+03/02/2014 01:35:52 [2891] rcv command from client: Interrupted system call
+03/02/2014 01:35:52 [2891] Prentend to rcv exit cmd
+03/02/2014 01:35:52 [2891] rcv cmd:2 at state[0]
+03/02/2014 01:35:52 [2891] forticlient ssl vpn[4.0.2010] stopped
+03/02/2014 01:35:54 [3770] set the loglevel to 1
+03/02/2014 01:35:54 [3770] forticlientsslvpn control daemon version:4.0.2010 started
+03/02/2014 01:35:56 [3770] rcv cmd:0 at state[0]
+03/02/2014 01:35:56 [3770] starting ssl vpn tunnel[v4.0.2010]
+gateway for 1.1.1.1:71.148.45.174 for 69.212.152.140:71.148.45.174
+if has single route record for 1.1.1.1:0 for 69.212.152.140:0
+03/02/2014 01:35:56 [3770] ssl vpn tunnel started
+03/02/2014 01:35:56 [3805] set loglevel to 1
+03/02/2014 01:35:56 [3805] 0|ChiSSL.BellHowell.net|443|1||qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aOBP3pUypfozknu9xx8BfR8BQQnIQ6SrcA1504jfA0q7+B8Tn51JXmu8YLQsYVkx4%0aoFFHFFK8j7txfY2y0BZi9A==%0a
+03/02/2014 01:35:56 [3806] server=ChiSSL.BellHowell.net port=443 version=1 tunnel= cookie=qHDCO2sQ3UdSAOyMyvkrxiJo3oXBBdmyE8lrY1jFg9qf9ONrRHXz6Ty4ZaaWBaxB%0a3eZtpmhE9HTjJcQgFzE3tSBHvEBF40Yxw8dsDE/hyU2eW0SZ+hyHb/cNnTUKzr8s%0aOBP3pUypfozknu9xx8BfR8BQQnIQ6SrcA1504jfA0q7+B8Tn51JXmu8YLQsYVkx4%0aoFFHFFK8j7txfY2y0BZi9A==%0a
+
+03/02/2014 01:35:56 [3806] starting pppd
+03/02/2014 01:35:56 [3806] use tty:/dev/pts/4
+03/02/2014 01:35:56 [3806] connecting to server
+03/02/2014 01:35:57 [3806] tunnel running...
+03/02/2014 01:35:57 [3806] interface up
+03/02/2014 01:35:57 [3819] execl //home/wimac/bin/forticlientsslvpn//helper//sysconfig.linux.sh ChiSSL.BellHowell.net 0...
+begin sysconfig linux
+Generating pppd.resolv.conf...Done
+nameserver	192.168.201.11
+nameserver	192.168.201.10
+server route 
+interface ppp0
+address 192.168.214.10
+delete route 1.1.1.1
+Add route for ChiSSL.BellHowell.net(71.148.45.174)
+router 192.168.214.10 server route 
+route -n add default gw 192.168.214.10
+03/02/2014 01:37:21 [2922] signal rcved, logout now
+03/02/2014 01:48:17 [3770] rcv cmd:0 at state[1]
+03/02/2014 01:48:17 [3770] stopping ssl vpn tunnel[v4.0.2010]
+03/02/2014 01:48:17 [3770] kill_child:3806
+03/02/2014 01:48:17 [3770] kill_child:3805
+03/02/2014 01:48:17 [3806] killing session timer...
+03/02/2014 01:48:17 [3806] kill_child:3810
+03/02/2014 01:48:17 [3806] kill_child:3819
+03/02/2014 01:48:17 [3805] signal rcved, logout now
+03/02/2014 01:48:17 [3770] tunnel terminated
+03/02/2014 01:48:17 [4646] execl //home/wimac/bin/forticlientsslvpn//helper//cleanup.linux.sh ...
+begin cleanup linux...
+restore /etc/resolv.conf
+clean up route...
+truncate pppd.log
+truncate forticlientsslvpn.log
+03/02/2014 01:48:17 [3770] ssl vpn tunnel stopped
+03/02/2014 02:09:25 [3770] rcv cmd:2 at state[0]
+03/02/2014 02:09:25 [3770] forticlient ssl vpn[4.0.2010] stopped

@@ -1,0 +1,136 @@
+#!/bin/bash
+# Script to backup the /etc heirarchy
+#
+# Written 4/2002 by Wayne Pollock, Tampa Florida USA
+#
+#  $Id: backup-etc,v 1.6 2004/08/25 01:42:26 wpollock Exp $
+#
+# $Log: backup-etc,v $
+# Revision 1.6  2004/08/25 01:42:26  wpollock
+# Changed backup name to include the hostname and 4 digit years.
+#
+# Revision 1.5  2004/01/07 18:07:33  wpollock
+# Fixed dots routine to count files first, then calculate files per dot.
+#
+# Revision 1.4  2003/04/03 08:10:12  wpollock
+# Changed how the version number is obtained, so the file
+# can be checked out normally.
+#
+# Revision 1.3  2003/04/03 08:01:25  wpollock
+# Added ultra-fancy dots function for verbose mode.
+#
+# Revision 1.2  2003/04/01 15:03:33  wpollock
+# Eliminated the use of find, and discovered that tar was working
+# as intended all along!  (Each directory that find found was
+# recursively backed-up, so for example /etc, then /etc/mail,
+# caused /etc/mail/sendmail.mc to be backuped three times.)
+#
+# Revision 1.1  2003/03/23 18:57:29  wpollock
+# Modified by Wayne Pollock:
+#
+# Discovered not all files were being backed up, so
+# added "-print0 --force-local" to find and "--null -T -"
+# to tar (eliminating xargs), to fix the problem when filenames
+# contain metacharacters such as whitespace.
+# Although this now seems to work, the current version of tar
+# seems to have a bug causing it to backup every file two or
+# three times when using these options!  This is still better
+# than not backing up some files at all.)
+#
+# Changed the logger level from "warning" to "error".
+#
+# Added '-v, --verbose' options to display dots every 60 files,
+# just to give feedback to a user.
+#
+# Added '-V, --version' and '-h, --help' options.
+#
+# Removed the lock file mechanism and backup file renaming
+# (from foo to foo.1), in favor of just including a time-stamp
+# of the form "yymmdd-hhmm" to the filename.
+#
+#
+
+PATH=/bin:/usr/bin
+
+# The backups should probably be stored in /var somplace:
+REPOSITORY=/root
+TIMESTAMP=$(date '+%Y%m%d-%H%M')
+HOSTNAME=$(hostname)
+FILE="$REPOSITORY/$HOSTNAME-etc-full-backup-$TIMESTAMP.tgz"
+
+ERRMSGS=/tmp/backup-etc.$$
+PROG=${0##*/}
+VERSION=$(echo $Revision: 1.6 $ |awk '{print$2}')
+VERBOSE=off
+
+usage()
+{  echo "This script creates a full backup of /etc via tar in $REPOSITORY."
+   echo "Usage: $PROG [OPTIONS]"
+   echo '  Options:'
+   echo '    -v, --verbose   displays some feedback (dots) during backup'
+   echo '    -h, --help      displays this message'
+   echo '    -V, --version   display program version and author info'
+   echo
+}
+
+dots()
+{  MAX_DOTS=50
+   NUM_FILES=`find /etc|wc -l`
+   let 'FILES_PER_DOT = NUM_FILES / MAX_DOTS'
+   bold=`tput smso`
+   norm=`tput rmso`
+   tput sc
+   tput civis
+   echo -n "$bold(00%)$norm"
+   while read; do
+      let "cnt = (cnt + 1) % FILES_PER_DOT"
+      if [ "$cnt" -eq 0 ]
+      then
+	 let '++num_dots'
+	 let 'percent = (100 * num_dots) / MAX_DOTS'
+	 [ "$percent" -gt "100" ] && percent=100
+	 tput rc
+         printf "$bold(%02d%%)$norm" "$percent"
+	 tput smir
+	 echo -n "."
+	 tput rmir
+      fi
+   done
+   tput cnorm
+   echo
+}
+
+# Command line argument processing:
+while [ $# -gt 0 ]
+do
+   case "$1" in
+      -v|--verbose)  VERBOSE=on; ;;
+      -h|--help)     usage; exit 0; ;;
+      -V|--version)  echo -n "$PROG version $VERSION "
+                     echo 'Written by Wayne Pollock <pollock@acm.org>'
+		     exit 0; ;;
+      *)             usage; exit 1; ;;
+   esac
+   shift
+done
+
+trap "rm -f $ERRMSGS" EXIT
+
+cd /etc
+
+# create backup, saving any error messages:
+if [ "$VERBOSE" != "on" ]
+then
+    tar -cz --force-local -f $FILE . 2> $ERRMSGS 
+else
+    tar -czv --force-local -f $FILE . 2> $ERRMSGS | dots
+fi
+
+# Log any error messages produced:
+if [ -s "$ERRMSGS" ]
+then logger -p user.error -t $PROG "$(cat $ERRMSGS)"
+else logger -t $PROG "Completed full backup of /etc"
+fi
+
+exit 0
+

@@ -1,0 +1,3 @@
+#!/bin/bash
+sudo mtpfs -o allow_other /media/nexus7
+echo '--[mounted Nexus 7]--'

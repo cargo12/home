@@ -1,0 +1,5 @@
+#!/bin/bash 
+SITE="http://www.crh.noaa.gov/forecast/MapClick.php?CityName=Ballwin&state=MO&site=LSX"
+#lynx -dump "$SITE"
+lynx -dump "$SITE" | sed -n '/Spirit Of St. Louis Airport/,/Visibility/p'
+                   

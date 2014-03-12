@@ -1,0 +1,8 @@
+#!/bin/bash
+
+encoder=/usr/bin/mencoder
+infile=$1
+
+if [ -f $encoder ]; then 
+mencoder infile -oac mp3lame -ovc copy -o ${infile%.*}.avi
+fi

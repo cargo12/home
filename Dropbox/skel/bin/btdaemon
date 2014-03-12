@@ -1,0 +1,6 @@
+#!/bin/sh
+cd
+nohup btlaunchmany ~/torrent/active/ > torrent.log &
+tail -f torrent.log
+
+

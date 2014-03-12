@@ -1,0 +1,151 @@
+<project>
+    <shortName>ted</shortName>
+    <fullName>Torrent Episode Downloader</fullName>
+    <version>0.972</version>
+    <readmeFile>README.txt</readmeFile>
+    <disableSplashScreen>1</disableSplashScreen>
+    <enableRollback>1</enableRollback>
+    <enableTimestamp>1</enableTimestamp>
+    <saveRelativePaths>1</saveRelativePaths>
+    <vendor>Roel and Joost</vendor>
+    <componentList>
+        <component>
+            <name>default</name>
+            <description>Default Component</description>
+            <canBeEdited>1</canBeEdited>
+            <selected>1</selected>
+            <show>1</show>
+            <folderList>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${installdir}</destination>
+                    <name>programfiles</name>
+                    <platforms>all</platforms>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>CHANGELOG.txt</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>forms-1.1.0.jar</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>README.txt</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>ted.jar</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>JDIC-0.8.4.jar</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>jdom-1.0.jar</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>rome-1.0RC2.jar</origin>
+                        </distributionFile>
+                    </distributionFileList>
+                    <shortcutList>
+                        <shortcut>
+                            <comment>Uninstall</comment>
+                            <exec>${installdir}/${uninstallerName}</exec>
+                            <icon></icon>
+                            <name>Uninstall ${product_fullname}</name>
+                            <path>${installdir}</path>
+                            <platforms>all</platforms>
+                            <runInTerminal>0</runInTerminal>
+                            <windowsExec>${installdir}/${uninstallerName}.exe</windowsExec>
+                            <windowsExecArgs></windowsExecArgs>
+                            <windowsIcon></windowsIcon>
+                            <windowsPath>${installdir}</windowsPath>
+                        </shortcut>
+                    </shortcutList>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${installdir}</destination>
+                    <name>programfileslinux</name>
+                    <platforms>linux</platforms>
+                    <distributionFileList>
+                        <distributionDirectory>
+                            <origin>linux</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
+                </folder>
+                <folder>
+                    <description>Program Files</description>
+                    <destination>${installdir}</destination>
+                    <name>programfileswindows</name>
+                    <platforms>windows</platforms>
+                    <distributionFileList>
+                        <distributionFile>
+                            <origin>ted.exe</origin>
+                        </distributionFile>
+                        <distributionFile>
+                            <origin>winicon.ico</origin>
+                        </distributionFile>
+                        <distributionDirectory>
+                            <origin>windows</origin>
+                        </distributionDirectory>
+                    </distributionFileList>
+                </folder>
+            </folderList>
+            <startMenuShortcutList>
+                <startMenuShortcut>
+                    <comment>Uninstall ${product_fullname}</comment>
+                    <name>Uninstall ${product_fullname}</name>
+                    <runInTerminal>0</runInTerminal>
+                    <windowsExec>${installdir}/${uninstallerName}.exe</windowsExec>
+                    <windowsExecArgs></windowsExecArgs>
+                    <windowsIcon></windowsIcon>
+                    <windowsPath>${installdir}/</windowsPath>
+                </startMenuShortcut>
+                <startMenuShortcut>
+                    <comment>Torrent Episode Downloader</comment>
+                    <name>ted</name>
+                    <runInTerminal>0</runInTerminal>
+                    <windowsExec>${platform_install_prefix}/${product_fullname}/ted.exe</windowsExec>
+                    <windowsExecArgs></windowsExecArgs>
+                    <windowsIcon>${platform_install_prefix}/${product_fullname}/tedv0972/tedv0972/winicon.ico</windowsIcon>
+                    <windowsPath>${platform_install_prefix}/${product_fullname}</windowsPath>
+                </startMenuShortcut>
+                <startMenuLinkShortcut>
+                    <comment>Open online help for ted</comment>
+                    <name>Help</name>
+                    <runInTerminal>0</runInTerminal>
+                    <url>http://www.ted.nu/wiki/</url>
+                    <windowsIcon></windowsIcon>
+                </startMenuLinkShortcut>
+                <startMenuLinkShortcut>
+                    <comment>Open the support forum of ted</comment>
+                    <name>Support Forum</name>
+                    <runInTerminal>0</runInTerminal>
+                    <url>http://www.ted.nu/forum/</url>
+                    <windowsIcon></windowsIcon>
+                </startMenuLinkShortcut>
+            </startMenuShortcutList>
+        </component>
+    </componentList>
+    <finalPageActionList>
+        <runProgram>
+            <program>${installdir}/ted.exe</program>
+            <programArguments></programArguments>
+            <progressText>Launch ${product_fullname} now?</progressText>
+        </runProgram>
+    </finalPageActionList>
+    <parameterList>
+        <directoryParameter>
+            <name>installdir</name>
+            <description>Installer.Parameter.installdir.description</description>
+            <explanation>Installer.Parameter.installdir.explanation</explanation>
+            <value>${platform_install_prefix}/${product_fullname}</value>
+            <default>${platform_install_prefix}/${product_shortname}-${product_version}</default>
+            <allowEmptyValue>0</allowEmptyValue>
+            <ask>yes</ask>
+            <cliOptionName>prefix</cliOptionName>
+            <mustBeWritable>yes</mustBeWritable>
+            <mustExist>0</mustExist>
+            <width>40</width>
+        </directoryParameter>
+    </parameterList>
+</project>
+

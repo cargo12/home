@@ -1,0 +1,254 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+###
+#
+# Weather wallpaper is the legal property of Raul Gonzalez Duque <zootropo@gmail.com>
+# Copyright (c) 2007 Raul Gonzalez Duque
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 2 as
+# published by the Free Software Foundation
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+###
+
+
+import ConfigParser
+import gconf
+import gettext
+import gtk
+import os
+import pygtk
+import pymetar
+import sys
+import threading
+import time
+import urllib2
+
+
+class MyAboutDialog(gtk.AboutDialog):
+    def __init__(self):
+        super(MyAboutDialog, self).__init__()
+
+        self.set_name("Weather wallpaper")
+        self.set_version("0.1")
+        self.set_copyright("Copyright © 2007 Raul Gonzalez Duque")
+        self.set_website("http://mundogeek.net/")
+        self.set_website_label("Mundo geek")
+        self.set_authors(["Raul Gonzalez Duque <zootropo@gmail.com>"])
+        self.set_translator_credits("en: Raul Gonzalez Duque <zootropo@gmail.com>\n" + 
+                                    "es: Raul Gonzalez Duque <zootropo@gmail.com>\n")
+        self.set_logo(gtk.gdk.pixbuf_new_from_file("%s%simages%ssnow.svg" % (path, os.sep, os.sep)))
+
+        self.set_modal(True)
+        self.show_all()
+        self.run()
+        self.destroy()
+
+
+class Updater(threading.Thread):
+    """Thread which updates the status icon and the wallpaper every hour"""
+    def __init__(self):
+        """Constructor, to set the initial values for the variables"""
+        self.stop_event = threading.Event()
+
+        threading.Thread.__init__(self)
+
+    def run(self):
+        """Execution loop for the thread. Creates and sets a new wallpaper with the info downloaded from NOAA"""
+        if not self.stop_event.isSet():
+            statusIcon.set_from_stock(gtk.STOCK_REFRESH)
+            statusIcon.set_tooltip(_("Retreiving report"))
+
+            # The station ID can be found here: http://www.nws.noaa.gov/tg/siteloc.shtml
+            fetcher = pymetar.ReportFetcher(station_id)
+            parser = pymetar.ReportParser()
+            try:
+                report = fetcher.FetchReport()
+            except (urllib2.URLError, pymetar.NetworkException):
+                statusIcon.set_tooltip(_("There is a network problem. Trying again in 1 minute."))
+                print _("There is a network problem. Trying again in 1 minute.")
+                # Wait until the timeout elapses (1 minute) or until the stop
+                # event is set by another thread
+                self.stop_event.wait(60)
+                self.run()
+                return
+
+            report = parser.ParseReport(report)
+
+            if not report.valid:
+                print _("The downloaded report is not valid")
+                exit()
+
+            hour = int(time.ctime().split()[3].split(":")[0])
+            image = report.getPixmap()
+
+            # Before sunrise (4:00 - 4:59)
+            if hour >= 4 and hour < 5:
+                if image == "sun":
+                    image= "moon"
+                if image == "suncloud":
+                    image = "mooncloud"
+                foreground = "#1E5073"
+                background = "#1E5073"
+
+            # Sunrise (5:00 - 5:59)
+            if hour >= 5 and hour < 6:
+                foreground = "#666666"
+                background = "#6E98AE"
+
+            # Before afternoon (6:00 - 13:59)
+            if hour >= 6 and hour < 14:
+                foreground = "#6E98AE"
+                background = "#97BFCB"
+
+            # Afternoon (14:00 - 19:59)
+            if hour >= 14 and hour < 20:
+                foreground = "#6382b9"
+                background = "#8fb6ff"
+
+            # Twilight (20:00 - 21:59)
+            if hour >= 20 and hour < 22:
+                if image == "sun":
+                    image= "moon"
+                if image == "suncloud":
+                    image = "mooncloud"
+                foreground = "#333333"
+                background = "#694174"
+
+            # Night (22:00 - 3:59)
+            if hour >= 22 or hour < 4:
+                foreground = "#000000"
+                `2background = "#33436a"
+                \if image == "sun":
+                    image = "moon"
+                if image == "suncloud":
+                    image = "mooncloud"
+
+
+            statusIcon.set_from_file("%s%simages%s%s.png" % (path, os.sep, os.sep, image))
+            statusIcon.set_tooltip("%s (%s)" % (report.getStationCity(), str(int(report.getTemperatureCelsius())) + "ºC"))
+
+            input_img = "%s%simages%s%s.svg" % (path, os.sep, os.sep, image)
+
+            cmd = "inkscape --without-gui --export-background-opacity=0 \
+                    --export-width=%s --export-height=%s --file=%s \
+                    --export-png=%s" % (height, height, input_img, output_img)
+            os.popen(cmd)
+
+            cmd = "montage %s -background none -geometry +%s+0 %s" % (output_img, width - height, output_img)
+            os.popen(cmd)
+
+            offset_x = width
+            offset_y = height - (height * 0.2)
+           
+            os.popen(cmd)
+
+            client = gconf.client_get_default()
+            client.set_string("/desktop/gnome/background/picture_filename", output_img)
+            client.set_string("/desktop/gnome/background/picture_options", "centered")
+
+            client.set_string("/desktop/gnome/background/color_shading_type", "vertical-gradient")
+            client.set_string("/desktop/gnome/background/primary_color", foreground)
+            client.set_string("/desktop/gnome/background/secondary_color", background)
+
+            # Wait until the timeout elapses (1 hour) or until the stop event
+            # is set by another thread
+            self.stop_event.wait(3600)
+            self.run()
+
+
+def quit(widget, data=None):
+    """Exists the gtk main loop and sets the stop event for the updater thread
+    to stop"""
+    gtk.main_quit()
+    updater.stop_event.set()
+
+
+def popup_menu(widget, button, time, data = None):
+    """Called whenever the user clicks on the status icon"""
+    if button == 3:
+        if data:
+            data.show_all()
+            data.popup(None, None, None, 3, time)
+    pass
+
+
+def show_about(widget, data = None):
+    """Shows the about dialog"""
+    about = MyAboutDialog()
+
+
+
+gettext.install("weather-wallpaper")
+
+
+width = 1280
+height = 800
+
+wind = {"N":_("North"), "S":_("South"), "E":_("East"), "W":_("West"), \
+        "NE":_("Northwest"), "NW":_("Northeast"), "SE":_("Southeast"), \
+        "SW":_("Southwest"), "NNE":_("North Northeast"), \
+        "NNW":_("North Northwest"), "SSE":_("South Southeast"), \
+        "SSW":_("South Southwest"), "ENE":_("East Northeast"), \
+        "ESE":_("East Southeast"), "WNW":_("West Northwest"), \
+        "WSW":_("West Southwest"), "None":_("None")}
+
+output_img = os.path.expanduser("~") + "/.weather-wallpaper/.wallpaper.png"
+
+path = os.path.abspath(os.path.dirname(sys.argv[0]) + os.sep + ".." + os.sep + \
+       "share" + os.sep + "weather-wallpaper")
+
+
+statusIcon = gtk.StatusIcon()
+statusIcon.set_from_stock(gtk.STOCK_REFRESH)
+
+menu = gtk.Menu()
+menuItem = gtk.ImageMenuItem(gtk.STOCK_ABOUT)
+menuItem.connect("activate", show_about)
+menu.append(menuItem)
+
+menuItem = gtk.ImageMenuItem(gtk.STOCK_QUIT)
+menuItem.connect("activate", quit, statusIcon)
+menu.append(menuItem)
+
+statusIcon.connect("activate", show_about)
+statusIcon.set_visible(True)
+statusIcon.connect("popup-menu", popup_menu, menu)
+
+
+# Read the configuration values from the config file. If the file does not exist
+# create it with the default values
+cfg = ConfigParser.SafeConfigParser()
+
+if not os.path.exists(os.path.expanduser("~") + "/.weather-wallpaper/"):
+    os.mkdir(os.path.expanduser("~") + "/.weather-wallpaper/")
+
+if not os.path.exists(os.path.expanduser("~") + "/.weather-wallpaper/conf"):
+    cfg.add_section("General")
+    cfg.set("General", "station id", "LEGT")
+    cfg.write(open(os.path.expanduser("~") + "/.weather-wallpaper/conf", "w"))
+
+cfg.readfp(file(os.path.expanduser("~") + "/.weather-wallpaper/conf"))
+station_id = cfg.get("General", "station id")
+
+
+try:
+    updater = Updater()
+    updater.start()
+
+    gtk.gdk.threads_init()
+    gtk.main()
+except (KeyboardInterrupt, SystemExit):
+    updater.stop_event.set()
+
+
+

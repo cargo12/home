@@ -1,0 +1,58 @@
+#!/bin/bash
+#$Id: dropbox encrypt  04-21-2011 08:37PM wimac(wimac1@gmail.com) ver: 11.146.1914
+#encrypt/decrypt truecrypt for dropbox
+
+PROG=${0##*/}
+VERSION=$(echo $Revision: 0.1 $ |awk '{print$2}')
+ENCPW="NDBsZGZhNVQjZHJveCFyM2RkMGcK"
+PW=$(echo "$ENCPW" | base64 --decode)
+
+ulock(){
+
+/home/$USER/.dropbox-dist/dropboxd &
+sleep 20s
+
+ if [ -f ~/Dropbox/dropbox.enc ]; then
+        echo $PW > /tmp/pwf
+        openssl enc -d -aes-256-cbc -salt -in ~/Dropbox/dropbox.enc -out /tmp/dropbox.tgz -pass file:/tmp/pwf 
+        tar xzf /tmp/dropbox.tgz
+        ln -s ~/.dropbox-enc ~/Dropbox/docs
+        srm -f /tmp/dropbox.tgz&
+        srm -f /tmp/pwf&
+ fi
+       
+       
+
+}
+
+lock(){
+
+ if [ -d .dropbox-enc ]; then
+        mv ~/Dropbox/dropbox.enc /tmp
+        rm /tmp/dropbox.enc &
+        echo $PW > /tmp/pwf
+        tar czf /tmp/dropbox.tgz .dropbox-enc
+        openssl enc -aes-256-cbc -salt -in /tmp/dropbox.tgz -out ~/Dropbox/dropbox.enc -pass file:/tmp/pwf  
+        srm -f /tmp/pwf&
+        srm -f /tmp/dropbox.tgz&
+        rm -R .dropbox-enc&
+        rm ~/Dropbox/docs &
+       
+ fi
+}
+
+while [ $# -gt 0 ]
+do
+   case "$1" in
+       start|u|-u|--unlock)  ulock; exit 0; ;;
+       stop|l|-l|--lock)    lock; exit0; ;;
+        -h|--help)       usage; exit 0; ;;
+        -V|--version)    echo -n "$PROG version $VERSION "
+                       echo 'Written by William J. MacLeod <wimac1@gmail.com>'
+		               exit 0; ;;
+        *)             usage; exit 1; ;;
+   esac
+   shift
+done
+lock
+exit 0

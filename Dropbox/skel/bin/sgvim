@@ -1,0 +1,10 @@
+#!/bin/bash
+for i in "$@"
+        do
+                if [ -f "$@" -a ! -w "$@" ]
+                then
+                  precommand="gksudo" 
+                  break
+                fi
+        done
+        ${precommand} /usr/bin/gvim "$@"&

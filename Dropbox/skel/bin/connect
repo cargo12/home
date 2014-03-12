@@ -1,0 +1,6 @@
+#!/bin/bash
+#$Id: connect 09-15-2007 12:22PM wimac ver:07.258.1222    $
+# Last modified: 09-15-2007  12:24PM wimac
+
+sudo iwconfig eth0 essid wimac-prime
+sudo dhclient

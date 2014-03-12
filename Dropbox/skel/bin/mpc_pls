@@ -1,0 +1,4 @@
+#!/bin/bash
+CLEAR
+grep “^File [0-9] *” $1 | sed - e “s/^File [0-9] *=//” | mpc ADD
+mpc play 

@@ -1,0 +1,16 @@
+#!/bin/sh
+# $Id: weather  07-26-2007 02:17PM wimac ver: 07.209.1520
+# by William J. MacLeod (wimac1@gmail.com)  
+# Last modified: 07-28-2007  03:20PM wimac
+wxurl="http://www.accuweather.com"
+wxurl="$wxurl/adcbin/public/local_index_print.asp?zipcode="
+zcode="48126"
+size=3
+
+lynx -source "${wxurl}$zcode" | \
+  sed -n '/Start - Forecast Cell/,/End - Forecast Cell/p' | \
+  sed 's/<[^>]*>//g;s/^ [ ]*//g' | \
+  uniq -u | \
+  sed '2,3!d'|\
+  tr -d '\r' 
+exit 0

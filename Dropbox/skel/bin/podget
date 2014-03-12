@@ -1,0 +1,369 @@
+#!/bin/bash
+# ----------------------------------------------------------------------------------------------------------------------------------
+# Filename:      podget.sh                                                                                                       {{{
+# Maintainer:    Dave Vehrs <davev(at)users.sourceforge.net>
+# Created:       05 Mar 2005 09:35:44 PM
+# Last Modified: 14 May 2005 12:58:22 by Dave Vehrs
+# Copyright:     © 2005 Dave Vehrs
+#
+#                This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public
+#                License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any
+#                later version.
+#
+#                This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+#                warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+#                details.
+#
+#                You should have received a copy of the GNU General Public License along with this program; if not, write to the
+#                Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA _OR_ download at copy at
+#                http://www.gnu.org/licenses/licenses.html#TOCGPL
+#
+# Description:   Podget is a simple bash script to automate the downloading and
+#                organizing of audio content from the Ipodder.org podcasts.
+# Dependencies:  bash, btdownloadcurses, cat, cp, echo, expr, grep, mkdir, screen, sed, sort, touch, & wget
+# Installation:  cp podget.sh /usr/local/bin
+#                chmod 755 /usr/local/bin/podget.sh                                                                              }}}
+# ----------------------------------------------------------------------------------------------------------------------------------
+# Help text and default file formats                                                                                             {{{
+
+: << HELP_STEXT
+    -c --config <FILE>          Name of configuration file.
+    -d --dir_config <DIRECTORY> Directory that configuration files are stored in.
+    -l --library <DIRECTORY>    Directory to store downloaded files in.
+    -s --silent                 Run silently (for cron jobs).
+    -v --verbosity <LEVEL>      Set verbosity level (0-3).
+    -h --help                   Display help.
+HELP_STEXT
+
+: << TEXT_DEFAULT_CONFIG
+# Name of Server List configuration file
+config_serverlist=serverlist
+
+# Directory where to store downloaded files
+dir_library=/usr/local/share/POD
+
+# Directory to store logs in
+# dir_log=/usr/local/share/POD/LOG
+
+# Set logging files
+log_fail=errors
+log_comp=done
+
+# Build playlists (comment out or set to null value to disable)
+playlist_namebase=New-
+
+# Date format for new playlist names
+date_format=+%m-%d-%Y
+
+# Wget base options
+# wget_baseopts=--proxy=off
+TEXT_DEFAULT_CONFIG
+
+: << TEXT_DEFAULT_SERVERLIST
+# Default Server List for podget
+# FORMAT:    <url> <category> <name>
+# NOTE: Category must be one word
+# Find more servers at: http://www.ipodder.org/directory/4/podcasts
+http://thelinuxlink.net/tllts/tllts.rss LINUX The Linux Link
+http://www.itconversations.com/rss/category-rss.php?k=lawandit&e=1 IT IT Conversations: Law & IT
+TEXT_DEFAULT_SERVERLIST
+
+#                                                                                                                                }}}
+# ----------------------------------------------------------------------------------------------------------------------------------
+# Defaults                                                                                                                       {{{
+
+# Set dir_cache, dir_install, dir_log, dir_temp in config file.
+dir_config="$HOME/.podget"
+config_core="podgetrc"
+config_serverlist="serverlist"
+
+# Default Verbosity
+#  0 == silent
+#  1 == some
+#  2 == more
+#  3 == all messages
+verbosity=1
+
+# Silent mode (for calling from cron jobs)
+# 0 == normal
+# 1 == surpress all messages
+silent=0
+
+# Autocleanup. 
+# 0 == disabled
+# 1 == delete any content 1 week old or older
+cleanup=0
+
+# Torrent Support.  
+# 0 == disabled
+# 1 == Open a bittorrent download session in its own detached screen session.
+#      Restore the screen session to monitor progress and/or stop.
+get_torrents=0
+
+#                                                                                                                                }}}
+# ----------------------------------------------------------------------------------------------------------------------------------
+# Exit Codes                                                                                                                     {{{
+
+# "Reserved" Exit codes
+# 1     General Error
+# 2     Misuse of shell built-ins
+# 126   Command invoked cannot execute
+# 127   Command not found
+# 128   Invalid argument to exit
+# 130   Sript terminated by Control-C
+err_libnotdef=50
+
+#                                                                                                                                }}}
+# ----------------------------------------------------------------------------------------------------------------------------------
+# Functions                                                                                                                      {{{
+
+function display_shelp {  
+	echo; echo "Usage $0 [options]"
+	sed --silent -e '/HELP_STEXT$/,/^HELP_STEXT/p' "$0" | sed -e '/HELP_STEXT/d'
+} 
+
+#                                                                                                                                }}}
+# ----------------------------------------------------------------------------------------------------------------------------------
+# Parse command line                                                                                                             {{{
+
+unset cmdl_library
+
+while [ $# -ge 1 ] ; do
+	case $1 in 
+        -c | --config     ) config_core=$2            ; shift ; shift ;;
+        -d | --dir_config ) dir_config=$2             ; shift ; shift ;;
+        -l | --library    ) cmdl_library=$2           ; shift ; shift ;;
+        -s | --serverlist ) cmdl_serverlist=$2        ; shift ; shift ;;
+             --silent     ) silent=1                  ; shift         ;;
+		-v | --verbosity  ) verbosity=$2              ; shift ; shift ;;
+		*                 ) display_shelp             ; exit 1        ;; 
+	esac
+done
+
+if [ -n "$cmdl_serverlist" ] ; then
+    config_serverlist=$cmdl_serverlist
+fi
+
+if [ $silent -eq 1 ] ; then
+    verbosity=0   
+fi
+
+if [ ! -z $PS1 ] ; then
+    verbosity=0   
+fi
+
+if [ $silent -eq 0 -a $verbosity -ge 1 ] ; then
+    echo "podget"
+fi
+
+#                                                                                                                                }}}
+# ----------------------------------------------------------------------------------------------------------------------------------
+# Configuration                                                                                                                  {{{
+
+if [ $verbosity -ge 3 ] ; then
+	echo "  CONFIG DIR:  $dir_config" 
+	echo "  CONFIG FILE: $config_core" 
+fi
+
+# Test for config dir.   If missing install it.
+if [ ! -d $dir_config ] ; then
+    mkdir $dir_config
+    for testfile in $config_core $config_serverlist
+    do 
+        for testdir in /etc/podget /usr/local/etc/podget /usr/local/share/podget/
+        do
+            if [ -e $testdir/$testfile ] ; then 
+                cp $testdir/$testfile $dir_config/.podget/
+                break
+            fi
+        done
+    done
+    if [ ! -e $dir_config/$config_core ] ; then
+	    sed --silent -e '/TEXT_DEFAULT_CONFIG$/,/^TEXT_DEFAULT_CONFIG/p' "$0" | 
+            sed -e '/TEXT_DEFAULT_CONFIG/d' > $dir_config/$config_core
+    fi
+    if [ ! -e $dir_config/$config_serverlist ] ; then
+	    sed --silent -e '/TEXT_DEFAULT_SERVERLIST$/,/^TEXT_DEFAULT_SERVERLIST/p' "$0" | 
+            sed -e '/TEXT_DEFAULT_SERVERLIST/d' > $dir_config/$config_serverlist
+    fi
+fi
+
+# Parse config file
+while read line ; do
+     # echo "TESTLINE --> $line"
+    if [[ $(expr index "# " "$line") > 0 ]] && [[ $(expr index "# " "$line") < 2 ]]; then
+        # echo "DISCARDING LINE: $line"
+        continue
+    fi
+    if [[ $(expr "$line" : ".*=") > 0 ]]; then
+        # echo "= Found --> $line"
+        var2set=$(echo $line | sed -n -e 's/^\([^=]\+\)=.*$/\1/p')
+        set2var=$(echo $line | sed -n -e 's/^[^=]\+=\(.*\)$/\1/p')
+        eval $var2set='$set2var'
+    fi
+done < $dir_config/$config_core
+
+if [ $verbosity -ge 3 ] ; then
+	echo "  LIBRARY DIR:  $dir_library" 
+fi
+
+if [ -n "$cmdl_library" ] ; then
+    dir_library=$cmdl_library
+fi
+
+if [ -z $dir_library ] ; then
+    echo "ERROR - Library directory not defined."
+    exit $err_libnotdef
+fi
+
+if [ -z $dir_log ] ; then
+    dir_log=$dir_library/.LOG
+fi
+
+if [ -n "$cmdl_serverlist" ] ; then
+    config_serverlist=$cmdl_serverlist
+fi
+
+#                                                                                                                                }}}
+# ----------------------------------------------------------------------------------------------------------------------------------
+# Loop over servers on list                                                                                                      {{{
+
+if [ $verbosity -ge 3 ] ; then
+	echo "  SERVER LIST: $config_serverlist" 
+fi
+
+if [ $verbosity -eq 0 ] ; then
+    wget_options="-q -c $wget_baseopts" 
+elif [ $verbosity -eq 1 ] ; then
+    wget_options="-nv -c $wget_baseopts" 
+elif [ $verbosity -eq 2 ] ; then
+    wget_options="-c $wget_baseopts --progress=dot:mega" 
+else
+    wget_options="-c $wget_baseopts --progress=bar" 
+fi
+
+mkdir -p $dir_log
+touch $dir_log/$log_fail $dir_log/$log_comp
+
+if [ -n "$playlist_namebase" ] ; then
+    playlist_name=$playlist_namebase$(date $date_format).m3u
+else
+    playlist_namebase="New-"
+    playlist_name="New-$(date $date_format).m3u"
+fi
+counter=2
+while [ -e $dir_library/$playlist_name ]
+do
+    playlist_name=$playlist_namebase$(date $date_format).r$counter.m3u
+    counter=$((counter+1))
+done
+
+while read feed_url feed_category feed_name ; do
+     # echo "TESTLINE --> $feed_url"
+    if   [[ $(expr index "# " "$feed_url") > 0 ]] && [[ $(expr index "# " "$feed_url") < 2 ]] || [[ $feed_url == "" ]] ; then
+        # echo "DISCARDING LINE: $feed_url"
+        continue
+    fi
+    if [ $verbosity -ge 1 ] ; then
+        echo 
+        echo "-------------------------------------------------"
+        echo -e "Category: $feed_category\t\tName: $feed_name"
+        echo "Downloading feed index from $feed_url" 
+    fi
+    indexfile=$(wget $wget_options -O - $feed_url  | sed -e 's/\r/\n/g' -e "s/'/\"/g" -n -e 's/.*url="\([^"]\+\)".*/\1/Ip')
+    if [ -n "$indexfile" ] ; then
+        for url in $indexfile
+        do
+            url_filename=$(echo $url | sed -e 's/.*\/\([^\/]\+\)/\1/' -e 's/%20/ /g')
+            url_base=$(echo $url | sed -e 's/\(.*\/\)[^\/]\+/\1/')
+            mkdir -p "$dir_library/$feed_category/$feed_name"
+            test=$(grep $url $dir_log/$log_comp)
+            # echo "TEST: $test"
+            if [ -z "$test" ] ; then
+                if [ $verbosity -ge 2 ] ; then echo ; fi
+                if [ $verbosity -ge 1 ] ; then
+                    echo "Dowloading $url_filename from $url_base"
+                fi
+                if [[ $(expr index ".torrent" "$url") > 1 && get_torrents -ge 1 ]] ; then
+                    cd $dir_library/$feed_category/$feed_name
+                    screen -d -m -- btdownloadcurses --url $url
+                    cd $dir_library
+                else
+                    wget $wget_options -P "$dir_library/$feed_category/$feed_name/" $url
+                fi
+                if [ $? ] ; then
+                    echo $url >> $dir_log/$log_comp
+                    if [ -n "$playlist_name" ] ; then
+                        echo "$feed_category/$feed_name/$url_filename" >> $dir_library/$playlist_name
+                    fi
+                else
+                    echo $url >> $dir_log/$log_fail
+                fi
+            else
+                if [ $verbosity -ge 2 ] ; then echo ; fi
+                if [ $verbosity -ge 1 ] ; then
+                    echo "Already downloaded $url_filename."
+                fi
+                
+            fi
+        done
+    else
+        echo "  Feed Error $feed_url"
+        echo $feed_url >> $dir_log/$log_fail
+    fi
+done < $dir_config/$config_serverlist
+
+# Sort new playlist
+if [ -e $dir_library/$playlist_name ] ; then 
+    cat $dir_library/$playlist_name | sort > $dir_library/$playlist_name
+fi
+
+#                                                                                                                                }}}
+# ----------------------------------------------------------------------------------------------------------------------------------
+# Cleanup loop                                                                                                                   {{{
+
+if [ $cleanup -ne 0 ] ; then
+    if [ $silent -ne 1 ] ; then
+        echo -e "\n-------------------------------------------------\nCleanup old tracks."
+    fi
+    filelist=$(find $dir_library/ -maxdepth 1 -type f -mtime +7)
+    for file in $filelist ; do
+        if [ $silent -ne 1 ] ; then
+            echo "Deleting tracks from $file:"
+        fi
+        while read line ; do
+            if [ $silent -ne 1 ] ; then
+                rm -v "$dir_library/$line"
+            else
+                rm -f "$dir_library/$line" 
+            fi
+        done < $file
+        if [ $silent -ne 1 ] ; then
+            rm -f "$file" 
+        else
+            rm -fv "$file"
+        fi
+    done
+fi
+
+#                                                                                                                                }}}
+# ----------------------------------------------------------------------------------------------------------------------------------
+# Notes:                                                                                                                         {{{
+# 1.  Best viewed in Vim (http://vim.sf.net) with the AutoFold plugin and the Relaxedgreen colorscheme (vimscripts #925 and #791).
+# 2.  Find out more about Podcasting at http://www.ipodder.org
+# 3.  Find additional podcasts at: 
+#           http://www.ipodder.org
+#           http://www.podcast.net
+#           http://www.podcastalley.com
+#           http://www.podcastbunker.com
+#           http://www.thepodcastnetwork.com
+#           http://www.digitalpodcast.com
+#           http://www.podcastingnews.com/forum/links.php
+#           http://downloadradio.org/
+# 4.  Known Bug:  If the same filename is downloaded for multiple items on a single feed, wgets continue fuction will cause them to
+#     append or error.
+#           
+#                                                                                                                                }}}
+# ----------------------------------------------------------------------------------------------------------------------------------
+# vim:tw=132:ts=4:sw=4
+

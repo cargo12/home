@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#use magnet links in chrome
+
+gconftool-2 -t string -s /desktop/gnome/url-handlers/magnet/command "/usr/bin/transmission %s" 
+gconftool-2 -s /desktop/gnome/url-handlers/magnet/needs_terminal false -t bool 
+gconftool-2 -t bool -s /desktop/gnome/url-handlers/magnet/enabled t
+#edit /usr/bin/xdg-open: find the detectDE function, comment out every line in that function and then add a single line: DE=gnome:
+sudo gvim -c "/detectDE()" /usr/bin/xdg-open
+
+#detectDE()
+#{
+# if [x"$KDE_FULL_SESSION" = x"true" ]; then DE=kde;
+# ...
+# ...
+# fi
+#DE=gnome;
+#}

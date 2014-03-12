@@ -1,0 +1,5 @@
+#!/bin/bash
+#Calendar hack that puts a ## over the current date
+#Last modified: Tue Apr 10, 2007  09:33AM
+#
+cal | sed "s/^/ /;s/$/ /;s/ $(date +%e) / $(date +%e | sed 's/./#/g') /"

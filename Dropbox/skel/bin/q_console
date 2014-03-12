@@ -1,0 +1,45 @@
+#!/bin/bash
+#$Id: q_console  08-06-2008 01:53PM v.08.219.1353 wimac Exp $
+# Implements a simple quake-style console that uses urxvt and wmctrl.
+#Last modified: 11-15-2010  03:50PM ubuntu
+
+#for openbox add this to the keyboard section in your ~/.config/openbox/rc.conf 
+# to bind to your F1 key
+
+#  <keybind key="grave">
+#      <action name="execute"><execute>/home/wimac/bin/q_console</execute></action>
+#  </keybind>
+
+#     <application name="q_console">
+#      <layer>above</layer>
+#      <decor>no</decor>
+#      <focus>yes</focus>
+#      <skip_pager>yes</skip_pager>
+#      <skip_taskbar>yes</skip_taskbar>
+#      <maximized>horizontal</maximized>
+#    </application>
+
+# check if a terminal is already created
+#if [ "`wmctrl -lx | grep -c q_console.URxvt`" = "0" ]
+#then
+#    urxvt -fn 9x15 -fg green -bg black +sb -name q_console -title q_console -g 120x20+0+0 -e screen -xR&
+#    #Eterm -O -l -F terminal -x --shade 20% --scrollbar=0 -f green --cursor-color rgb:0/0/0 -T q_console --buttonbar=off -L 2000 -g 170x20+0+0 -e screen -xR&
+#    sleep 1
+#    wmctrl -x -r q_console.URxvt -b add,maximized_horz
+#    wmctrl -x -r q_console.URxvt -e 0,0,0,1024,-1
+#    wmctrl -x -r q_console.URxvt -b add,above
+#else
+#    wmctrl -x -r q_console.URxvt -b toggle,hidden
+#fi
+
+if [ "`wmctrl -lx | grep -c terminator.Terminator`" = "0" ]
+then
+    terminator --geometry=1080x310+0+0 -b -x screen -xR&
+    #Eterm -O -l -F terminal -x --shade 20% --scrollbar=0 -f green --cursor-color rgb:0/0/0 -T q_console --buttonbar=off -L 2000 -g 170x20+0+0 -e screen -xR&
+    sleep 1
+    wmctrl -x -r terminator.Terminator -b add,maximized_horz
+    wmctrl -x -r terminator.Terminator -e 0,0,0,1024,-1
+    wmctrl -x -r terminator.Terminator -b add,above
+else
+    wmctrl -x -r terminator.Terminator -b toggle,hidden
+fi

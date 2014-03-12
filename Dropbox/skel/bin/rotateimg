@@ -1,0 +1,5 @@
+#!/bin/sh
+for f in $* ;do
+ mogrify -rotate -90 $f
+ echo "Rotating $f"
+done

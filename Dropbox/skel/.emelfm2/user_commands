@@ -10,3 +10,4 @@ md5sum=md5sum %f
 replace spaces with _=find -maxdepth 1 -type f -exec rename 'y/\ /\_/' {}  \;
 Free space on Tablet=sudo adb shell df /storage/sdcard0
 Add to archive=7z a new.zip %f 
+Pushbullet=pushbullet_cmd.py v1vrTpHUzDhisAXW4zLa6bXTWu3gLwnrzgujvnWEM61Cu file 5707702298738688 %f

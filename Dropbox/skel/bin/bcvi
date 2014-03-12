@@ -1,0 +1,359 @@
+#!/usr/bin/perl
+##############################################################################
+#
+# Script:   bcvi
+#
+# Author:   Grant McLean <grant@catalyst.net.nz>
+#
+# Description:
+#
+# The 'Back-Channel vim' tool works with SSH to allow commands run on an
+# SSH server to invoke processes back on the originating SSH client machine.
+#
+
+use strict;
+use warnings;
+
+use Pod::Usage;
+use Getopt::Long qw(GetOptions);
+use File::Spec;
+use Sys::Hostname;
+
+my %opt = (
+    port    => ($< * 10 + 9),
+    command => 'vi',
+);
+
+if(!GetOptions(\%opt,
+    'help|?', 'listener|l', 'port|p=s', 'command|c=s', 
+    'unpack-term', 'wrap-ssh|s',
+)) {
+    pod2usage(-exitval => 1,  -verbose => 0);
+}
+
+
+pod2usage(-exitstatus => 0, -verbose => 2) if($opt{'help'});
+
+if($opt{listener}) {
+    my $listener = BCVI::Listener->new(%opt);
+    $listener->loop();
+}
+elsif($opt{'unpack-term'}) { unpack_term();      }
+elsif($opt{'wrap-ssh'})    { wrap_ssh();         }
+else                       { run_command(@ARGV); }
+
+exit 0;
+
+
+sub run_command {
+    my @files = map { File::Spec->rel2abs($_) } @_;
+
+    my $command = $opt{command};
+    my($alias, $gateway, $port) = connection_details();
+    my $sock = IO::Socket::INET->new(PeerAddr => "$gateway:$port")
+        or die "Can't connect to '$gateway:$port': $!\n";
+    binmode($sock);
+    my $welcome = <$sock>;
+    if(!$welcome or $welcome !~ /^200 READY/) {
+        die "No listener?\n";
+    }
+    $sock->write(join qq{\x0A}, $alias, $command, @files, qq{\x0A})
+        or die "Error sending command through backchannel: $!";
+}
+
+
+sub connection_details {
+    my $env = $ENV{BCVI_CONF} || '';
+    my($alias, $gateway, $port) = $env =~ m{^([^:]+):(?:([^:]+):)?(\d+)$};
+    $alias   ||= hostname();
+    $gateway ||= 'localhost';
+    $port    ||= $opt{port};
+    return($alias, $gateway, $port);
+}
+
+
+sub unpack_term {
+    my @parts = split /\x0D?\x0A/, $ENV{TERM} || '';
+    return unless @parts > 1;
+    print "TERM=$parts[0]\n";
+    shift @parts;
+    foreach (@parts) {
+        print if s{^(\w+)=(.*)$}{export $1="$2"\n};
+    }
+}
+
+
+sub wrap_ssh {
+    my(@args, @hosts, %need_arg);
+    $need_arg{$_} = 1 foreach qw(b c D e F i L l m O o p R S);
+
+    my @orig = @ARGV;
+    while(@ARGV) {
+        $_ = shift @ARGV;
+        if(/^-(.)(.*)$/) {
+            push @args, $_;
+            push @args, shift @ARGV if $need_arg{$1} && !length($2) && @ARGV;
+        }
+        else {
+            push @args,  $_;
+            push @hosts, $_;
+        }
+    }
+    if(@hosts == 1) {
+        my($target) = @hosts;
+        $target =~ s{^.*\@}{};
+        $ENV{TERM} = "$ENV{TERM}\nBCVI_CONF=${target}:localhost:$opt{port}";
+        unshift @args, "-R $opt{port}:localhost:$opt{port}";
+    }
+    else {
+        @args = @orig;
+    }
+    system 'ssh', @args;
+}
+
+
+
+package BCVI::Listener;
+
+use IO::Socket::INET;
+use IO::Select;
+use Scalar::Util qw(refaddr);
+use File::Spec;
+use POSIX        qw(:errno_h);
+
+sub new {
+    my($class, %opt) = @_;
+
+    _save_pid();
+    my $listener = IO::Socket::INET->new(
+        LocalAddr => "localhost:$opt{port}",
+        ReuseAddr => 1,
+        Proto     => 'tcp',
+        Listen    => 5,
+    ) or die "Error creating listener for port 'localhost:$opt{port}': $!";
+
+    return bless {
+        _listener => $listener,
+        _selector => IO::Select->new($listener),
+        _options  => \%opt,
+    }, $class;
+}
+
+sub _save_pid {
+    my $home = (getpwuid($<))[7];
+    my $pid_file = File::Spec->catfile($home, '.bcvi.pid');
+    if(-e $pid_file) {
+        my $old_pid = do {
+          local($/); open my $fh, $pid_file or die "open($pid_file): $!";
+          <$fh>;
+        };
+        _kill_pid($old_pid) if $old_pid;
+    }
+    open my $fh, '>', $pid_file or die "open(>$pid_file): $!";
+    print $fh "$$\n";
+}
+
+
+sub _kill_pid {
+    my($pid) = @_;
+    
+    chomp($pid);
+    foreach my $i (1..5) {
+        if(kill 0, $pid) {
+            kill($i > 2 ? 9 : 1, $pid);
+        }
+        elsif($! == ESRCH) {   # no such process
+            return;
+        }
+        elsif($! == EPERM) {   # process belongs to another user
+            return;
+        }
+        sleep 1;
+    }
+}
+
+
+sub loop {
+    my $self = shift;
+
+    while(my @ready = $self->{_selector}->can_read) {
+        foreach my $fh (@ready) {
+            if($fh == $self->{_listener}) {
+                $self->accept_connection();
+            }
+            else {
+                $self->handle_data($fh);
+            }
+        }
+    }
+}
+
+
+sub accept_connection {
+    my $self = shift;
+
+    my $sock = $self->{_listener}->accept;
+    binmode($sock);
+    my $key = refaddr($sock);
+    $self->{_selector}->add($sock);
+    $self->{$key} = { fh  => $sock, buf => '', };
+    $sock->write(qq{200 READY\x0A});
+}
+
+
+sub handle_data {
+    my($self, $sock) = @_;
+
+    my $key = refaddr($sock);
+
+    my $buf;
+    my $bytes = sysread $sock, $buf, 4096;
+    if($bytes) {
+        $self->{$key}->{buf} .= $buf;
+        if($self->{$key}->{buf} =~ m{^(.*?)\x0A\x0A\z}s) {
+            $self->run_command($1);
+            $self->{$key}->{buf} = '';
+        }
+    }
+    else {
+        $self->{_selector}->remove($sock);
+        $sock->close;
+        delete $self->{$key};
+    }
+}
+
+
+sub run_command {
+    my($self, $string) = @_;
+
+    my($alias, $command, @files) = split /\x0A/, $string;
+    my $method = "execute_${command}";
+    if(!$self->can($method)) {
+        warn "Unsupported command '$command' - ignored\n";
+        return;
+    }
+    $self->$method($alias, @files);
+}
+
+
+sub execute_vi {
+    my($self, $alias, @files) = @_;
+
+    s{^}{scp://$alias/} foreach @files;
+
+    system('gvim', '--', @files);
+}
+
+__END__
+
+=head1 NAME
+
+bcvi - Back-channel vi, proxy commands back over ssh
+
+=head1 SYNOPSIS
+
+  bcvi [options] [<files>]
+
+  Options:
+
+   -l|--listener        start in listener mode
+   -p|--port <port>     listener port number
+   -c|--command <cmnd>  command to send over back-channel
+   -s|--wrap-ssh        pass all args after -- to ssh
+      --unpack-term     unpack the overloaded TERM variable
+   -?|--help            detailed help message
+
+=head1 DESCRIPTION
+
+This utility works with SSH to allow commands run on the SSH server to be
+'proxied' back to the SSH client machine.  For example:
+
+=over 4
+
+=item *
+
+user F<sue> establishes an SSH connection from her workstation to a server
+named F<pluto> and runs the command C<bcvi .bashrc>
+
+=item *
+
+bcvi tunnels the details back to sue's workstation which then invokes the
+command C<gvim scp://pluto//home/sue/.bashrc>
+
+=item *
+
+the result is that sue gets a responsive GUI editor running on her local
+machine, but editing a file on the remote machine
+
+=back
+
+
+=head1 OPTIONS
+
+=over 4
+
+=item B<--listener> (alias: -l)
+
+Start a (background) listener process.
+
+=item B<< --port <port> >> (alias: -p)
+
+Port number to listen on (default is user_id * 10 + 9).
+
+=item B<< --command <cmnd> >> (alias: -c)
+
+Use C<cmnd> as the command to send over the back-channel (default: vi)
+
+=item B<< --unpack-term >>
+
+This option is intended for use from a F<.profile> script.  It outputs a
+snippet to shell script to be passed to C<eval> in the calling shell.
+
+The C<bcvi> script overloads the TERM environment variable (which is
+poropagated by ssh) to 'smuggle' config data to the remote shell.
+
+=item B<-?>
+
+Display this documentation.
+
+=back
+
+=head1 USING BCVI
+
+You'll need to start a listener process on your workstation (perhaps from
+your window manager session startup?
+
+  bcvi -l &
+
+To ssh to a server with tunnelling enabled:
+
+  bcvi --wrap-ssh -- hostname
+
+To enable bcvi on all ssh connections:
+
+  alias ssh="bcvi --wrap-ssh --"
+
+On a target server, you'll need to unpack the overloaded TERM variable:
+
+  test -n "$(which bcvi)" && eval "$(bcvi --unpack-term)"
+
+To use vi over the back-channel:
+
+  bcvi filename
+
+Perhaps via an alias:
+
+  alias vi="bcvi"
+
+=head1 COPYRIGHT 
+
+Copyright 2007 Grant McLean E<lt>grantm@cpan.orgE<gt>
+
+This library is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself. 
+
+
+
+=cut
+
+

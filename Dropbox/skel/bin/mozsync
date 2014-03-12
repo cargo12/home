@@ -1,0 +1,20 @@
+#!/bin/bash
+
+user_name=mitch
+
+if [[ ! "$1" ]]; then
+	echo "Usage: $0 FROM-HOST"
+	exit 1
+fi
+
+# Check for cygwin.
+if [[ -d /cygdrive/c ]]; then
+	rpath=/home/$user_name/.mozilla/firefox/default.enr
+	lpath="$(find /cygdrive/c/Documents\ and\ Settings/$user_name/Application\ Data/Mozilla/Firefox/Profiles/ -iname '*.default')"
+else
+	rpath=~/.mozilla
+	lpath=~/.mozilla
+fi
+
+rsync -av --delete --exclude=Cache --exclude=lock "$1":"$rpath/" "$lpath"
+

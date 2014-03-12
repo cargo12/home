@@ -1,0 +1,18 @@
+#!/bin/bash
+# $Id: srch 07-09-2007 10:59AM wimac     $
+# Last modified: 05-18-2008  07:36PM wimac
+# Searches notebook
+
+
+
+
+swish-e -f /home/wimac/notebook/index.notebook  -H 0 -x '<swishdocpath>\n' -w $1-
+swish-e -f /etc/index.etc  -H 0 -x '<swishdocpath>\n' -w $1-
+
+
+#locate $HOME/notebook | grep '\.txt$' | xargs grep $1-
+#fgrep -Rl $1 ~/notebook
+
+#beagle-query --mime text/plain $1- | \
+#            sed  -e 's/^file://' -e 's/\/\///'
+exit 0
